@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "marketplace-ops",
+  "version": "1.0.0",
+  "description": "Rushy marketplace operations: SessionStart drift checks, post-install reconcile hints, and slash commands to import CLI-installed plugins into the RUSHYOP catalog.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "homepage": "https://github.com/RUSHYOP/rushy-claude-plugins",
+  "keywords": [
+    "marketplace",
+    "hooks",
+    "reconcile",
+    "rushy",
+    "plugins"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "hooks": "./hooks/hooks.json"
+}

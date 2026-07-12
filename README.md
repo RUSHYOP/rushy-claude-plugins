@@ -74,17 +74,41 @@ See **[AGENTS.md](./AGENTS.md)** — any AI working on plugin setup must use `ad
 ## Reconcile (if something was installed in a CLI by mistake)
 
 ```bash
-./scripts/import-from-clis.sh --commit   # pull discovery into catalog
-./scripts/sync-mirrors.sh                # if new remotes
+# Preferred runners (hooks package)
+./hooks/check-cli-drift.sh                 # dry-run status
+./hooks/reconcile.sh --sync --only-new --commit --push
+
+# Equivalent low-level script
+./scripts/import-from-clis.sh --commit
+./scripts/sync-mirrors.sh                  # if new remotes
 git push
 # then turn off non-@rushy enables in the CLI
 ```
+
+### Auto-check hooks (stored in this repo)
+
+```bash
+# Install global Grok hooks (SessionStart drift check + post-install hint)
+./hooks/install-user-hooks.sh
+./hooks/install-user-hooks.sh --claude     # optional Claude SessionStart
+
+# Or enable first-party plugin marketplace-ops@rushy (same scripts + slash commands)
+#   /marketplace-status
+#   /reconcile-marketplace
+```
+
+Hooks **never auto-commit**. They only detect drift; you run `./hooks/reconcile.sh` or `/reconcile-marketplace` to apply.
+
+See **[hooks/README.md](./hooks/README.md)**.
 
 ## Scripts
 
 | Script | Role |
 |--------|------|
 | **`add-plugin.sh`** | **Canonical** add to marketplace |
+| **`hooks/reconcile.sh`** | Runnable CLI→catalog reconcile |
+| **`hooks/check-cli-drift.sh`** | Dry-run drift check |
+| **`hooks/install-user-hooks.sh`** | Install global Grok/Claude hooks |
 | `sync-mirrors.sh` | Private DR mirrors |
 | `rebuild-marketplace.sh` | First-party scan of `plugins/*` |
 | `import-from-clis.sh` | Reconcile CLI → catalog only |
@@ -111,7 +135,8 @@ Edit `CLAUDE.md` here → commit/push → re-run apply on machines that need it.
 .claude-plugin/marketplace.json
 CLAUDE.md                # global agent rules (source of truth)
 AGENTS.md                # marketplace workflow for AI tools
-plugins/                 # first-party only
+hooks/                   # drift check + reconcile runners + user hook installer
+plugins/                 # first-party only (includes marketplace-ops)
 mirrors/registry.tsv
 scripts/add-plugin.sh    # start here for new plugins
 ```
