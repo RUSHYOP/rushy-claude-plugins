@@ -97,3 +97,30 @@ Refresh mirrors (fetch upstream → push mirror):
 ```
 
 Local bare clones live in `~/Codes-2/claude-plugin-mirrors/` (or `$MIRROR_ROOT`).
+
+## Auto-register plugins
+
+| Script | What it does |
+|--------|----------------|
+| `./scripts/rebuild-marketplace.sh` | Scan `plugins/*` → refresh first-party entries in `marketplace.json` |
+| `./scripts/import-from-claude.sh` | Import plugins enabled/installed in `~/.claude` that are not yet in this catalog |
+| `./scripts/sync-mirrors.sh` | Fetch upstream → push private `RUSHYOP/mirror-*` |
+
+### Typical flow after you install something in Claude
+
+```bash
+cd /Users/admin/Codes-2/Agentic-setup
+./scripts/import-from-claude.sh --sync --only-new --commit
+git push
+```
+
+- `--sync --only-new` creates/refreshes mirrors only for newly imported remotes  
+- `--commit` commits catalog + registry changes  
+
+### After you add a first-party plugin under `plugins/foo/`
+
+```bash
+./scripts/rebuild-marketplace.sh --commit
+git push
+```
+

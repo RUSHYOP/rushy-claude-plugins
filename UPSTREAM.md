@@ -2,6 +2,8 @@
 
 Install **source** = private `RUSHYOP/mirror-*` repo (always available).
 Refresh from real upstream with `./scripts/sync-mirrors.sh`.
+Import newly enabled Claude plugins with `./scripts/import-from-claude.sh`.
+Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`.
 
 | Plugin | Install from (mirror) | Upstream (sync from) |
 |--------|----------------------|----------------------|
@@ -24,10 +26,6 @@ Refresh from real upstream with `./scripts/sync-mirrors.sh`.
 | `testing-handbook-skills` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/testing-handbook-skills` @main | https://github.com/trailofbits/skills.git |
 | `visual-explainer` | https://github.com/RUSHYOP/mirror-visual-explainer.git → `plugins/visual-explainer` @main | https://github.com/nicobailon/visual-explainer.git |
 | `webgpu-threejs-tsl` | https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git @main | https://github.com/dgreenheck/webgpu-claude-skill.git |
-
-## Mirror registry
-
-See `mirrors/registry.tsv` and `scripts/sync-mirrors.sh`.
 
 ## First-party
 
