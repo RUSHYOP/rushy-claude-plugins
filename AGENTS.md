@@ -40,9 +40,18 @@ After that, tools only **reference** the marketplace:
 If something was installed into a CLI by mistake, capture it into the catalog:
 
 ```bash
-./scripts/import-from-clis.sh --commit
-./scripts/sync-mirrors.sh --only <mirror>
-git push
+./hooks/check-cli-drift.sh
+./hooks/reconcile.sh --sync --only-new --commit --push
+# low-level: ./scripts/import-from-clis.sh --commit && git push
+```
+
+Or enable **`marketplace-ops@rushy`** and run `/reconcile-marketplace`.
+
+Install auto-check hooks (detect only — **never auto-commit**):
+
+```bash
+./hooks/install-user-hooks.sh
+./hooks/install-user-hooks.sh --claude   # optional
 ```
 
 Then disable non-`@rushy` enables in CLIs so reference is only via this marketplace.
@@ -52,6 +61,9 @@ Then disable non-`@rushy` enables in CLIs so reference is only via this marketpl
 | Script | Use |
 |--------|-----|
 | `add-plugin.sh` | **Primary** — add to catalog + registry |
+| `hooks/reconcile.sh` | Runnable reconcile (CLI → catalog) |
+| `hooks/check-cli-drift.sh` | Dry-run drift status |
+| `hooks/install-user-hooks.sh` | Global SessionStart / PostToolUse hooks |
 | `sync-mirrors.sh` | Private DR mirrors from upstream |
 | `rebuild-marketplace.sh` | Refresh first-party from `plugins/*` |
 | `import-from-clis.sh` | Reconcile accidental CLI installs into catalog |
