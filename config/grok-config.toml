@@ -1,0 +1,55 @@
+# Generated from marketplace.json — applied by ./scripts/apply-global.sh
+# Grok: plugins + skills reference Agentic-setup / rushy-claude-plugins
+
+[[marketplace.sources]]
+name = "rushy"
+path = "/Users/admin/Codes-2/Agentic-setup"
+
+[[marketplace.sources]]
+name = "rushy-git"
+git = "https://github.com/RUSHYOP/rushy-claude-plugins.git"
+
+[skills]
+paths = [
+  "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/r3f/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/ramco-brain/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara/skills",
+]
+
+[plugins]
+paths = [
+  "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/r3f",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/ramco-brain",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara",
+]
+enabled = [
+  "agent-tooling",
+  "agentic-actions-auditor",
+  "better-ux-quality",
+  "claude-md-management",
+  "claude-mem",
+  "cybersecurity-skills",
+  "differential-review",
+  "figma",
+  "frontend-design",
+  "greptile",
+  "insecure-defaults",
+  "playwright",
+  "r3f",
+  "ramco-brain",
+  "semgrep-rule-creator",
+  "sharp-edges",
+  "skill-creator",
+  "static-analysis",
+  "superpowers",
+  "supply-chain-risk-auditor",
+  "testing-handbook-skills",
+  "visual-explainer",
+  "vizuara",
+  "webgpu-threejs-tsl",
+]
+

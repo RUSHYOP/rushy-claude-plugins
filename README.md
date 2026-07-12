@@ -1,155 +1,79 @@
 # rushy-claude-plugins
 
-> Local checkout path: **`/Users/admin/Codes-2/Agentic-setup`**  
-> Remote: https://github.com/RUSHYOP/rushy-claude-plugins (private)
+Private **Claude / Grok marketplace** for RUSHYOP.
 
-Private **Claude Code marketplace** for RUSHYOP.
+Local checkout: `/Users/admin/Codes-2/Agentic-setup`  
+Remote: https://github.com/RUSHYOP/rushy-claude-plugins
 
-## Two kinds of plugins
+## Idea
 
-| Kind | Where code lives | Updates |
-|------|------------------|---------|
-| **First-party** | `plugins/` in **this** repo | You push to this repo |
-| **Upstream (catalog)** | **Their** git repo only | Claude pulls from upstream `source` (`ref: main`) |
+| Layer | Role |
+|-------|------|
+| **This repo** | Catalog + first-party plugins + mirror registry |
+| **CLIs** | Add this marketplace themselves (`grok plugin marketplace add …`, Claude `@rushy`) |
+| **Private mirrors** | `RUSHYOP/mirror-*` so upstream deletes do not wipe skills |
+| **import-from-clis** | When you install a plugin in Claude **or** Grok, pull it into this catalog |
 
-Third-party plugins (e.g. **superpowers**) are **config-only here**: marketplace entries point at the real source (e.g. `https://github.com/obra/superpowers.git`). Nothing is copied into this repo for them.
+This repo does **not** force-install plugins into CLIs. You add the marketplace in each product.
 
-See [UPSTREAM.md](./UPSTREAM.md) for the full catalog.
-
-## First-party plugins
-
-| Plugin | Contents |
-|--------|----------|
-| `r3f` | React Three Fiber skills + brain-viz-renderer |
-| `better-ux-quality` | UX/design skill pack |
-| `ramco-brain` | Journey/eval/reindex/sync + ramco-data-locator agent |
-| `vizuara` | PDF/HTML reports + Wisprflow figures |
-| `agent-tooling` | find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn |
-
-## Upstream examples
-
-| Plugin | Install id | Source (updates from) |
-|--------|------------|------------------------|
-| superpowers | `superpowers@rushy` | https://github.com/obra/superpowers.git |
-| figma | `figma@rushy` | https://github.com/figma/mcp-server-guide.git |
-| playwright | `playwright@rushy` | anthropics/claude-plugins-official `external_plugins/playwright` |
-| static-analysis | `static-analysis@rushy` | trailofbits/skills `plugins/static-analysis` |
-
-## Use
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "rushy": {
-      "source": {
-        "source": "github",
-        "repo": "RUSHYOP/rushy-claude-plugins"
-      }
-    }
-  },
-  "enabledPlugins": {
-    "r3f@rushy": true,
-    "better-ux-quality@rushy": true,
-    "superpowers@rushy": true,
-    "figma@rushy": true
-  }
-}
-```
-
-```text
-/plugin marketplace add RUSHYOP/rushy-claude-plugins
-```
-
-## Dev clone
+## Add marketplace in a CLI
 
 ```bash
-git clone git@github.com:RUSHYOP/rushy-claude-plugins.git
-# edit first-party plugins under plugins/
-# edit upstream catalog in .claude-plugin/marketplace.json only
+# Grok
+grok plugin marketplace add RUSHYOP/rushy-claude-plugins
+grok plugin marketplace add /Users/admin/Codes-2/Agentic-setup   # live checkout
+
+# Claude Code
+# settings: extraKnownMarketplaces.rushy → RUSHYOP/rushy-claude-plugins
+# enable plugins as name@rushy
 ```
 
-## License
-
-Private first-party content. Upstream plugins retain their own licenses; this repo only redistributes **pointers**.
-
-
-## Disaster recovery mirrors
-
-Third-party plugins install from **private mirrors under RUSHYOP**, not the original owner’s repo.
-If the source owner deletes their repo, your skills still install.
-
-| Upstream | Private mirror |
-|----------|----------------|
-| obra/superpowers | RUSHYOP/mirror-superpowers |
-| figma/mcp-server-guide | RUSHYOP/mirror-figma-mcp-server-guide |
-| anthropics/claude-plugins-official | RUSHYOP/mirror-claude-plugins-official |
-| trailofbits/skills | RUSHYOP/mirror-trailofbits-skills |
-| thedotmack/claude-mem | RUSHYOP/mirror-claude-mem |
-| mukul975/Anthropic-Cybersecurity-Skills | RUSHYOP/mirror-anthropic-cybersecurity-skills |
-| nicobailon/visual-explainer | RUSHYOP/mirror-visual-explainer |
-| dgreenheck/webgpu-claude-skill | RUSHYOP/mirror-webgpu-claude-skill |
-
-Refresh mirrors (fetch upstream → push mirror):
-
-```bash
-./scripts/sync-mirrors.sh
-./scripts/sync-mirrors.sh --only mirror-superpowers
-```
-
-Local bare clones live in `~/Codes-2/claude-plugin-mirrors/` (or `$MIRROR_ROOT`).
-
-## Auto-register plugins
-
-| Script | What it does |
-|--------|----------------|
-| `./scripts/rebuild-marketplace.sh` | Scan `plugins/*` → refresh first-party entries in `marketplace.json` |
-| `./scripts/import-from-claude.sh` | Import plugins enabled/installed in `~/.claude` that are not yet in this catalog |
-| `./scripts/sync-mirrors.sh` | Fetch upstream → push private `RUSHYOP/mirror-*` |
-
-### Typical flow after you install something in Claude
+## When you install a new plugin in any CLI
 
 ```bash
 cd /Users/admin/Codes-2/Agentic-setup
-./scripts/import-from-claude.sh --sync --only-new --commit
+./scripts/import-from-clis.sh              # Claude + Grok → marketplace.json + registry
+./scripts/import-from-clis.sh --dry-run    # preview
+./scripts/import-from-clis.sh --claude-only
+./scripts/import-from-clis.sh --grok-only
+./scripts/import-from-clis.sh --commit
+
+# Optional: create/refresh private DR mirrors for new remotes
+./scripts/sync-mirrors.sh                  # all
+./scripts/sync-mirrors.sh --only mirror-foo
+
 git push
 ```
 
-- `--sync --only-new` creates/refreshes mirrors only for newly imported remotes  
-- `--commit` commits catalog + registry changes  
-
-### After you add a first-party plugin under `plugins/foo/`
+## First-party plugins (yours)
 
 ```bash
+# add plugins/my-plugin/ with .claude-plugin/plugin.json + skills/
 ./scripts/rebuild-marketplace.sh --commit
 git push
 ```
 
-## Global Claude references this repo
+## Scripts
 
-Plugins **and** skills for your user-global Claude install are meant to come **only** from this marketplace (`*@rushy`).
+| Script | Purpose |
+|--------|---------|
+| `import-from-clis.sh` | Import new plugins from Claude + Grok into this catalog |
+| `rebuild-marketplace.sh` | Refresh first-party entries from `plugins/*` |
+| `sync-mirrors.sh` | Fetch upstream → push `RUSHYOP/mirror-*` (DR) |
+| `generate-global-config.sh` | Regenerate `config/*` enable lists from catalog |
+| `apply-global.sh` | Optional: regen config; `--claude` merges `*@rushy` into Claude settings |
 
-```bash
-# after git pull / catalog changes:
-./scripts/apply-global.sh
+## Layout
 
-# also refresh private upstream mirrors:
-./scripts/apply-global.sh --sync-mirrors
+```
+.claude-plugin/marketplace.json   # catalog
+plugins/                          # first-party only
+mirrors/registry.tsv              # upstream URL → mirror repo name
+scripts/
+config/                           # generated enable lists (optional)
 ```
 
-What `apply-global.sh` does:
+## Upstream vs first-party
 
-1. Generates `config/global-settings.json` from `marketplace.json` (every plugin → `name@rushy`)
-2. Merges that into `~/.claude/settings.json`
-3. Disables the same plugins under other marketplaces (no doubles)
-4. Clones/pulls this repo into `~/.claude/plugins/marketplaces/rushy`
-5. Archives old `~/.claude/skills/*` (skills ship inside plugins now)
-
-Source of truth:
-
-| Asset | Location |
-|-------|----------|
-| Catalog | `.claude-plugin/marketplace.json` |
-| First-party skills | `plugins/*/skills/` |
-| Upstream install | private `RUSHYOP/mirror-*` |
-| Global enable list | `config/global-settings.json` → `~/.claude/settings.json` |
-
+- **First-party:** code in `plugins/`, owned by you.
+- **Upstream:** entry in `marketplace.json` points at **your** `RUSHYOP/mirror-*`; `metadata.upstreamUrl` is the real origin for `sync-mirrors.sh`.

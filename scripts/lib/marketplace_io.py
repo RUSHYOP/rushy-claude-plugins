@@ -326,7 +326,7 @@ def convert_source_to_remote(
             "note": (
                 "Install points at private RUSHYOP mirror. "
                 "Run scripts/sync-mirrors.sh to refresh from upstreamUrl. "
-                "Imported via import-from-claude.sh."
+                "Imported via import-from-clis.sh."
             ),
         },
     }
@@ -335,9 +335,68 @@ def convert_source_to_remote(
     return out
 
 
+def entry_from_git(
+    plugin_name: str,
+    git_url: str,
+    *,
+    subpath: str | None = None,
+    via: str = "cli",
+    description: str = "",
+) -> dict[str, Any]:
+    """Build a mirrored marketplace entry from a raw git URL (+ optional subdir)."""
+    upstream_url = normalize_git_url(git_url)
+    # Skip our own marketplace / local first-party
+    if "RUSHYOP/rushy-claude-plugins" in upstream_url:
+        raise ValueError("skip self marketplace")
+    if "RUSHYOP/mirror-" in upstream_url:
+        # Already a mirror URL — treat as install source but need original if known
+        reg = load_registry()
+        original = next((u for u, (n, _) in reg.items() if n in upstream_url or upstream_url.endswith(f"{n}.git")), None)
+        if original:
+            upstream_url = original
+        # else keep mirror as both (still DR under our account)
+
+    mirror = mirror_url_for_upstream(upstream_url)
+    if subpath:
+        source: dict[str, Any] = {
+            "source": "git-subdir",
+            "url": mirror,
+            "path": subpath.strip("/"),
+            "ref": "main",
+        }
+    else:
+        source = {"source": "url", "url": mirror, "ref": "main"}
+
+    return {
+        "name": plugin_name,
+        "description": description or f"Imported from {via}",
+        "version": "latest",
+        "author": {"name": "upstream"},
+        "category": "third-party",
+        "source": source,
+        "homepage": upstream_url.removesuffix(".git"),
+        "tags": ["upstream", "mirrored", f"via-{via}", "imported"],
+        "metadata": {
+            "ownership": "upstream",
+            "upstreamUrl": upstream_url,
+            "mirrorUrl": mirror,
+            "mirrorRepo": mirror.replace("https://github.com/", "").replace(".git", ""),
+            "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+            "importedFrom": via,
+            "note": (
+                "Catalog only in rushy; install from private mirror. "
+                "sync-mirrors.sh refreshes from upstreamUrl."
+            ),
+        },
+    }
+
+
 def ensure_registry_row(upstream_url: str) -> str:
     """Ensure mirrors/registry.tsv has upstream → mirror name. Returns mirror name."""
     upstream_url = normalize_git_url(upstream_url)
+    # Don't register our own marketplace as an upstream to mirror
+    if "RUSHYOP/rushy-claude-plugins" in upstream_url:
+        return ""
     reg = load_registry()
     if upstream_url in reg:
         return reg[upstream_url][0]
@@ -351,13 +410,10 @@ def ensure_registry_row(upstream_url: str) -> str:
 
 def collect_claude_plugins(
     include_disabled: bool = False,
-) -> list[tuple[str, str]]:
-    """
-    Return list of (plugin_name, marketplace_name) from Claude user config.
-    Prefers enabledPlugins where value is true; also scans installed_plugins.
-    """
+) -> list[dict[str, Any]]:
+    """Return plugin records from Claude user config / installs."""
     home = Path.home() / ".claude"
-    found: dict[str, str] = {}  # plugin_name -> marketplace
+    found: dict[str, dict[str, Any]] = {}
 
     settings_path = home / "settings.json"
     if settings_path.exists():
@@ -368,107 +424,216 @@ def collect_claude_plugins(
             if "@" not in key:
                 continue
             name, market = key.rsplit("@", 1)
-            if market == "rushy":
-                continue  # already ours
-            if name and market:
-                found[name] = market
+            if market in ("rushy", "rushy-git"):
+                continue
+            if name:
+                found[name] = {"name": name, "marketplace": market, "via": "claude"}
 
     ip_path = home / "plugins" / "installed_plugins.json"
     if ip_path.exists():
         ip = json.loads(ip_path.read_text())
-        for key in (ip.get("plugins") or {}):
+        for key in ip.get("plugins") or {}:
             if "@" not in key:
                 continue
             name, market = key.rsplit("@", 1)
-            if market == "rushy":
+            if market in ("rushy", "rushy-git"):
                 continue
             if name not in found:
-                found[name] = market
+                found[name] = {"name": name, "marketplace": market, "via": "claude"}
 
-    return sorted(found.items(), key=lambda x: x[0])
+    return sorted(found.values(), key=lambda x: x["name"])
 
 
-def import_missing_from_claude(
+def collect_grok_plugins() -> list[dict[str, Any]]:
+    """
+    Return plugin records from Grok installs.
+    Uses `grok plugin list --json` when available; falls back to
+    ~/.grok/installed-plugins scan is not needed if CLI works.
+    """
+    import subprocess
+
+    found: dict[str, dict[str, Any]] = {}
+    try:
+        r = subprocess.run(
+            ["grok", "plugin", "list", "--json"],
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+        if r.returncode != 0 or not r.stdout.strip():
+            return []
+        data = json.loads(r.stdout)
+    except (FileNotFoundError, json.JSONDecodeError, subprocess.TimeoutExpired):
+        return []
+
+    root = str(ROOT.resolve())
+    for item in data:
+        if not isinstance(item, dict):
+            continue
+        name = item.get("name")
+        if not name:
+            continue
+        source = item.get("source") or ""
+        market = item.get("marketplace")
+        # Skip live first-party paths in this repo
+        if isinstance(source, str) and source.startswith(root):
+            continue
+        if isinstance(source, str) and "RUSHYOP/rushy-claude-plugins" in source and "#plugins/" in source:
+            # Installed from our marketplace first-party subdir — already first-party
+            continue
+
+        rec: dict[str, Any] = {"name": name, "via": "grok"}
+        if market and market not in ("rushy", "rushy-git", "xAI Official"):
+            rec["marketplace"] = market
+
+        if isinstance(source, str) and source:
+            # git URL or local
+            if source.startswith("http") or source.startswith("git@"):
+                rec["git"] = source
+            elif "github.com" in source:
+                rec["git"] = source
+            # path after install from RUSHYOP/mirror-foo#bar may only show git base
+        found[name] = rec
+
+    # Also pick enabled names from config.toml [plugins] enabled = [...]
+    # that might not yet be installed (marketplace-only enable)
+    cfg = Path.home() / ".grok" / "config.toml"
+    if cfg.exists():
+        text = cfg.read_text()
+        # crude: enabled = [ "a", "b" ]
+        m = re.search(r"\[plugins\][^\[]*?enabled\s*=\s*\[(.*?)\]", text, re.S)
+        if m:
+            first_party = {
+            d.name for d in PLUGINS_DIR.iterdir() if d.is_dir()
+        } if PLUGINS_DIR.is_dir() else set()
+        for name in re.findall(r'"([^"]+)"', m.group(1)):
+            if name not in found and name not in first_party:
+                found.setdefault(name, {"name": name, "via": "grok-config"})
+
+    return sorted(found.values(), key=lambda x: x["name"])
+
+
+def resolve_plugin_record(rec: dict[str, Any]) -> dict[str, Any]:
+    """Turn a CLI discovery record into a marketplace entry."""
+    name = rec["name"]
+    via = rec.get("via", "cli")
+
+    if rec.get("git"):
+        git = rec["git"]
+        subpath = rec.get("path")
+        # Parse owner/repo#subdir if stored that way
+        if "#" in git and not git.startswith("http"):
+            repo, sub = git.split("#", 1)
+            if "/" in repo and not repo.startswith("git"):
+                git = f"https://github.com/{repo}.git"
+                subpath = sub
+        return entry_from_git(name, git, subpath=subpath, via=via)
+
+    market = rec.get("marketplace")
+    if market:
+        entry = resolve_source_from_marketplace(market, name)
+        if entry:
+            entry.setdefault("metadata", {})["importedFrom"] = via
+            entry.setdefault("tags", [])
+            if "imported" not in entry["tags"]:
+                entry["tags"] = sorted(set(entry["tags"] + ["imported", f"via-{via}"]))
+            return entry
+        git = MARKETPLACE_GIT.get(market)
+        if git:
+            return entry_from_git(name, git, via=f"{via}/{market}", description=f"Imported from {via} ({market})")
+
+    raise ValueError(f"cannot resolve source for {name} (via={via})")
+
+
+def import_missing_from_clis(
     *,
     dry_run: bool = False,
     include_disabled: bool = False,
-) -> tuple[list[str], list[str], list[str]]:
+    sources: tuple[str, ...] = ("claude", "grok"),
+) -> tuple[list[str], list[str], list[str], list[str]]:
     """
-    Import plugins present in Claude but missing from rushy marketplace.
-    Returns (added, skipped_existing, failed).
+    Import plugins discovered in Claude and/or Grok into rushy marketplace.
+    Returns (added, skipped, failed, new_mirror_names).
     """
     mp = load_marketplace()
     existing = {p["name"] for p in mp.get("plugins", [])}
+    # first-party names on disk always skip as upstream
+    if PLUGINS_DIR.is_dir():
+        for d in PLUGINS_DIR.iterdir():
+            if d.is_dir() and (d / ".claude-plugin" / "plugin.json").exists():
+                meta = load_plugin_json(d)
+                existing.add(meta.get("name") or d.name)
+
     added: list[str] = []
     skipped: list[str] = []
     failed: list[str] = []
     new_entries: list[dict[str, Any]] = []
+    new_mirrors: list[str] = []
 
-    for plugin_name, market in collect_claude_plugins(include_disabled=include_disabled):
-        if plugin_name in existing:
-            skipped.append(f"{plugin_name}@{market}")
+    records: list[dict[str, Any]] = []
+    if "claude" in sources:
+        records.extend(collect_claude_plugins(include_disabled=include_disabled))
+    if "grok" in sources:
+        records.extend(collect_grok_plugins())
+
+    # de-dupe by plugin name (prefer record with marketplace or git)
+    by_name: dict[str, dict[str, Any]] = {}
+    for rec in records:
+        n = rec["name"]
+        prev = by_name.get(n)
+        if prev is None or rec.get("git") or (rec.get("marketplace") and not prev.get("git")):
+            by_name[n] = rec
+
+    for name, rec in sorted(by_name.items()):
+        label = f"{name}@{rec.get('marketplace') or rec.get('via', 'cli')}"
+        if name in existing:
+            skipped.append(label)
             continue
         try:
-            entry = resolve_source_from_marketplace(market, plugin_name)
-            if entry is None:
-                # Fallback: whole marketplace as source if single-plugin marketplaces
-                git = MARKETPLACE_GIT.get(market)
-                if not git:
-                    failed.append(f"{plugin_name}@{market}: no marketplace clone/git map")
-                    continue
-                entry = {
-                    "name": plugin_name,
-                    "description": f"Imported from Claude install ({market})",
-                    "version": "latest",
-                    "author": {"name": "upstream"},
-                    "category": "third-party",
-                    "source": {
-                        "source": "url",
-                        "url": mirror_url_for_upstream(git),
-                        "ref": "main",
-                    },
-                    "homepage": git.removesuffix(".git"),
-                    "tags": ["upstream", "mirrored", f"via-{market}", "imported"],
-                    "metadata": {
-                        "ownership": "upstream",
-                        "upstreamMarketplace": market,
-                        "upstreamUrl": normalize_git_url(git),
-                        "mirrorUrl": mirror_url_for_upstream(git),
-                        "mirrorRepo": mirror_url_for_upstream(git)
-                        .replace("https://github.com/", "")
-                        .replace(".git", ""),
-                        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-                        "note": "Fallback import (plugin not found in marketplace.json).",
-                    },
-                }
+            entry = resolve_plugin_record(rec)
             new_entries.append(entry)
-            added.append(f"{plugin_name}@{market}")
-            existing.add(plugin_name)
-        except Exception as e:  # noqa: BLE001 — report and continue
-            failed.append(f"{plugin_name}@{market}: {e}")
+            added.append(label)
+            existing.add(name)
+        except Exception as e:  # noqa: BLE001
+            failed.append(f"{label}: {e}")
 
     if dry_run:
-        return added, skipped, failed
+        # Preview which mirrors would be registered
+        for entry in new_entries:
+            up = (entry.get("metadata") or {}).get("upstreamUrl")
+            if up and "RUSHYOP/rushy-claude-plugins" not in up:
+                new_mirrors.append(mirror_name_for_upstream(up))
+        return added, skipped, failed, sorted(set(new_mirrors))
 
     if new_entries:
         for entry in new_entries:
             upstream = (entry.get("metadata") or {}).get("upstreamUrl")
             if upstream:
-                ensure_registry_row(upstream)
-        mp.setdefault("plugins", []).extend(new_entries)
-        # normalize via rebuild first-party + sort upstream
-        first = rebuild_first_party(mp["plugins"])
-        upstream = [p for p in mp["plugins"] if is_upstream_entry(p)]
-        # de-dupe upstream by name (prefer newly added)
-        by_name: dict[str, dict[str, Any]] = {}
-        for p in upstream:
-            by_name[p["name"]] = p
+                mname = ensure_registry_row(upstream)
+                if mname:
+                    new_mirrors.append(mname)
+        first = rebuild_first_party(mp.get("plugins", []))
+        upstream_list = [p for p in mp.get("plugins", []) if is_upstream_entry(p)]
+        by_up: dict[str, dict[str, Any]] = {p["name"]: p for p in upstream_list}
         for p in new_entries:
-            by_name[p["name"]] = p
-        upstream = sorted(by_name.values(), key=lambda p: p["name"])
+            by_up[p["name"]] = p
         first.sort(key=lambda p: p["name"])
-        mp["plugins"] = first + upstream
+        mp["plugins"] = first + sorted(by_up.values(), key=lambda p: p["name"])
         save_marketplace(mp)
         write_upstream_md(mp)
 
-    return added, skipped, failed
+    return added, skipped, failed, sorted(set(new_mirrors))
+
+
+# Back-compat alias
+def import_missing_from_claude(
+    *,
+    dry_run: bool = False,
+    include_disabled: bool = False,
+) -> tuple[list[str], list[str], list[str]]:
+    a, s, f, _m = import_missing_from_clis(
+        dry_run=dry_run,
+        include_disabled=include_disabled,
+        sources=("claude",),
+    )
+    return a, s, f

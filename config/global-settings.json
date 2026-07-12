@@ -1,5 +1,5 @@
 {
-  "$comment": "Generated from marketplace.json. Apply with ./scripts/apply-global.sh. All plugins/skills for global Claude resolve via *@rushy from this repo.",
+  "$comment": "Generated from marketplace.json. Apply with ./scripts/apply-global.sh. Claude plugins/skills resolve via *@rushy from this repo.",
   "extraKnownMarketplaces": {
     "rushy": {
       "source": {
