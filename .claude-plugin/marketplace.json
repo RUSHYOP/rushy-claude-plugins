@@ -164,6 +164,36 @@
       }
     },
     {
+      "name": "chrome-devtools-mcp",
+      "description": "Imported from grok",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-grok",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/ChromeDevTools/chrome-devtools-mcp.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp.git",
+        "mirrorRepo": "RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "grok",
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+      }
+    },
+    {
       "name": "claude-md-management",
       "description": "Tools to maintain and improve CLAUDE.md files - audit quality, capture session learnings, and keep project memory current.",
       "version": "latest",
@@ -672,6 +702,36 @@
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
+      }
+    },
+    {
+      "name": "vercel",
+      "description": "Imported from grok",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-vercel-vercel-plugin.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/vercel/vercel-plugin",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-grok",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/vercel/vercel-plugin.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-vercel-vercel-plugin.git",
+        "mirrorRepo": "RUSHYOP/mirror-vercel-vercel-plugin",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "grok",
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
       }
     },
     {

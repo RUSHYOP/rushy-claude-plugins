@@ -20,6 +20,7 @@
     "agent-tooling",
     "agentic-actions-auditor",
     "better-ux-quality",
+    "chrome-devtools-mcp",
     "claude-md-management",
     "claude-mem",
     "cybersecurity-skills",
@@ -39,6 +40,7 @@
     "superpowers",
     "supply-chain-risk-auditor",
     "testing-handbook-skills",
+    "vercel",
     "visual-explainer",
     "vizuara",
     "webgpu-threejs-tsl"
@@ -58,6 +60,11 @@
       "name": "better-ux-quality",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
       "kind": "local"
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "source": "RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp",
+      "kind": "git"
     },
     {
       "name": "claude-md-management",
@@ -152,6 +159,11 @@
     {
       "name": "testing-handbook-skills",
       "source": "RUSHYOP/mirror-trailofbits-skills#plugins/testing-handbook-skills",
+      "kind": "git"
+    },
+    {
+      "name": "vercel",
+      "source": "RUSHYOP/mirror-vercel-vercel-plugin",
       "kind": "git"
     },
     {

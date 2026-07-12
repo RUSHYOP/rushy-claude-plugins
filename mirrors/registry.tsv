@@ -1,8 +1,10 @@
-https://github.com/obra/superpowers.git|mirror-superpowers|obra/superpowers
-https://github.com/figma/mcp-server-guide.git|mirror-figma-mcp-server-guide|figma/mcp-server-guide
+https://github.com/ChromeDevTools/chrome-devtools-mcp.git|mirror-chromedevtools-chrome-devtools-mcp|ChromeDevTools/chrome-devtools-mcp
 https://github.com/anthropics/claude-plugins-official.git|mirror-claude-plugins-official|anthropics/claude-plugins-official
-https://github.com/trailofbits/skills.git|mirror-trailofbits-skills|trailofbits/skills
-https://github.com/thedotmack/claude-mem.git|mirror-claude-mem|thedotmack/claude-mem
+https://github.com/dgreenheck/webgpu-claude-skill.git|mirror-webgpu-claude-skill|dgreenheck/webgpu-claude-skill
+https://github.com/figma/mcp-server-guide.git|mirror-figma-mcp-server-guide|figma/mcp-server-guide
 https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git|mirror-anthropic-cybersecurity-skills|mukul975/Anthropic-Cybersecurity-Skills
 https://github.com/nicobailon/visual-explainer.git|mirror-visual-explainer|nicobailon/visual-explainer
-https://github.com/dgreenheck/webgpu-claude-skill.git|mirror-webgpu-claude-skill|dgreenheck/webgpu-claude-skill
+https://github.com/obra/superpowers.git|mirror-superpowers|obra/superpowers
+https://github.com/thedotmack/claude-mem.git|mirror-claude-mem|thedotmack/claude-mem
+https://github.com/trailofbits/skills.git|mirror-trailofbits-skills|trailofbits/skills
+https://github.com/vercel/vercel-plugin.git|mirror-vercel-vercel-plugin|vercel/vercel-plugin

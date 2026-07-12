@@ -12,6 +12,7 @@
     "agent-tooling@rushy": true,
     "agentic-actions-auditor@rushy": true,
     "better-ux-quality@rushy": true,
+    "chrome-devtools-mcp@rushy": true,
     "claude-md-management@rushy": true,
     "claude-mem@rushy": true,
     "cybersecurity-skills@rushy": true,
@@ -31,6 +32,7 @@
     "superpowers@rushy": true,
     "supply-chain-risk-auditor@rushy": true,
     "testing-handbook-skills@rushy": true,
+    "vercel@rushy": true,
     "visual-explainer@rushy": true,
     "vizuara@rushy": true,
     "webgpu-threejs-tsl@rushy": true
