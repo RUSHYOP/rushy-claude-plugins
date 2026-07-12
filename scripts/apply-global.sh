@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
-# Optional: regenerate enable-list config files from marketplace.json.
-# Does NOT install or sync plugins into CLIs — add this marketplace in each CLI yourself.
+# Optional helpers for global Claude wiring from this marketplace.
 #
 # Usage:
-#   ./scripts/apply-global.sh           # regenerate config/*
-#   ./scripts/apply-global.sh --claude  # also merge *@rushy into ~/.claude/settings.json
+#   ./scripts/apply-global.sh              # regen config/*
+#   ./scripts/apply-global.sh --claude     # merge *@rushy + install CLAUDE.md → ~/.claude/
+#   ./scripts/apply-global.sh --claude-md  # only install CLAUDE.md to ~/.claude/CLAUDE.md
 
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 DO_CLAUDE=0
+DO_CLAUDE_MD=0
 for arg in "$@"; do
   case "$arg" in
-    --claude) DO_CLAUDE=1 ;;
+    --claude) DO_CLAUDE=1; DO_CLAUDE_MD=1 ;;
+    --claude-md) DO_CLAUDE_MD=1 ;;
     -h|--help)
-      sed -n '2,10p' "$0"
+      sed -n '2,12p' "$0"
       exit 0
       ;;
     *)
@@ -26,6 +28,18 @@ for arg in "$@"; do
 done
 
 ./scripts/generate-global-config.sh
+
+if [[ "$DO_CLAUDE_MD" -eq 1 ]]; then
+  if [[ ! -f "$ROOT/CLAUDE.md" ]]; then
+    echo "Missing $ROOT/CLAUDE.md" >&2
+    exit 1
+  fi
+  mkdir -p "${HOME}/.claude"
+  # Keep Claude.md + CLAUDE.md in sync (some tools use either casing)
+  cp "$ROOT/CLAUDE.md" "${HOME}/.claude/CLAUDE.md"
+  cp "$ROOT/CLAUDE.md" "${HOME}/.claude/Claude.md"
+  echo "Installed global rules → ~/.claude/CLAUDE.md (from marketplace CLAUDE.md)"
+fi
 
 if [[ "$DO_CLAUDE" -eq 1 ]]; then
   python3 <<'PY'
@@ -63,12 +77,7 @@ PY
 fi
 
 echo ""
-echo "This repo is a marketplace catalog. Wire CLIs yourself:"
-echo "  grok plugin marketplace add RUSHYOP/rushy-claude-plugins"
-echo "  grok plugin marketplace add $ROOT"
-echo "  Claude: register RUSHYOP/rushy-claude-plugins as marketplace rushy"
-echo ""
-echo "When you install a new plugin in any CLI, capture it here:"
-echo "  ./scripts/import-from-clis.sh --commit"
-echo "  ./scripts/sync-mirrors.sh --only <new-mirror>   # optional DR"
-echo "  git push"
+echo "Marketplace catalog: $ROOT"
+echo "  Global rules: CLAUDE.md (apply with: ./scripts/apply-global.sh --claude-md)"
+echo "  Add plugins:  ./scripts/add-plugin.sh … --sync --commit --push"
+echo "  Wire CLIs to RUSHYOP/rushy-claude-plugins only (*@rushy)."

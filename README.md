@@ -91,12 +91,26 @@ git push
 | `generate-global-config.sh` | Build `config/*` from catalog |
 | `apply-global.sh` | Optional Claude `*@rushy` merge |
 
+## Global agent rules (`CLAUDE.md`)
+
+Canonical copy of your **global** Claude rules lives in this repo as `CLAUDE.md`.
+
+```bash
+# Install into Claude user global:
+./scripts/apply-global.sh --claude-md
+# or full Claude wire (*@rushy + CLAUDE.md):
+./scripts/apply-global.sh --claude
+```
+
+Edit `CLAUDE.md` here → commit/push → re-run apply on machines that need it.
+
 ## Layout
 
 ```
 .claude-plugin/marketplace.json
+CLAUDE.md                # global agent rules (source of truth)
+AGENTS.md                # marketplace workflow for AI tools
 plugins/                 # first-party only
 mirrors/registry.tsv
 scripts/add-plugin.sh    # start here for new plugins
-AGENTS.md                # rules for AI tools
 ```
