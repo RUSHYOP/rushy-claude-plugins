@@ -1,5 +1,8 @@
 # rushy-claude-plugins
 
+> Local checkout path: **`/Users/admin/Codes-2/Agentic-setup`**  
+> Remote: https://github.com/RUSHYOP/rushy-claude-plugins (private)
+
 Private **Claude Code marketplace** for RUSHYOP.
 
 ## Two kinds of plugins
