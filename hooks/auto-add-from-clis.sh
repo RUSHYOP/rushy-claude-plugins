@@ -72,7 +72,11 @@ if [[ "$PUSH" == "1" && "$DRY" != "1" && "$COMMIT" == "1" ]]; then
 fi
 
 if [[ "$ADDED" != "0" ]]; then
-  echo "rushy auto-add: catalog updated (+$ADDED). log: $LOG" >&2
+  if [[ "$DRY" == "1" ]]; then
+    echo "rushy auto-add: dry-run would add $ADDED plugin(s). log: $LOG" >&2
+  else
+    echo "rushy auto-add: catalog updated (+$ADDED). log: $LOG" >&2
+  fi
 else
   echo "rushy auto-add: nothing new to add" >&2
 fi
