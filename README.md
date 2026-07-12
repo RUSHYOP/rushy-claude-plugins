@@ -90,6 +90,7 @@ git push
 | `import-from-clis.sh` | Reconcile CLI → catalog only |
 | `generate-global-config.sh` | Build `config/*` from catalog |
 | `apply-global.sh` | Optional Claude `*@rushy` merge |
+| `clean-global-configs.sh` | Reset Claude + Grok globals to **only** this marketplace |
 
 ## Global agent rules (`CLAUDE.md`)
 
