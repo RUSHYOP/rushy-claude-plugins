@@ -124,3 +124,32 @@ git push
 git push
 ```
 
+## Global Claude references this repo
+
+Plugins **and** skills for your user-global Claude install are meant to come **only** from this marketplace (`*@rushy`).
+
+```bash
+# after git pull / catalog changes:
+./scripts/apply-global.sh
+
+# also refresh private upstream mirrors:
+./scripts/apply-global.sh --sync-mirrors
+```
+
+What `apply-global.sh` does:
+
+1. Generates `config/global-settings.json` from `marketplace.json` (every plugin → `name@rushy`)
+2. Merges that into `~/.claude/settings.json`
+3. Disables the same plugins under other marketplaces (no doubles)
+4. Clones/pulls this repo into `~/.claude/plugins/marketplaces/rushy`
+5. Archives old `~/.claude/skills/*` (skills ship inside plugins now)
+
+Source of truth:
+
+| Asset | Location |
+|-------|----------|
+| Catalog | `.claude-plugin/marketplace.json` |
+| First-party skills | `plugins/*/skills/` |
+| Upstream install | private `RUSHYOP/mirror-*` |
+| Global enable list | `config/global-settings.json` → `~/.claude/settings.json` |
+

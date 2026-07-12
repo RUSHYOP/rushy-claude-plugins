@@ -38,11 +38,14 @@ print("  first-party:", ", ".join(first) or "(none)")
 print("  plugins dir:", PLUGINS_DIR)
 PY
 
+# Keep global-settings.json in lockstep with marketplace catalog
+./scripts/generate-global-config.sh
+
 if [[ "$COMMIT" -eq 1 ]]; then
-  if git diff --quiet -- .claude-plugin/marketplace.json UPSTREAM.md 2>/dev/null; then
+  if git diff --quiet -- .claude-plugin/marketplace.json UPSTREAM.md config/global-settings.json 2>/dev/null; then
     echo "No marketplace changes to commit."
   else
-    git add .claude-plugin/marketplace.json UPSTREAM.md
+    git add .claude-plugin/marketplace.json UPSTREAM.md config/global-settings.json
     git commit -m "chore: rebuild marketplace first-party plugins from plugins/"
     echo "Committed. Push with: git push"
   fi

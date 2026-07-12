@@ -124,16 +124,21 @@ if [[ "$SYNC" -eq 1 ]]; then
   fi
 fi
 
+# Refresh config/global-settings.json so apply-global stays current
+./scripts/generate-global-config.sh
+
 if [[ "$COMMIT" -eq 1 ]]; then
-  if git diff --quiet -- .claude-plugin/marketplace.json UPSTREAM.md mirrors/registry.tsv 2>/dev/null; then
+  if git diff --quiet -- .claude-plugin/marketplace.json UPSTREAM.md mirrors/registry.tsv config/global-settings.json 2>/dev/null; then
     echo "No catalog changes to commit."
   else
-    git add .claude-plugin/marketplace.json UPSTREAM.md mirrors/registry.tsv
+    git add .claude-plugin/marketplace.json UPSTREAM.md mirrors/registry.tsv config/global-settings.json
     git commit -m "chore: import plugins from Claude into rushy marketplace"
     echo "Committed. Push with: git push"
   fi
 fi
 
 echo ""
-echo "Done. First-party rebuild: ./scripts/rebuild-marketplace.sh"
-echo "Refresh mirrors:        ./scripts/sync-mirrors.sh"
+echo "Done."
+echo "  Apply to global Claude: ./scripts/apply-global.sh"
+echo "  First-party rebuild:    ./scripts/rebuild-marketplace.sh"
+echo "  Refresh mirrors:        ./scripts/sync-mirrors.sh"

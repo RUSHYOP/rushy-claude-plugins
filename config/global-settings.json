@@ -1,0 +1,37 @@
+{
+  "$comment": "Generated from marketplace.json. Apply with ./scripts/apply-global.sh. All plugins/skills for global Claude resolve via *@rushy from this repo.",
+  "extraKnownMarketplaces": {
+    "rushy": {
+      "source": {
+        "source": "github",
+        "repo": "RUSHYOP/rushy-claude-plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "agent-tooling@rushy": true,
+    "agentic-actions-auditor@rushy": true,
+    "better-ux-quality@rushy": true,
+    "claude-md-management@rushy": true,
+    "claude-mem@rushy": true,
+    "cybersecurity-skills@rushy": true,
+    "differential-review@rushy": true,
+    "figma@rushy": true,
+    "frontend-design@rushy": true,
+    "greptile@rushy": true,
+    "insecure-defaults@rushy": true,
+    "playwright@rushy": true,
+    "r3f@rushy": true,
+    "ramco-brain@rushy": true,
+    "semgrep-rule-creator@rushy": true,
+    "sharp-edges@rushy": true,
+    "skill-creator@rushy": true,
+    "static-analysis@rushy": true,
+    "superpowers@rushy": true,
+    "supply-chain-risk-auditor@rushy": true,
+    "testing-handbook-skills@rushy": true,
+    "visual-explainer@rushy": true,
+    "vizuara@rushy": true,
+    "webgpu-threejs-tsl@rushy": true
+  }
+}
