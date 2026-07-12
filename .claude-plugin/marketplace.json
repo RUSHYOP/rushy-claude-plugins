@@ -6,8 +6,8 @@
     "url": "https://github.com/RUSHYOP"
   },
   "metadata": {
-    "version": "1.1.0",
-    "description": "RUSHYOP Claude Code marketplace: first-party plugins (vendored in this repo) plus curated third-party plugins that install from their upstream git sources.",
+    "version": "1.2.0",
+    "description": "RUSHYOP Claude Code marketplace: first-party plugins + upstream plugins installed from private RUSHYOP mirrors (synced from upstream).",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -118,12 +118,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/agentic-actions-auditor",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -131,8 +132,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -146,12 +150,13 @@
       "category": "productivity",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "path": "plugins/claude-md-management",
         "ref": "main"
       },
       "homepage": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-md-management",
       "tags": [
+        "mirrored",
         "upstream",
         "via-claude-plugins-official"
       ],
@@ -159,8 +164,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
       }
     },
     {
@@ -173,12 +181,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/thedotmack/claude-mem.git",
+        "url": "https://github.com/RUSHYOP/mirror-claude-mem.git",
         "path": "plugin",
         "ref": "main"
       },
       "homepage": "https://github.com/thedotmack/claude-mem",
       "tags": [
+        "mirrored",
         "upstream",
         "via-thedotmack"
       ],
@@ -186,8 +195,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "thedotmack",
         "upstreamRepo": "https://github.com/thedotmack/claude-mem.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/thedotmack/claude-mem.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-mem.git",
+        "mirrorRepo": "RUSHYOP/mirror-claude-mem"
       }
     },
     {
@@ -200,11 +212,12 @@
       "category": "security",
       "source": {
         "source": "url",
-        "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-anthropic-cybersecurity-skills.git",
         "ref": "main"
       },
       "homepage": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-anthropic-cybersecurity-skills"
       ],
@@ -212,8 +225,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "anthropic-cybersecurity-skills",
         "upstreamRepo": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-anthropic-cybersecurity-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-anthropic-cybersecurity-skills"
       },
       "keywords": [
         "cybersecurity",
@@ -237,12 +253,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/differential-review",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -250,8 +267,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -264,11 +284,12 @@
       "category": "design",
       "source": {
         "source": "url",
-        "url": "https://github.com/figma/mcp-server-guide.git",
+        "url": "https://github.com/RUSHYOP/mirror-figma-mcp-server-guide.git",
         "ref": "main"
       },
       "homepage": "https://github.com/figma/mcp-server-guide",
       "tags": [
+        "mirrored",
         "upstream",
         "via-claude-plugins-official"
       ],
@@ -276,8 +297,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/figma/mcp-server-guide.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-figma-mcp-server-guide.git",
+        "mirrorRepo": "RUSHYOP/mirror-figma-mcp-server-guide"
       }
     },
     {
@@ -291,12 +315,13 @@
       "category": "development",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "path": "plugins/frontend-design",
         "ref": "main"
       },
       "homepage": "https://github.com/anthropics/claude-plugins-public/tree/main/plugins/frontend-design",
       "tags": [
+        "mirrored",
         "upstream",
         "via-claude-plugins-official"
       ],
@@ -304,8 +329,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
       }
     },
     {
@@ -318,12 +346,13 @@
       "category": "development",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "path": "external_plugins/greptile",
         "ref": "main"
       },
       "homepage": "https://github.com/anthropics/claude-plugins-public/tree/main/external_plugins/greptile",
       "tags": [
+        "mirrored",
         "upstream",
         "via-claude-plugins-official"
       ],
@@ -331,8 +360,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
       }
     },
     {
@@ -347,12 +379,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/insecure-defaults",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -360,8 +393,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -374,12 +410,13 @@
       "category": "testing",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "path": "external_plugins/playwright",
         "ref": "main"
       },
       "homepage": "https://github.com/anthropics/claude-plugins-public/tree/main/external_plugins/playwright",
       "tags": [
+        "mirrored",
         "upstream",
         "via-claude-plugins-official"
       ],
@@ -387,8 +424,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
       }
     },
     {
@@ -401,12 +441,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/semgrep-rule-creator",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -414,8 +455,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -430,12 +474,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/sharp-edges",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -443,8 +488,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -458,12 +506,13 @@
       "category": "development",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "path": "plugins/skill-creator",
         "ref": "main"
       },
       "homepage": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator",
       "tags": [
+        "mirrored",
         "upstream",
         "via-claude-plugins-official"
       ],
@@ -471,8 +520,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
       }
     },
     {
@@ -485,12 +537,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/static-analysis",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -498,8 +551,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -512,11 +568,12 @@
       "category": "development",
       "source": {
         "source": "url",
-        "url": "https://github.com/obra/superpowers.git",
+        "url": "https://github.com/RUSHYOP/mirror-superpowers.git",
         "ref": "main"
       },
       "homepage": "https://github.com/obra/superpowers.git",
       "tags": [
+        "mirrored",
         "upstream",
         "via-claude-plugins-official"
       ],
@@ -524,8 +581,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/obra/superpowers.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-superpowers.git",
+        "mirrorRepo": "RUSHYOP/mirror-superpowers"
       }
     },
     {
@@ -538,12 +598,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/supply-chain-risk-auditor",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -551,8 +612,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -565,12 +629,13 @@
       "category": "third-party",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/trailofbits/skills.git",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "path": "plugins/testing-handbook-skills",
         "ref": "main"
       },
       "homepage": "https://github.com/trailofbits/skills",
       "tags": [
+        "mirrored",
         "upstream",
         "via-trailofbits"
       ],
@@ -578,8 +643,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/trailofbits/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
       }
     },
     {
@@ -592,12 +660,13 @@
       "category": "visualization",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/nicobailon/visual-explainer.git",
+        "url": "https://github.com/RUSHYOP/mirror-visual-explainer.git",
         "path": "plugins/visual-explainer",
         "ref": "main"
       },
       "homepage": "https://github.com/nicobailon/visual-explainer",
       "tags": [
+        "mirrored",
         "upstream",
         "via-visual-explainer-marketplace"
       ],
@@ -605,8 +674,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "visual-explainer-marketplace",
         "upstreamRepo": "https://github.com/nicobailon/visual-explainer.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/nicobailon/visual-explainer.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-visual-explainer.git",
+        "mirrorRepo": "RUSHYOP/mirror-visual-explainer"
       },
       "keywords": [
         "diagrams",
@@ -626,11 +698,12 @@
       "category": "third-party",
       "source": {
         "source": "url",
-        "url": "https://github.com/dgreenheck/webgpu-claude-skill.git",
+        "url": "https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git",
         "ref": "main"
       },
       "homepage": "https://github.com/dgreenheck/webgpu-claude-skill",
       "tags": [
+        "mirrored",
         "upstream",
         "via-webgpu-threejs-tsl"
       ],
@@ -638,8 +711,11 @@
         "ownership": "upstream",
         "upstreamMarketplace": "webgpu-threejs-tsl",
         "upstreamRepo": "https://github.com/dgreenheck/webgpu-claude-skill.git",
-        "updatePolicy": "track-ref-from-source",
-        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "upstreamUrl": "https://github.com/dgreenheck/webgpu-claude-skill.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git",
+        "mirrorRepo": "RUSHYOP/mirror-webgpu-claude-skill"
       }
     }
   ]

@@ -68,3 +68,29 @@ git clone git@github.com:RUSHYOP/rushy-claude-plugins.git
 ## License
 
 Private first-party content. Upstream plugins retain their own licenses; this repo only redistributes **pointers**.
+
+
+## Disaster recovery mirrors
+
+Third-party plugins install from **private mirrors under RUSHYOP**, not the original owner’s repo.
+If the source owner deletes their repo, your skills still install.
+
+| Upstream | Private mirror |
+|----------|----------------|
+| obra/superpowers | RUSHYOP/mirror-superpowers |
+| figma/mcp-server-guide | RUSHYOP/mirror-figma-mcp-server-guide |
+| anthropics/claude-plugins-official | RUSHYOP/mirror-claude-plugins-official |
+| trailofbits/skills | RUSHYOP/mirror-trailofbits-skills |
+| thedotmack/claude-mem | RUSHYOP/mirror-claude-mem |
+| mukul975/Anthropic-Cybersecurity-Skills | RUSHYOP/mirror-anthropic-cybersecurity-skills |
+| nicobailon/visual-explainer | RUSHYOP/mirror-visual-explainer |
+| dgreenheck/webgpu-claude-skill | RUSHYOP/mirror-webgpu-claude-skill |
+
+Refresh mirrors (fetch upstream → push mirror):
+
+```bash
+./scripts/sync-mirrors.sh
+./scripts/sync-mirrors.sh --only mirror-superpowers
+```
+
+Local bare clones live in `~/Codes-2/claude-plugin-mirrors/` (or `$MIRROR_ROOT`).
