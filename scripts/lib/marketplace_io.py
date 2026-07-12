@@ -500,15 +500,15 @@ def collect_grok_plugins() -> list[dict[str, Any]]:
     cfg = Path.home() / ".grok" / "config.toml"
     if cfg.exists():
         text = cfg.read_text()
-        # crude: enabled = [ "a", "b" ]
-        m = re.search(r"\[plugins\][^\[]*?enabled\s*=\s*\[(.*?)\]", text, re.S)
-        if m:
-            first_party = {
-            d.name for d in PLUGINS_DIR.iterdir() if d.is_dir()
-        } if PLUGINS_DIR.is_dir() else set()
-        for name in re.findall(r'"([^"]+)"', m.group(1)):
-            if name not in found and name not in first_party:
-                found.setdefault(name, {"name": name, "via": "grok-config"})
+        first_party = (
+            {d.name for d in PLUGINS_DIR.iterdir() if d.is_dir()}
+            if PLUGINS_DIR.is_dir()
+            else set()
+        )
+        for m in re.finditer(r"enabled\s*=\s*\[(.*?)\]", text, re.S):
+            for name in re.findall(r'"([^"]+)"', m.group(1)):
+                if name not in found and name not in first_party:
+                    found.setdefault(name, {"name": name, "via": "grok-config"})
 
     return sorted(found.values(), key=lambda x: x["name"])
 
