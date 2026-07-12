@@ -1,79 +1,102 @@
 # rushy-claude-plugins
 
-Private **Claude / Grok marketplace** for RUSHYOP.
+Private marketplace: **single source of truth** for RUSHYOP plugins/skills.
 
-Local checkout: `/Users/admin/Codes-2/Agentic-setup`  
-Remote: https://github.com/RUSHYOP/rushy-claude-plugins
+- **Local:** `/Users/admin/Codes-2/Agentic-setup`
+- **Remote:** https://github.com/RUSHYOP/rushy-claude-plugins (private)
 
-## Idea
+## Rule
 
-| Layer | Role |
-|-------|------|
-| **This repo** | Catalog + first-party plugins + mirror registry |
-| **CLIs** | Add this marketplace themselves (`grok plugin marketplace add …`, Claude `@rushy`) |
-| **Private mirrors** | `RUSHYOP/mirror-*` so upstream deletes do not wipe skills |
-| **import-from-clis** | When you install a plugin in Claude **or** Grok, pull it into this catalog |
+| Do | Don’t |
+|----|--------|
+| Add plugins **here** with `./scripts/add-plugin.sh` | Install plugins only into Claude/Grok/Cursor |
+| Commit + push catalog (and mirrors) | Leave a tool pointing at random upstream URLs |
+| Point every AI tool at **this marketplace** | Duplicate skills under `~/.claude/skills` / `~/.grok/skills` |
 
-This repo does **not** force-install plugins into CLIs. You add the marketplace in each product.
-
-## Add marketplace in a CLI
-
-```bash
-# Grok
-grok plugin marketplace add RUSHYOP/rushy-claude-plugins
-grok plugin marketplace add /Users/admin/Codes-2/Agentic-setup   # live checkout
-
-# Claude Code
-# settings: extraKnownMarketplaces.rushy → RUSHYOP/rushy-claude-plugins
-# enable plugins as name@rushy
+```
+add plugin → marketplace.json + mirror registry → commit/push
+     ↓
+Claude / Grok / other tools only reference this marketplace
 ```
 
-## When you install a new plugin in any CLI
+## Add a new plugin (primary path)
 
 ```bash
 cd /Users/admin/Codes-2/Agentic-setup
-./scripts/import-from-clis.sh              # Claude + Grok → marketplace.json + registry
-./scripts/import-from-clis.sh --dry-run    # preview
-./scripts/import-from-clis.sh --claude-only
-./scripts/import-from-clis.sh --grok-only
-./scripts/import-from-clis.sh --commit
 
-# Optional: create/refresh private DR mirrors for new remotes
-./scripts/sync-mirrors.sh                  # all
-./scripts/sync-mirrors.sh --only mirror-foo
+# Upstream project
+./scripts/add-plugin.sh superpowers obra/superpowers --sync --commit --push
 
-git push
+# Monorepo subfolder
+./scripts/add-plugin.sh static-analysis trailofbits/skills \
+  --path plugins/static-analysis --sync --commit --push
+
+# Already known marketplace (clone under ~/.claude/plugins/marketplaces)
+./scripts/add-plugin.sh frontend-design --marketplace claude-plugins-official \
+  --sync --commit --push
+
+# Your own plugin under plugins/my-thing/
+./scripts/add-plugin.sh my-thing --first-party --commit --push
 ```
 
-## First-party plugins (yours)
+What that does:
+
+1. Writes an entry in `.claude-plugin/marketplace.json`
+2. For upstream: install URL = **your** `RUSHYOP/mirror-*` (not the owner’s raw URL as the long-term source)
+3. Registers `mirrors/registry.tsv`
+4. Optional `--sync` creates/updates the private mirror
+5. Optional `--commit` / `--push`
+
+## Wire tools (reference only)
 
 ```bash
-# add plugins/my-plugin/ with .claude-plugin/plugin.json + skills/
-./scripts/rebuild-marketplace.sh --commit
+# Grok — marketplace only
+grok plugin marketplace add RUSHYOP/rushy-claude-plugins
+# live checkout (optional):
+grok plugin marketplace add /Users/admin/Codes-2/Agentic-setup
+# then install/enable plugins from that marketplace UI/CLI — not from random git URLs
+
+# Claude — marketplace rushy + enable name@rushy
+# extraKnownMarketplaces.rushy → RUSHYOP/rushy-claude-plugins
+```
+
+Optional helper to regenerate enable lists / merge Claude `*@rushy`:
+
+```bash
+./scripts/generate-global-config.sh
+./scripts/apply-global.sh --claude
+```
+
+## Agents
+
+See **[AGENTS.md](./AGENTS.md)** — any AI working on plugin setup must use `add-plugin.sh`, not CLI-only installs.
+
+## Reconcile (if something was installed in a CLI by mistake)
+
+```bash
+./scripts/import-from-clis.sh --commit   # pull discovery into catalog
+./scripts/sync-mirrors.sh                # if new remotes
 git push
+# then turn off non-@rushy enables in the CLI
 ```
 
 ## Scripts
 
-| Script | Purpose |
-|--------|---------|
-| `import-from-clis.sh` | Import new plugins from Claude + Grok into this catalog |
-| `rebuild-marketplace.sh` | Refresh first-party entries from `plugins/*` |
-| `sync-mirrors.sh` | Fetch upstream → push `RUSHYOP/mirror-*` (DR) |
-| `generate-global-config.sh` | Regenerate `config/*` enable lists from catalog |
-| `apply-global.sh` | Optional: regen config; `--claude` merges `*@rushy` into Claude settings |
+| Script | Role |
+|--------|------|
+| **`add-plugin.sh`** | **Canonical** add to marketplace |
+| `sync-mirrors.sh` | Private DR mirrors |
+| `rebuild-marketplace.sh` | First-party scan of `plugins/*` |
+| `import-from-clis.sh` | Reconcile CLI → catalog only |
+| `generate-global-config.sh` | Build `config/*` from catalog |
+| `apply-global.sh` | Optional Claude `*@rushy` merge |
 
 ## Layout
 
 ```
-.claude-plugin/marketplace.json   # catalog
-plugins/                          # first-party only
-mirrors/registry.tsv              # upstream URL → mirror repo name
-scripts/
-config/                           # generated enable lists (optional)
+.claude-plugin/marketplace.json
+plugins/                 # first-party only
+mirrors/registry.tsv
+scripts/add-plugin.sh    # start here for new plugins
+AGENTS.md                # rules for AI tools
 ```
-
-## Upstream vs first-party
-
-- **First-party:** code in `plugins/`, owned by you.
-- **Upstream:** entry in `marketplace.json` points at **your** `RUSHYOP/mirror-*`; `metadata.upstreamUrl` is the real origin for `sync-mirrors.sh`.

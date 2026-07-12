@@ -637,3 +637,89 @@ def import_missing_from_claude(
         sources=("claude",),
     )
     return a, s, f
+
+
+def add_plugin(
+    name: str,
+    *,
+    git_url: str | None = None,
+    subpath: str | None = None,
+    first_party_dir: str | None = None,
+    marketplace: str | None = None,
+    description: str = "",
+    dry_run: bool = False,
+) -> dict[str, Any]:
+    """
+    Add a plugin to the marketplace catalog (source of truth).
+
+    - Upstream: git_url (+ optional subpath) → mirrored install source + registry row
+    - Or resolve from a known marketplace clone by (marketplace, name)
+    - First-party: first_party_dir under plugins/ (or name as dir)
+
+    Returns the marketplace entry. Raises if name already exists.
+    """
+    mp = load_marketplace()
+    existing = {p["name"] for p in mp.get("plugins", [])}
+    if name in existing:
+        raise ValueError(f"plugin already in marketplace: {name}")
+
+    entry: dict[str, Any]
+
+    if first_party_dir or (not git_url and not marketplace):
+        dir_name = first_party_dir or name
+        plugin_dir = PLUGINS_DIR / dir_name
+        if not plugin_dir.is_dir():
+            raise ValueError(
+                f"first-party plugin dir missing: {plugin_dir} "
+                f"(create plugins/{dir_name}/ with .claude-plugin/plugin.json + skills/)"
+            )
+        entry = first_party_entry(plugin_dir)
+        # allow override name if plugin.json differs — use catalog name requested
+        if entry["name"] != name:
+            entry["name"] = name
+    elif marketplace:
+        resolved = resolve_source_from_marketplace(marketplace, name)
+        if not resolved:
+            git = MARKETPLACE_GIT.get(marketplace)
+            if not git:
+                raise ValueError(f"unknown marketplace or plugin not found: {marketplace}/{name}")
+            entry = entry_from_git(name, git, subpath=subpath, via=f"add/{marketplace}", description=description)
+        else:
+            entry = resolved
+            if description:
+                entry["description"] = description
+            entry.setdefault("metadata", {})["addedVia"] = "add-plugin"
+    elif git_url:
+        entry = entry_from_git(
+            name,
+            git_url,
+            subpath=subpath,
+            via="add-plugin",
+            description=description or f"Plugin {name}",
+        )
+    else:
+        raise ValueError("provide git_url, --marketplace, or first-party dir")
+
+    if dry_run:
+        return entry
+
+    # Registry + catalog
+    if is_upstream_entry(entry):
+        up = (entry.get("metadata") or {}).get("upstreamUrl")
+        if up:
+            ensure_registry_row(up)
+
+    first = rebuild_first_party(mp.get("plugins", []))
+    upstream = [p for p in mp.get("plugins", []) if is_upstream_entry(p)]
+    by_name = {p["name"]: p for p in upstream}
+    if is_upstream_entry(entry):
+        by_name[entry["name"]] = entry
+    else:
+        # replace/add first-party
+        first = [p for p in first if p["name"] != entry["name"]]
+        first.append(entry)
+    first.sort(key=lambda p: p["name"])
+    mp["plugins"] = first + sorted(by_name.values(), key=lambda p: p["name"])
+    save_marketplace(mp)
+    write_upstream_md(mp)
+    return entry
