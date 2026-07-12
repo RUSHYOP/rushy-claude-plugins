@@ -31,6 +31,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 
 - `agent-tooling` → `./plugins/agent-tooling`
 - `better-ux-quality` → `./plugins/better-ux-quality`
+- `marketplace-ops` → `./plugins/marketplace-ops`
 - `r3f` → `./plugins/r3f`
 - `ramco-brain` → `./plugins/ramco-brain`
 - `vizuara` → `./plugins/vizuara`

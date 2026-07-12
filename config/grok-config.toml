@@ -13,6 +13,7 @@ git = "https://github.com/RUSHYOP/rushy-claude-plugins.git"
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/r3f/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/ramco-brain/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara/skills",
@@ -22,6 +23,7 @@ paths = [
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
   "/Users/admin/Codes-2/Agentic-setup/plugins/r3f",
   "/Users/admin/Codes-2/Agentic-setup/plugins/ramco-brain",
   "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara",
@@ -38,6 +40,7 @@ enabled = [
   "frontend-design",
   "greptile",
   "insecure-defaults",
+  "marketplace-ops",
   "playwright",
   "r3f",
   "ramco-brain",

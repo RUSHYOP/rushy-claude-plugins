@@ -48,6 +48,30 @@
       }
     },
     {
+      "name": "marketplace-ops",
+      "version": "1.0.0",
+      "description": "Rushy marketplace operations: SessionStart drift checks, post-install reconcile hints, and slash commands to import CLI-installed plugins into the RUSHYOP catalog.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/marketplace-ops",
+      "keywords": [
+        "marketplace",
+        "hooks",
+        "reconcile",
+        "rushy",
+        "plugins"
+      ],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
       "name": "r3f",
       "version": "1.0.0",
       "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
