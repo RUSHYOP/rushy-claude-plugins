@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Discover plugins installed/enabled in Claude Code and/or Grok, and add any
+# RECONCILE ONLY — not the primary way to add plugins.
+# Prefer: ./scripts/add-plugin.sh (marketplace-first), then wire CLIs to this repo.
+#
+# Discover plugins already installed/enabled in Claude Code and/or Grok, and add any
 # missing ones to THIS marketplace catalog (marketplace.json + mirrors/registry).
 #
 # Does NOT install plugins into CLIs. Add this repo as a marketplace in each CLI:
