@@ -1,24 +1,38 @@
 # rushy-claude-plugins
 
-Private **Claude Code marketplace** for RUSHYOP-owned plugins.
+Private **Claude Code marketplace** for RUSHYOP.
 
-This is the **source of truth** for local plugins. Do **not** vendor them into project `.claude/plugins/cache/`. Install from this marketplace instead.
+## Two kinds of plugins
 
-## Plugins
+| Kind | Where code lives | Updates |
+|------|------------------|---------|
+| **First-party** | `plugins/` in **this** repo | You push to this repo |
+| **Upstream (catalog)** | **Their** git repo only | Claude pulls from upstream `source` (`ref: main`) |
+
+Third-party plugins (e.g. **superpowers**) are **config-only here**: marketplace entries point at the real source (e.g. `https://github.com/obra/superpowers.git`). Nothing is copied into this repo for them.
+
+See [UPSTREAM.md](./UPSTREAM.md) for the full catalog.
+
+## First-party plugins
 
 | Plugin | Contents |
 |--------|----------|
 | `r3f` | React Three Fiber skills + brain-viz-renderer |
-| `better-ux-quality` | UX/design skill pack (14 skills) |
+| `better-ux-quality` | UX/design skill pack |
 | `ramco-brain` | Journey/eval/reindex/sync + ramco-data-locator agent |
 | `vizuara` | PDF/HTML reports + Wisprflow figures |
 | `agent-tooling` | find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn |
 
-## Use in a project
+## Upstream examples
 
-### 1. Register the marketplace
+| Plugin | Install id | Source (updates from) |
+|--------|------------|------------------------|
+| superpowers | `superpowers@rushy` | https://github.com/obra/superpowers.git |
+| figma | `figma@rushy` | https://github.com/figma/mcp-server-guide.git |
+| playwright | `playwright@rushy` | anthropics/claude-plugins-official `external_plugins/playwright` |
+| static-analysis | `static-analysis@rushy` | trailofbits/skills `plugins/static-analysis` |
 
-In project or user `settings.json`:
+## Use
 
 ```json
 {
@@ -33,33 +47,24 @@ In project or user `settings.json`:
   "enabledPlugins": {
     "r3f@rushy": true,
     "better-ux-quality@rushy": true,
-    "ramco-brain@rushy": true,
-    "vizuara@rushy": true,
-    "agent-tooling@rushy": true
+    "superpowers@rushy": true,
+    "figma@rushy": true
   }
 }
 ```
-
-### 2. Install marketplace (Claude Code)
 
 ```text
 /plugin marketplace add RUSHYOP/rushy-claude-plugins
 ```
 
-Or let Claude pull via `extraKnownMarketplaces` on next start.
-
-Claude will clone into `~/.claude/plugins/marketplaces/rushy` and install enabled plugins into the normal cache from **this repo**, not from random project copies.
-
-## Local development (optional)
+## Dev clone
 
 ```bash
-# clone once
-git clone git@github.com:RUSHYOP/rushy-claude-plugins.git ~/Codes-2/rushy-claude-plugins
-
-# point marketplace installLocation at the clone (known_marketplaces.json)
-# or use a file source if your Claude version supports local path marketplaces
+git clone git@github.com:RUSHYOP/rushy-claude-plugins.git
+# edit first-party plugins under plugins/
+# edit upstream catalog in .claude-plugin/marketplace.json only
 ```
 
 ## License
 
-Private. All rights reserved unless noted inside a skill (e.g. vendored MIT r3f content).
+Private first-party content. Upstream plugins retain their own licenses; this repo only redistributes **pointers**.

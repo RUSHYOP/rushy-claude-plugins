@@ -6,8 +6,8 @@
     "url": "https://github.com/RUSHYOP"
   },
   "metadata": {
-    "version": "1.0.0",
-    "description": "Private Claude Code marketplace for RUSHYOP local plugins (r3f, UX, ramco, vizuara, tooling).",
+    "version": "1.1.0",
+    "description": "RUSHYOP Claude Code marketplace: first-party plugins (vendored in this repo) plus curated third-party plugins that install from their upstream git sources.",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -20,7 +20,14 @@
         "email": "alwayspurav@gmail.com"
       },
       "source": "./plugins/agent-tooling",
-      "keywords": []
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
     },
     {
       "name": "better-ux-quality",
@@ -31,7 +38,14 @@
         "email": "alwayspurav@gmail.com"
       },
       "source": "./plugins/better-ux-quality",
-      "keywords": []
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
     },
     {
       "name": "r3f",
@@ -49,7 +63,14 @@
         "drei",
         "webgl",
         "3d"
-      ]
+      ],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
     },
     {
       "name": "ramco-brain",
@@ -60,7 +81,14 @@
         "email": "alwayspurav@gmail.com"
       },
       "source": "./plugins/ramco-brain",
-      "keywords": []
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
     },
     {
       "name": "vizuara",
@@ -71,7 +99,548 @@
         "email": "alwayspurav@gmail.com"
       },
       "source": "./plugins/vizuara",
-      "keywords": []
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
+      "name": "agentic-actions-auditor",
+      "description": "Audits GitHub Actions workflows for security vulnerabilities in AI agent integrations (Claude Code Action, Gemini CLI, OpenAI Codex, GitHub AI Inference)",
+      "version": "1.2.1",
+      "author": {
+        "name": "Emilio L\u00f3pez & Will Vandevanter"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/agentic-actions-auditor",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "claude-md-management",
+      "description": "Tools to maintain and improve CLAUDE.md files - audit quality, capture session learnings, and keep project memory current.",
+      "version": "latest",
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      },
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "path": "plugins/claude-md-management",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-md-management",
+      "tags": [
+        "upstream",
+        "via-claude-plugins-official"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "claude-plugins-official",
+        "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "claude-mem",
+      "description": "Persistent memory system for Claude Code - context compression across sessions",
+      "version": "10.5.5",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/thedotmack/claude-mem.git",
+        "path": "plugin",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/thedotmack/claude-mem",
+      "tags": [
+        "upstream",
+        "via-thedotmack"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "thedotmack",
+        "upstreamRepo": "https://github.com/thedotmack/claude-mem.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "cybersecurity-skills",
+      "description": "817 cybersecurity skills covering web security, pentesting, DFIR, threat intelligence, cloud security, malware analysis, and more. Mapped to 6 frameworks.",
+      "version": "1.3.0",
+      "author": {
+        "name": "mukul975"
+      },
+      "category": "security",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+      "tags": [
+        "upstream",
+        "via-anthropic-cybersecurity-skills"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "anthropic-cybersecurity-skills",
+        "upstreamRepo": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      },
+      "keywords": [
+        "cybersecurity",
+        "pentesting",
+        "forensics",
+        "threat-intelligence",
+        "cloud-security",
+        "malware-analysis",
+        "incident-response",
+        "zero-trust",
+        "devsecops"
+      ]
+    },
+    {
+      "name": "differential-review",
+      "description": "Security-focused differential review of code changes with git history analysis and blast radius estimation",
+      "version": "1.1.1",
+      "author": {
+        "name": "Omar Inuwa"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/differential-review",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "figma",
+      "description": "Figma design platform integration. Access design files, extract component information, read design tokens, and translate designs into code. Bridge the gap between design and development workflows.",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "design",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/figma/mcp-server-guide.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/figma/mcp-server-guide",
+      "tags": [
+        "upstream",
+        "via-claude-plugins-official"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "claude-plugins-official",
+        "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "frontend-design",
+      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code that avoids generic AI aesthetics.",
+      "version": "latest",
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      },
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "path": "plugins/frontend-design",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/anthropics/claude-plugins-public/tree/main/plugins/frontend-design",
+      "tags": [
+        "upstream",
+        "via-claude-plugins-official"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "claude-plugins-official",
+        "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "greptile",
+      "description": "AI-powered codebase search and understanding. Query your repositories using natural language to find relevant code, understand dependencies, and get contextual answers about your codebase architecture.",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "path": "external_plugins/greptile",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/anthropics/claude-plugins-public/tree/main/external_plugins/greptile",
+      "tags": [
+        "upstream",
+        "via-claude-plugins-official"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "claude-plugins-official",
+        "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "insecure-defaults",
+      "description": "Detects insecure default configurations including hardcoded credentials, fallback secrets, weak authentication defaults, and dangerous values in production",
+      "version": "1.0.1",
+      "author": {
+        "name": "Trail of Bits",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/insecure-defaults",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "playwright",
+      "description": "Browser automation and end-to-end testing MCP server by Microsoft. Enables Claude to interact with web pages, take screenshots, fill forms, click elements, and perform automated browser testing workflows.",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "testing",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "path": "external_plugins/playwright",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/anthropics/claude-plugins-public/tree/main/external_plugins/playwright",
+      "tags": [
+        "upstream",
+        "via-claude-plugins-official"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "claude-plugins-official",
+        "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "semgrep-rule-creator",
+      "description": "Create custom Semgrep rules for detecting bug patterns and security vulnerabilities",
+      "version": "1.2.2",
+      "author": {
+        "name": "Maciej Domanski"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/semgrep-rule-creator",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "sharp-edges",
+      "description": "Identify error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes",
+      "version": "1.1.1",
+      "author": {
+        "name": "Scott Arciszewski",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/sharp-edges",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "skill-creator",
+      "description": "Create new skills, improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, update or optimize an existing skill, run evals to test a skill, or benchmark skill performance with variance analysis.",
+      "version": "latest",
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      },
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/anthropics/claude-plugins-official.git",
+        "path": "plugins/skill-creator",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator",
+      "tags": [
+        "upstream",
+        "via-claude-plugins-official"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "claude-plugins-official",
+        "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "static-analysis",
+      "description": "Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing for security vulnerability detection",
+      "version": "1.2.2",
+      "author": {
+        "name": "Axel Mierczuk & Pawe\u0142 P\u0142atek"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/static-analysis",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "superpowers",
+      "description": "Superpowers teaches Claude brainstorming, subagent driven development with built in code review, systematic debugging, and red/green TDD. Additionally, it teaches Claude how to author and test new skills.",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "development",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/obra/superpowers.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/obra/superpowers.git",
+      "tags": [
+        "upstream",
+        "via-claude-plugins-official"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "claude-plugins-official",
+        "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "supply-chain-risk-auditor",
+      "description": "Audit supply-chain threat landscape of project dependencies for exploitation or takeover risk",
+      "version": "1.0.1",
+      "author": {
+        "name": "Spencer Michaels"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/supply-chain-risk-auditor",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "testing-handbook-skills",
+      "description": "Skills from the Trail of Bits Application Security Testing Handbook (appsec.guide)",
+      "version": "1.0.2",
+      "author": {
+        "name": "Pawe\u0142 P\u0142atek"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/trailofbits/skills.git",
+        "path": "plugins/testing-handbook-skills",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/trailofbits/skills",
+      "tags": [
+        "upstream",
+        "via-trailofbits"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "trailofbits",
+        "upstreamRepo": "https://github.com/trailofbits/skills.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
+    },
+    {
+      "name": "visual-explainer",
+      "description": "Generate beautiful HTML pages for diagrams, diff reviews, plan reviews, slides, and data tables",
+      "version": "0.7.1",
+      "author": {
+        "name": "nicobailon"
+      },
+      "category": "visualization",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/nicobailon/visual-explainer.git",
+        "path": "plugins/visual-explainer",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/nicobailon/visual-explainer",
+      "tags": [
+        "upstream",
+        "via-visual-explainer-marketplace"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "visual-explainer-marketplace",
+        "upstreamRepo": "https://github.com/nicobailon/visual-explainer.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      },
+      "keywords": [
+        "diagrams",
+        "html",
+        "visualization",
+        "diff-review",
+        "slides"
+      ]
+    },
+    {
+      "name": "webgpu-threejs-tsl",
+      "description": "Comprehensive guide for WebGPU Three.js with TSL - covers renderer setup, node materials, compute shaders, post-processing, and WGSL integration",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/dgreenheck/webgpu-claude-skill.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/dgreenheck/webgpu-claude-skill",
+      "tags": [
+        "upstream",
+        "via-webgpu-threejs-tsl"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamMarketplace": "webgpu-threejs-tsl",
+        "upstreamRepo": "https://github.com/dgreenheck/webgpu-claude-skill.git",
+        "updatePolicy": "track-ref-from-source",
+        "note": "Catalog only in rushy; install/update fetches from upstream URL, never vendored here."
+      }
     }
   ]
 }
