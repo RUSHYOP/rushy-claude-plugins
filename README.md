@@ -85,19 +85,23 @@ git push
 # then turn off non-@rushy enables in the CLI
 ```
 
-### Auto-check hooks (stored in this repo)
+### AUTO-ADD hooks (stored in this repo)
 
 ```bash
-# Install global Grok hooks (SessionStart drift check + post-install hint)
-./hooks/install-user-hooks.sh
+# Install global Grok hooks — SessionStart + post-plugin-install AUTO-ADD into catalog
+./hooks/install-user-hooks.sh              # commit catalog changes
+./hooks/install-user-hooks.sh --push       # also git push
 ./hooks/install-user-hooks.sh --claude     # optional Claude SessionStart
 
-# Or enable first-party plugin marketplace-ops@rushy (same scripts + slash commands)
+# Same body as the hook (manual):
+./hooks/auto-add-from-clis.sh
+
+# Or enable marketplace-ops@rushy:
 #   /marketplace-status
 #   /reconcile-marketplace
 ```
 
-Hooks **never auto-commit**. They only detect drift; you run `./hooks/reconcile.sh` or `/reconcile-marketplace` to apply.
+After you install a plugin in Grok/Claude, the **PostToolUse** hook runs `import-from-clis` and commits into this marketplace. SessionStart does the same if anything is still missing.
 
 See **[hooks/README.md](./hooks/README.md)**.
 

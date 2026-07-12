@@ -1,5 +1,5 @@
 {
-  "description": "marketplace-ops: keep rushy catalog aware of CLI-only plugin installs",
+  "description": "marketplace-ops: AUTO-ADD CLI-installed plugins into the rushy catalog",
   "hooks": {
     "SessionStart": [
       {
@@ -7,8 +7,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/run-session-check.sh\"",
-            "timeout": 60
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/run-session-auto-add.sh\"",
+            "timeout": 120
           }
         ]
       }
@@ -19,8 +19,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/run-post-install-hint.sh\"",
-            "timeout": 90
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/run-post-auto-add.sh\"",
+            "timeout": 180
           }
         ]
       }

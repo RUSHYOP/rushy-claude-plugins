@@ -1,64 +1,57 @@
-# Marketplace hooks (rushy)
+# Marketplace hooks (rushy) — AUTO-ADD
 
-Runnable automation that keeps the **rushy marketplace catalog** in sync with plugins that accidentally landed only in Claude/Grok.
+These hooks **auto-add** plugins that were installed only into Claude/Grok into the **rushy marketplace catalog**.
 
-These live **in the marketplace repo** so every machine that clones `RUSHYOP/rushy-claude-plugins` gets the same scripts.
+## What runs automatically
 
-## Commands (run anytime)
+| Hook | When | Action |
+|------|------|--------|
+| **SessionStart** | Every Grok/Claude session | If catalog is behind CLIs → `import-from-clis --sync --only-new --commit` |
+| **PostToolUse** | After shell `plugin install` / marketplace add | Same auto-add immediately |
+
+Default: **commit yes**, **push no**. Use `--push` on install to also push to GitHub.
+
+## Install (once per machine)
 
 ```bash
 cd /path/to/Agentic-setup   # or rushy-claude-plugins clone
 
-# Dry-run: what would be added?
-./hooks/check-cli-drift.sh
-
-# Write catalog entries for missing CLI plugins
-./hooks/reconcile.sh
-
-# Commit (and optionally push) catalog changes
-./hooks/reconcile.sh --commit
-./hooks/reconcile.sh --sync --only-new --commit --push
-
-# Grok-only / Claude-only
-./hooks/reconcile.sh --grok-only --commit
-```
-
-## Install global hooks (auto-check on session)
-
-```bash
-./hooks/install-user-hooks.sh           # ~/.grok/hooks/*
-./hooks/install-user-hooks.sh --claude  # also SessionStart in ~/.claude/settings.json
+./hooks/install-user-hooks.sh              # auto-add + commit
+./hooks/install-user-hooks.sh --push       # also git push
+./hooks/install-user-hooks.sh --check-only # detect only (no writes)
+./hooks/install-user-hooks.sh --claude     # also wire Claude settings
 ./hooks/install-user-hooks.sh --uninstall
 ```
 
-After install:
+Creates:
 
-| Hook | When | What |
-|------|------|------|
-| `rushy-session-check` | SessionStart | Dry-run drift check → `logs/cli-drift-status.txt` + stderr hint |
-| `rushy-post-plugin-install` | PostToolUse (shell) | If command looks like `plugin install`, re-check + print reconcile recipe |
+- `~/.grok/hooks/rushy-session-auto-add.json`
+- `~/.grok/hooks/rushy-post-plugin-auto-add.json`
 
-**Does not auto-commit.** You (or `/reconcile-marketplace`) apply changes deliberately.
+Restart Grok or open `/hooks` to load.
 
-## Plugin package
+## Manual / same script as the hook
 
-Same logic is also shipped as first-party plugin **`marketplace-ops@rushy`** (hooks + slash commands + skill). Enable it from the rushy marketplace; or use global install above so hooks work without enabling the plugin.
+```bash
+./hooks/auto-add-from-clis.sh              # what the hook runs
+./hooks/reconcile.sh --commit --push       # explicit CLI
+./hooks/check-cli-drift.sh                 # dry-run only
+```
 
 ## Env
 
-| Variable | Purpose |
-|----------|---------|
-| `RUSHY_MARKETPLACE_ROOT` | Force checkout path if auto-detect fails |
+| Variable | Default | Meaning |
+|----------|---------|---------|
+| `RUSHY_MARKETPLACE_ROOT` | auto | Checkout path |
+| `RUSHY_AUTO_COMMIT` | `1` | Commit catalog |
+| `RUSHY_AUTO_PUSH` | `0` | `git push` after commit |
+| `RUSHY_AUTO_SYNC` | `1` | `--sync --only-new` mirrors |
+| `RUSHY_SESSION_AUTO_ADD` | `1` | SessionStart writes catalog |
+| `RUSHY_AUTO_SOURCES` | both | `grok` or `claude` only |
+| `RUSHY_AUTO_DRY_RUN` | `0` | Force dry-run |
 
-## Layout
+Log: `logs/auto-add.log`
 
-```
-hooks/
-  find-root.sh
-  check-cli-drift.sh
-  reconcile.sh
-  post-tool-plugin-install-hint.sh
-  install-user-hooks.sh
-  README.md
-plugins/marketplace-ops/   # plugin wrapper (hooks.json, commands, skill)
-```
+## Plugin
+
+Same hooks ship as **`marketplace-ops@rushy`** (`/reconcile-marketplace`, skill). Global install above works even without enabling the plugin.

@@ -6,9 +6,9 @@ First-party rushy plugin for **marketplace maintenance hooks** and slash command
 
 | Piece | Role |
 |-------|------|
-| SessionStart hook | Dry-run: plugins in Claude/Grok missing from catalog |
-| PostToolUse hook | After shell `plugin install`, print reconcile recipe |
-| `/reconcile-marketplace` | Apply import → commit/push |
+| SessionStart hook | **AUTO-ADD** missing CLI plugins into catalog (+ commit) |
+| PostToolUse hook | After shell `plugin install`, **AUTO-ADD** into catalog |
+| `/reconcile-marketplace` | Explicit import → commit/push |
 | `/marketplace-status` | Status only |
 | Skill `reconcile-marketplace` | Agent playbook |
 

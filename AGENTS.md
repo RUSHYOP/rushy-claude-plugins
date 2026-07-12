@@ -47,10 +47,11 @@ If something was installed into a CLI by mistake, capture it into the catalog:
 
 Or enable **`marketplace-ops@rushy`** and run `/reconcile-marketplace`.
 
-Install auto-check hooks (detect only — **never auto-commit**):
+Install **AUTO-ADD** hooks (SessionStart + post-plugin-install → catalog + commit):
 
 ```bash
-./hooks/install-user-hooks.sh
+./hooks/install-user-hooks.sh            # auto-add + commit
+./hooks/install-user-hooks.sh --push     # also push
 ./hooks/install-user-hooks.sh --claude   # optional
 ```
 
