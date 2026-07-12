@@ -1,0 +1,177 @@
+{
+  "title": "How a Search Engine Works",
+  "highlight": "Search Engine",
+  "kicker": "a field course · for new engineers",
+  "brand": "field course · **search internals**",
+  "subtitle": "A ground-up walkthrough of how a tiny search engine turns a folder of documents into instant, ranked answers. We build the mental model one layer at a time — from a single parsed file, to the index, to a live query.",
+  "legend": [
+    ["green", "deterministic code"],
+    ["violet", "ranking / scoring"],
+    ["blue", "data / I/O"],
+    ["amber", "the user"]
+  ],
+  "intro": [
+    {
+      "type": "prose",
+      "variant": "framing",
+      "text": "The whole system has two halves. A **build** phase runs offline and is entirely deterministic: it reads a folder of documents and compiles them into one compact index. A **serve** phase runs online: it answers a query by scoring documents against the index. Understanding the build is what makes the serve make sense — so we start there."
+    },
+    {
+      "type": "callout",
+      "kind": "violet",
+      "title": "How to read this course",
+      "body": "Each section builds on the previous one. Use the cards below to jump around, or the *next / previous* links at the bottom of every page. Toggle light/dark from the top-right."
+    }
+  ],
+  "stats": [
+    { "n": "12,480", "label": "documents indexed", "color": "green" },
+    { "n": "3", "label": "build stages", "color": "violet" },
+    { "n": "0", "label": "runtime dependencies", "color": "blue" },
+    { "n": "~4s", "label": "to rebuild the index", "color": "green" }
+  ],
+  "footer": "**How a Search Engine Works** — a self-contained field course. Every page is generated from a single JSON content model; nothing here is hand-written HTML.",
+  "nav": ["why", "parsing", "indexing", "ranking", "query"],
+  "sections": [
+    {
+      "id": "why",
+      "title": "Why it exists",
+      "eyebrow": "orientation",
+      "summary": "The problem, the big picture, and the two-phase design.",
+      "blocks": [
+        { "type": "prose", "variant": "lede", "text": "Finding one paragraph in a folder of ten thousand files is slow if you read every file on every query. A search engine pays that cost **once**, up front, so every query afterwards is instant." },
+        { "type": "prose", "text": "The trick is a data structure called an *inverted index*: instead of mapping documents to the words they contain, it maps each word to the documents that contain it. A query then becomes a set lookup, not a scan." },
+        { "type": "heading", "text": "The two phases" },
+        {
+          "type": "kv-table",
+          "rows": [
+            ["build", "Reads every document once, extracts its text, and writes a compact index to disk. Deterministic and offline."],
+            ["serve", "Loads the index into memory and answers queries by scoring documents. Fast and online."]
+          ]
+        },
+        {
+          "type": "callout",
+          "kind": "amber",
+          "title": "Mental model",
+          "body": "Think of the build as writing the index at the back of a textbook, and the serve as a reader using that index to jump straight to the right page."
+        }
+      ]
+    },
+    {
+      "id": "parsing",
+      "title": "Parsing a document",
+      "eyebrow": "the build · step 1",
+      "summary": "Turning a raw file into a clean stream of tokens.",
+      "blocks": [
+        { "type": "prose", "text": "Before anything can be indexed it must be *tokenized* — split into lowercase words with punctuation stripped. A parser reads one file and emits a list of tokens plus a little metadata." },
+        {
+          "type": "code",
+          "title": "parse.js — the whole parser",
+          "color": "green",
+          "code": "export function parse(text) {\n  return text\n    .toLowerCase()\n    .replace(/[^a-z0-9\\s]/g, ' ')   // strip punctuation\n    .split(/\\s+/)                    // split on whitespace\n    .filter(Boolean);                // drop empties\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Lowercasing** so `Search` and `search` match.",
+            "**Punctuation stripping** so `engine,` and `engine` match.",
+            "**Whitespace splitting** to get individual words.",
+            "The output is a flat list of tokens — nothing more."
+          ]
+        },
+        {
+          "type": "callout",
+          "kind": "red",
+          "title": "Pitfall",
+          "body": "Never index the raw file bytes. Binary files, markup, and encoding noise all pollute the index and wreck ranking. Parse first, always."
+        }
+      ]
+    },
+    {
+      "id": "indexing",
+      "title": "Building the index",
+      "eyebrow": "the build · step 2",
+      "summary": "From token lists to an inverted index on disk.",
+      "blocks": [
+        { "type": "prose", "text": "The index is a map from each token to the list of documents that contain it (a *postings list*), plus how often it appears. We also record each document's length — ranking needs it." },
+        {
+          "type": "table",
+          "headers": ["token", "appears in", "total occurrences"],
+          "rows": [
+            ["`engine`", "doc 1, doc 7, doc 12", "9"],
+            ["`index`", "doc 1, doc 3", "14"],
+            ["`query`", "doc 7", "5"]
+          ]
+        },
+        {
+          "type": "stat-row",
+          "stats": [
+            { "n": "12,480", "label": "documents", "color": "blue" },
+            { "n": "48,203", "label": "unique tokens", "color": "green" },
+            { "n": "9.6 MB", "label": "index on disk", "color": "green" }
+          ]
+        },
+        { "type": "prose", "variant": "note", "text": "The index is written once and loaded into memory at startup. Individual documents are only re-read when a result needs to be displayed." }
+      ]
+    },
+    {
+      "id": "ranking",
+      "title": "Ranking with BM25",
+      "eyebrow": "the serve · scoring",
+      "summary": "Why rare words matter more, and how length is normalised.",
+      "blocks": [
+        { "type": "prose", "variant": "lede", "text": "Not every matching document is equally relevant. BM25 is the scoring function that decides the order — it rewards rare query terms and dampens the advantage of very long documents." },
+        {
+          "type": "kv-table",
+          "rows": [
+            ["term frequency", "more occurrences score higher — but with diminishing returns."],
+            ["inverse doc freq", "a word in *few* documents is more informative than a common one."],
+            ["length norm", "a short document matching a term beats a long one that merely mentions it."]
+          ]
+        },
+        {
+          "type": "code",
+          "title": "the intuition, in one line",
+          "color": "violet",
+          "code": "score(doc, query) = Σ  idf(term) · saturating_tf(term, doc) · length_penalty(doc)"
+        },
+        {
+          "type": "callout",
+          "kind": "green",
+          "title": "Why not just count matches?",
+          "body": "Raw counts favour long documents and common words. BM25's *saturation* and *length normalisation* are exactly the corrections that make ranked results feel right."
+        }
+      ]
+    },
+    {
+      "id": "query",
+      "title": "A query, end to end",
+      "eyebrow": "putting it together",
+      "summary": "One search traced from keystroke to ranked answer.",
+      "blocks": [
+        { "type": "prose", "text": "Here is the full path a single query takes, using everything from the previous sections." },
+        {
+          "type": "diagram",
+          "caption": "The query path: the same tokenizer parses the query and the documents; matches are scored and sorted before the top results are read back.",
+          "code": "flowchart LR\n  U([user query]) --> P[tokenize]\n  P --> L[[inverted index lookup]]\n  L --> S{BM25 score & sort}\n  S --> R[read top docs]\n  R --> A([ranked answer])\n  B[(documents)] -->|same tokenizer| P"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The user types `how does ranking work` — the only unpredictable input in the system.",
+            "The query is **parsed** with the exact same tokenizer used at build time.",
+            "Each token is looked up in the **inverted index** to gather candidate documents.",
+            "Candidates are **scored** with BM25 and sorted.",
+            "The top results are read from disk and returned with a snippet."
+          ]
+        },
+        {
+          "type": "callout",
+          "kind": "violet",
+          "title": "The key symmetry",
+          "body": "The query and the documents pass through the *same* parser. If tokenization differs between build and serve, matches silently disappear. Keep them identical."
+        },
+        { "type": "prose", "variant": "note", "text": "That's the whole engine: parse once, index once, then score on every query. Everything else is optimisation." }
+      ]
+    }
+  ]
+}

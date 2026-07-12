@@ -1,0 +1,193 @@
+{
+  "title": "Apollo Platform Rebuild",
+  "brand": "Apollo Tracker",
+  "kicker": "Sprint 4 · In progress · 9 Feb 2026",
+  "subtitle": "A daily log of what we shipped and what's planned next while we rebuild the Apollo platform. Progress, shared materials, and every standup in one place.",
+  "today": "2026-02-09",
+  "footer_left": "Apollo Platform Rebuild — Acme × Northwind",
+  "footer_right": "Updated daily at standup · Engagement: 12 Jan – 20 Mar 2026",
+  "stats": [
+    { "value": "92%", "label": "Test coverage" },
+    { "value": "Sprint 4", "label": "Current milestone" },
+    { "value": "37 / 42", "label": "Stories done" },
+    { "value": "3", "label": "Open blockers" }
+  ],
+  "milestones_note": "Where each workstream stands against its target.",
+  "milestones": [
+    { "label": "Milestone 1 — API rebuild", "pct": 100, "note": "Delivered · all 24 endpoints migrated and load-tested (target was 2 Feb)." },
+    { "label": "Milestone 2 — Data migration", "pct": 78, "note": "Coverage 92.3% · Sprint 4 — day 11 of 14 · 3 tables pending schema sign-off." },
+    { "label": "Milestone 3 — UI modernization", "pct": 35, "note": "Design system in place; 5 of 14 screens ported." }
+  ],
+  "resources_note": "Everything exchanged between the two teams, in one place — what we've shared and what we've received. Files download on click; external sites open in a new tab.",
+  "resources": {
+    "out": {
+      "heading": "Shared by Acme → Northwind",
+      "subheading": "What we have delivered to the Northwind team",
+      "groups": [
+        {
+          "heading": "API rebuild — handoff",
+          "items": [
+            {
+              "kind": "file",
+              "title": "API migration overview (handout)",
+              "desc": "How the 24 legacy endpoints map to the new gRPC surface, the auth model, and the rollback plan.",
+              "url": "https://example.com/downloads/api-migration-overview.pdf",
+              "file": "api-migration-overview.pdf",
+              "tags": [
+                { "text": "File", "kind": "file" },
+                { "text": "New", "kind": "new" },
+                { "text": "45 KB", "kind": "size" },
+                { "text": "api-migration-overview.pdf", "kind": "filename" }
+              ]
+            },
+            {
+              "kind": "website",
+              "title": "Live API reference",
+              "desc": "Auto-generated OpenAPI docs for the rebuilt service surface.",
+              "url": "https://api.example.com/docs",
+              "tags": [
+                { "text": "Website", "kind": "website" },
+                { "text": "acme-nw", "kind": "lock" }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Walkthrough recordings",
+          "items": [
+            {
+              "kind": "video",
+              "title": "Architecture walkthrough (12 min)",
+              "desc": "Recorded session covering the new service boundaries and data flow.",
+              "url": "https://example.com/videos/architecture.mp4",
+              "tags": [ { "text": "Video", "kind": "video" } ]
+            }
+          ]
+        },
+        {
+          "heading": "Staging access",
+          "items": [
+            {
+              "kind": "website",
+              "title": "Staging environment",
+              "desc": "Seed accounts for the Northwind reviewers. Rotate before any real use.",
+              "url": "https://staging.example.com",
+              "tags": [ { "text": "Website", "kind": "website" }, { "text": "gated", "kind": "lock" } ],
+              "credentials": {
+                "headers": ["Role", "Email", "Password"],
+                "rows": [
+                  ["Admin", "admin@example.com", "Review!Demo2026"],
+                  ["Reviewer", "avery@example.com", "Review!Demo2026"],
+                  ["Reviewer", "riley@example.com", "Review!Demo2026"]
+                ],
+                "note": "⚠ Seed accounts; the password is the shared demo one. Rotate before any real use."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "in": {
+      "heading": "Shared by Northwind → Acme",
+      "subheading": "What the Northwind team has given us",
+      "groups": [
+        {
+          "heading": "Requirements & data",
+          "items": [
+            {
+              "kind": "file",
+              "title": "Legacy schema export",
+              "desc": "Full DDL dump of the current production database for the migration mapping.",
+              "url": "https://example.com/downloads/legacy-schema.sql",
+              "file": "legacy-schema.sql",
+              "tags": [ { "text": "File", "kind": "file" }, { "text": "163 KB", "kind": "size" }, { "text": "legacy-schema.sql", "kind": "filename" } ]
+            },
+            {
+              "kind": "website",
+              "title": "Acceptance-criteria board",
+              "desc": "The living list of acceptance criteria per story.",
+              "url": "https://example.com/board",
+              "tags": [ { "text": "Website", "kind": "website" } ]
+            }
+          ]
+        },
+        {
+          "heading": "Review feedback",
+          "items": [
+            {
+              "kind": "file",
+              "title": "Sprint 3 review notes",
+              "desc": "Consolidated feedback from the last demo — 18 items, 12 resolved.",
+              "tags": [ { "text": "File", "kind": "file" }, { "text": "awaiting link", "kind": "lock" } ],
+              "note": "Link pending — the Northwind team will attach the shared doc after this standup."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "calendar": { "start": "2026-01-12", "end": "2026-03-20" },
+  "calendar_note": "Two months of work, one update per day. Click any highlighted day to see that day's entry.",
+  "timeline_note": "One update per day. The most recent day is at the top; today is highlighted.",
+  "days": [
+    {
+      "date": "2026-02-05",
+      "bullets": [
+        "Completed the API rebuild — all 24 endpoints migrated and passing the contract tests.",
+        "Kicked off the data-migration workstream; mapped 21 of 30 tables."
+      ],
+      "note": "Milestone 1 closed from our side. Data migration is the new focus."
+    },
+    {
+      "date": "2026-02-06",
+      "bullets": [
+        "Data migration reached 60% — 18 of 30 tables migrated with row-count parity checks.",
+        "Found a systemic date-timezone issue in three tables; fix identified."
+      ],
+      "note": "Coverage climbing; timezone fix expected to land tomorrow."
+    },
+    {
+      "date": "2026-02-09",
+      "title": "Sprint 4 — day 11 of 14",
+      "bullets": [
+        "Data migration at 78% (92.3% row-parity) after the timezone fix landed.",
+        "Started UI modernization — design system wired, first 5 screens ported.",
+        "Shared the API migration handout and the architecture walkthrough with Northwind."
+      ],
+      "note": "Three tables still pending schema sign-off — flagged to the Northwind data owner."
+    }
+  ],
+  "archive": {
+    "note": "The project's raw journal, ingested verbatim from the working files by ingest-logs.mjs. Each file is expandable; each dated entry preserves the original content exactly.",
+    "files": [
+      {
+        "file": "worklog.md",
+        "entries": [
+          {
+            "date": "2026-02-05",
+            "heading": "## 2026-02-05 — API rebuild complete",
+            "content": "## 2026-02-05 — API rebuild complete\n\n- Migrated all 24 endpoints to the new gRPC surface.\n- Contract tests green; load test at 3x expected peak passed.\n- Handed the migration overview doc to Northwind.",
+            "hash": "b1e5c0a9d2f34471"
+          },
+          {
+            "date": "2026-02-09",
+            "heading": "## 2026-02-09 — Data migration 78%",
+            "content": "## 2026-02-09 — Data migration 78%\n\n- Timezone fix landed; row-parity now 92.3%.\n- Started UI modernization — 5 of 14 screens ported.\n- 3 tables still pending schema sign-off.",
+            "hash": "7c2a4f8e1b6d9033"
+          }
+        ]
+      },
+      {
+        "file": "mistakes.md",
+        "entries": [
+          {
+            "date": "2026-02-06",
+            "heading": "### 2026-02-06 — Timezone drift",
+            "content": "### 2026-02-06 — Timezone drift\n\nAssumed all legacy timestamps were UTC; three tables stored local time.\nCorrection: detect tz per source table before the parity check. Never assume UTC.",
+            "hash": "9f0b3d7c5a218e64"
+          }
+        ]
+      }
+    ]
+  }
+}

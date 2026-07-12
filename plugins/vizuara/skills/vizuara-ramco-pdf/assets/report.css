@@ -1,0 +1,268 @@
+/* ============================================================================
+   VIZUARA × RAMCO — HOUSE STYLE  (report.css)
+   A4 print stylesheet. Authored in px; Chrome print-to-PDF converts 1px -> 0.75pt,
+   which reproduces the reference document's exact sizes (body 11px = 8.2pt, etc.).
+   Font: Helvetica Neue (macOS native). Accent: terracotta #BF654E.
+   ========================================================================== */
+
+:root {
+  /* --- ink / text --- */
+  --ink:        #262626;   /* headings, strong body */
+  --body:       #404247;   /* running body text */
+  --muted:      #8a9096;   /* secondary / captions / eyebrows */
+  --muted-2:    #7c848d;   /* grey pill text, faint labels */
+
+  /* --- terracotta (primary accent) --- */
+  --terra:      #bf654e;   /* wordmark, badges, section numbers, rules */
+  --terra-ink:  #a4513d;   /* small terracotta text on tint */
+
+  /* --- sage / green (active · done · exit-criteria) --- */
+  --sage:         #6e8e63; /* gantt "active" bar */
+  --sage-2:       #7d9a75; /* callout accent border */
+  --green-text:   #4a6b3e; /* text inside green callouts */
+  --green-deep:   #3f4a3a;
+  --green-pill-bg:#e3f1e3;
+  --green-pill-tx:#4a793f;
+  --green-call-bg:#e9efe7; /* exit-criteria panel bg */
+
+  /* --- amber / gold (milestone · in-progress ~50%) --- */
+  --amber-bg:   #faedcf;
+  --amber-tx:   #a8791d;
+
+  /* --- lilac / purple (future · to-be-decided) --- */
+  --lilac-bg:   #efe8f2;
+  --lilac-tx:   #7959a7;
+  --lilac-dot:  #b9a6d3;
+  --lilac-soft: #f7f5fa;
+
+  /* --- grey (planned) --- */
+  --grey-pill-bg: #e6e9ec;
+  --grey-pill-tx: #7c848d;
+
+  /* --- neutrals / structure --- */
+  --page:        #ffffff;
+  --rule:        #e6e9ec;  /* hairlines, table separators */
+  --rule-soft:   #eff1f3;  /* gantt empty cells */
+  --tint-terra:  #fbf2ef;  /* faint terracotta wash */
+
+  --sans: "Helvetica Neue", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  --mono: "Menlo", "SF Mono", ui-monospace, monospace;
+
+  /* left/right content margin = 48pt = 64px */
+  --gutter: 64px;
+}
+
+/* ---- page setup ---------------------------------------------------------- */
+@page { size: A4; margin: 62px 64px 58px 64px; }   /* 48pt sides, ~46pt top */
+@page :first { margin: 0; }                          /* cover bleeds to its own padding */
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--body);
+  background: var(--page);
+}
+
+p { margin: 0 0 9px; }
+strong, b { color: var(--ink); font-weight: 700; }
+em, i { font-style: italic; }
+a { color: var(--terra-ink); text-decoration: none; }
+
+/* ---- generic layout helpers --------------------------------------------- */
+.page { page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+.spacer-s { height: 10px; } .spacer-m { height: 22px; } .spacer-l { height: 40px; }
+.rule { height: 1px; background: var(--rule); border: 0; margin: 18px 0; }
+.muted { color: var(--muted); }
+.mono  { font-family: var(--mono); font-size: 9.5px; color: #4a5666; }
+
+/* small-caps tracked label (eyebrows, section labels) */
+.eyebrow {
+  font-size: 8px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+.eyebrow.terra { color: var(--terra); }
+
+/* ============================================================================
+   COVER PAGE
+   ========================================================================== */
+.cover { padding: 96px var(--gutter) 54px; min-height: 100vh; page-break-after: always; }
+.cover-rule { width: 200px; height: 3px; background: var(--terra); margin-bottom: 108px; }
+
+.wordmark { font-size: 25px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+.wordmark .v { color: var(--terra); }
+.wordmark .x { color: var(--muted); font-weight: 400; margin: 0 6px; }
+
+.cover-kicker { margin-top: 10px; }  /* use .eyebrow inside */
+
+.cover-title {
+  font-size: 41px; font-weight: 700; color: var(--ink);
+  line-height: 1.06; letter-spacing: -0.02em; margin: 78px 0 0;
+}
+.cover-lead {
+  font-size: 16px; line-height: 1.6; color: var(--muted);
+  max-width: 560px; margin: 26px 0 0;
+}
+.cover-lead strong { color: var(--ink); }
+
+/* meta grid: PREPARED FOR / SCOPE / PREPARED BY / DOCUMENT */
+.meta-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 34px 40px;
+  margin: 40px 0 0; max-width: 640px;
+}
+.meta-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--terra); margin-bottom: 6px; }
+.meta-value { font-size: 15px; font-weight: 700; color: var(--ink); }
+.meta-sub   { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.cover-foot { font-size: 11px; font-style: italic; color: var(--muted); margin-top: 40px; }
+
+/* ============================================================================
+   SECTION HEADERS
+   ========================================================================== */
+.section-head { display: flex; align-items: center; gap: 14px; margin: 4px 0 8px; }
+.section-num {
+  width: 24px; height: 24px; border-radius: 6px; background: var(--terra);
+  color: #fff; font-size: 15px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+}
+.section-title { font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+.section-sub { font-size: 12px; color: var(--muted); margin: 0 0 16px; }
+
+/* subsection: "4.1  Milestone 1 — ..."  + optional pill */
+.subsection-head { display: flex; align-items: baseline; gap: 10px; margin: 22px 0 2px; }
+.subsection-num { font-size: 19px; font-weight: 700; color: var(--terra); }
+.subsection-title { font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+.subsection-meta { font-size: 11px; color: var(--muted); margin: 0 0 12px; }
+.subsection-meta .tag { color: var(--terra-ink); font-weight: 700; }
+
+h3.block { font-size: 12px; font-weight: 700; color: var(--ink); margin: 16px 0 6px; }
+
+/* appendix letter badge */
+.appendix-badge {
+  width: 24px; height: 24px; border-radius: 6px; background: var(--ink);
+  color: #fff; font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ============================================================================
+   STATUS PILLS
+   ========================================================================== */
+.pill {
+  display: inline-block; padding: 3px 8px; border-radius: 5px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  line-height: 1.3; vertical-align: middle; white-space: nowrap;
+}
+.pill--done     { background: var(--green-pill-bg); color: var(--green-pill-tx); }
+.pill--progress { background: var(--amber-bg); color: var(--amber-tx); }   /* ~50%, IN PROGRESS */
+.pill--planned  { background: var(--grey-pill-bg); color: var(--grey-pill-tx); }
+.pill--tbd      { background: var(--lilac-bg); color: var(--lilac-tx); }   /* TO BE DECIDED */
+.pill--optional { background: var(--grey-pill-bg); color: var(--muted-2); }
+.pill--terra    { background: var(--tint-terra); color: var(--terra-ink); }
+
+/* ============================================================================
+   TABLES
+   ========================================================================== */
+table.tbl { width: 100%; border-collapse: collapse; margin: 8px 0 4px; }
+.tbl thead th {
+  text-align: left; font-size: 9px; font-weight: 700; color: var(--ink);
+  padding: 0 12px 7px 0; border-bottom: 1.5px solid var(--terra);
+  letter-spacing: 0.02em;
+}
+.tbl tbody td {
+  font-size: 10px; color: var(--body); vertical-align: top;
+  padding: 11px 12px 11px 0; border-bottom: 1px solid var(--rule);
+  line-height: 1.45;
+}
+.tbl tbody td.k { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.tbl tbody td .name { font-weight: 700; color: var(--ink); }
+
+/* group / band row (e.g. COMMITTED / OPTIONAL / FUTURE) */
+.tbl tr.band td {
+  font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--terra); padding: 14px 0 6px; border-bottom: none;
+}
+
+/* ============================================================================
+   CALLOUT PANELS
+   ========================================================================== */
+.callout {
+  border-left: 3px solid var(--sage-2); background: var(--green-call-bg);
+  padding: 13px 16px; margin: 14px 0; font-size: 11px; color: var(--green-deep);
+  line-height: 1.5;
+}
+.callout .callout-label {
+  font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--green-text); display: block; margin-bottom: 5px;
+}
+.callout strong { color: var(--ink); }
+.callout .check { color: var(--green-text); font-weight: 700; margin-right: 3px; }
+
+/* neutral "STATUS" callout (grey, for TBD items) */
+.callout--status { border-left-color: #c9ccd1; background: var(--rule-soft); color: var(--body); }
+.callout--status .callout-label { color: var(--muted-2); }
+
+/* "The point." sage box on cover */
+.point-box {
+  border-left: 3px solid var(--sage-2); background: var(--green-call-bg);
+  padding: 15px 18px; margin: 30px 0 0; font-size: 11.5px; color: var(--green-deep); line-height: 1.55;
+}
+.point-box strong { color: var(--ink); }
+
+/* ============================================================================
+   BULLET LISTS
+   ========================================================================== */
+ul.dash, ul.dot { list-style: none; margin: 6px 0 10px; padding: 0; }
+ul.dash > li, ul.dot > li {
+  position: relative; padding-left: 16px; margin: 0 0 6px; font-size: 11px; line-height: 1.5;
+}
+ul.dash > li::before { content: "–"; position: absolute; left: 0; color: var(--terra); }
+ul.dot  > li::before { content: "•"; position: absolute; left: 2px; color: var(--terra); }
+li .lead { font-weight: 700; color: var(--ink); }
+
+/* ============================================================================
+   GANTT / TIMELINE
+   ========================================================================== */
+.gantt { width: 100%; border-collapse: collapse; margin: 6px 0 12px; }
+.gantt th {
+  font-size: 8.5px; font-weight: 700; color: var(--muted); text-align: center;
+  padding: 0 0 8px; letter-spacing: 0.02em;
+}
+.gantt th.rowhead { text-align: left; }
+.gantt td.rowhead {
+  font-size: 10px; font-weight: 700; color: var(--ink); white-space: nowrap;
+  padding: 3px 14px 3px 0; width: 180px;
+}
+.gantt td.cell { padding: 3px 2px; }
+.gantt .bar { height: 15px; border-radius: 2px; background: var(--rule-soft); }
+.gantt .bar.active { background: var(--sage); }
+.gantt .bar.future { background: var(--lilac-bg); }
+.gantt .bar.milestone { background: var(--amber-bg); position: relative; }
+.gantt .bar.milestone::after {
+  content: "•"; position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; color: var(--amber-tx); font-size: 11px;
+}
+.legend { display: flex; gap: 26px; margin: 10px 0 0; font-size: 9.5px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend .sw { width: 22px; height: 12px; border-radius: 2px; display: inline-block; }
+.sw.active { background: var(--sage); } .sw.future { background: var(--lilac-bg); }
+.sw.milestone { background: var(--amber-bg); }
+
+/* ============================================================================
+   FIGURES  (Wispr-Flow editorial images sit in a plain frame)
+   ========================================================================== */
+figure.fig { margin: 16px 0; }
+figure.fig img { width: 100%; display: block; border-radius: 6px; }
+figure.fig figcaption { font-size: 9.5px; color: var(--muted); margin-top: 8px; }
+
+/* ============================================================================
+   RUNNING FOOTER
+   ========================================================================== */
+.doc-foot {
+  font-size: 9px; color: var(--muted); border-top: 1px solid var(--rule);
+  padding-top: 8px; margin-top: 26px;
+}

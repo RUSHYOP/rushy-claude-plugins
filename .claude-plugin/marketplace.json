@@ -1,0 +1,77 @@
+{
+  "name": "rushy",
+  "owner": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com",
+    "url": "https://github.com/RUSHYOP"
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Private Claude Code marketplace for RUSHYOP local plugins (r3f, UX, ramco, vizuara, tooling).",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "agent-tooling",
+      "version": "1.0.0",
+      "description": "General agent skills: find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/agent-tooling",
+      "keywords": []
+    },
+    {
+      "name": "better-ux-quality",
+      "version": "0.1.0",
+      "description": "Curated skills for improving UI quality and UX on non-3D websites and applications: design-system redesign, motion/UX systems, component polish, and conversion copy.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/better-ux-quality",
+      "keywords": []
+    },
+    {
+      "name": "r3f",
+      "version": "1.0.0",
+      "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/r3f",
+      "keywords": [
+        "react-three-fiber",
+        "three.js",
+        "r3f",
+        "drei",
+        "webgl",
+        "3d"
+      ]
+    },
+    {
+      "name": "ramco-brain",
+      "version": "1.0.0",
+      "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/ramco-brain",
+      "keywords": []
+    },
+    {
+      "name": "vizuara",
+      "version": "1.0.0",
+      "description": "Report and figure generation: Vizuara PDF/HTML reports and Wisprflow chart figures.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/vizuara",
+      "keywords": []
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+/* [locked-page] Precompiled Tailwind utility subset — shipped as a static asset and
+ * INLINED into every generated page (no CDN: the gate runs offline and under a strict
+ * CSP with connect-src 'none'). These are the exact utilities the gate template uses,
+ * authored in Tailwind's class names + default scale so the template reads as idiomatic
+ * Tailwind. Dark-mode via [data-theme="dark"]. To regenerate a full Tailwind build
+ * instead, see references/security-model.md → "Swapping in a full Tailwind build".
+ *
+ * Design tokens = Ramco Nebula / RXD design system (from brain-visualization/design.md).
+ * Brand blue #316ADD (--nb-brand-500), RXD gray ramp for surfaces/text, semantic red for
+ * errors, RXD elevation shadow (rgba(24,40,88,…)). Light = .theme-rxd, dark = .theme-rxd-dark. */
+:root{
+  --lp-bg:#F9FAFB; --lp-panel:#FFFFFF; --lp-panel2:#F2F4F7; --lp-border:#E5E7EB;
+  --lp-text:#1D2939; --lp-muted:#667085; --lp-faint:#98A2B3; --lp-accent:#316ADD;
+  --lp-accent-fg:#FFFFFF; --lp-danger:#D92D20;
+  --lp-shadow:0px 8px 8px -4px rgba(24,40,88,.03),0px 20px 24px -4px rgba(24,40,88,.08);
+}
+[data-theme="dark"]{
+  --lp-bg:#101828; --lp-panel:#1D2939; --lp-panel2:#344054; --lp-border:#475467;
+  --lp-text:#F2F4F7; --lp-muted:#98A2B3; --lp-faint:#667085; --lp-accent:#316ADD;
+  --lp-accent-fg:#FFFFFF; --lp-danger:#F97066;
+  --lp-shadow:0px 8px 8px -4px rgba(0,0,0,.3),0px 20px 24px -4px rgba(0,0,0,.45);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* layout */
+.min-h-screen{min-height:100vh}
+.flex{display:flex}
+.flex-col{flex-direction:column}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.text-center{text-align:center}
+.w-full{width:100%}
+.max-w-md{max-width:28rem}
+.hidden{display:none}
+.relative{position:relative}
+
+/* spacing */
+.p-6{padding:1.5rem}
+.px-8{padding-left:2rem;padding-right:2rem}
+.py-10{padding-top:2.5rem;padding-bottom:2.5rem}
+.mb-2{margin-bottom:.5rem}
+.mb-3{margin-bottom:.75rem}
+.mb-4{margin-bottom:1rem}
+.mb-6{margin-bottom:1.5rem}
+.mt-3{margin-top:.75rem}
+.mt-5{margin-top:1.25rem}
+.gap-3{gap:.75rem}
+
+/* surface */
+.bg-app{background:var(--lp-bg)}
+.bg-panel{background:var(--lp-panel)}
+.bg-panel2{background:var(--lp-panel2)}
+.border{border:1px solid var(--lp-border)}
+.rounded-2xl{border-radius:1rem}
+.rounded-xl{border-radius:.75rem}
+.rounded-lg{border-radius:.5rem}
+.shadow-lp{box-shadow:var(--lp-shadow)}
+/* soft radial glow backdrop (violet top-right) */
+.bg-glow{background-image:radial-gradient(1000px 560px at 80% -10%, color-mix(in srgb,var(--lp-accent) 12%,transparent), transparent 60%)}
+
+/* type */
+.font-sans{font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif}
+.font-mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+.text-2xl{font-size:1.5rem;line-height:1.2}
+.text-sm{font-size:.875rem;line-height:1.45}
+.text-xs{font-size:.75rem;line-height:1.4}
+.text-\[11px\]{font-size:11px}
+.text-\[10px\]{font-size:10px;line-height:1.4}
+.font-bold{font-weight:700}
+.font-semibold{font-weight:600}
+.tracking-tight{letter-spacing:-.01em}
+.tracking-widest{letter-spacing:.2em}
+.uppercase{text-transform:uppercase}
+.leading-relaxed{line-height:1.6}
+.text-app{color:var(--lp-text)}
+.text-muted{color:var(--lp-muted)}
+.text-faint{color:var(--lp-faint)}
+.text-accent{color:var(--lp-accent)}
+.text-danger{color:var(--lp-danger)}
+.min-h-4{min-height:1rem}
+
+/* form controls */
+.input{
+  width:100%;padding:.7rem .85rem;border-radius:.6rem;border:1px solid var(--lp-border);
+  background:var(--lp-panel2);color:var(--lp-text);font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:.9rem;outline:none;transition:border-color .12s;
+}
+.input:focus{border-color:var(--lp-accent)}
+.btn{
+  width:100%;padding:.7rem;border-radius:.6rem;border:none;background:var(--lp-accent);
+  color:var(--lp-accent-fg);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.82rem;
+  font-weight:600;cursor:pointer;transition:filter .12s;
+}
+.btn:hover{filter:brightness(1.07)}
+.btn:disabled{opacity:.6;cursor:default}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}

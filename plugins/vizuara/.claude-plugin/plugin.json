@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "vizuara",
+  "version": "1.0.0",
+  "description": "Report and figure generation: Vizuara PDF/HTML reports and Wisprflow chart figures.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "skills": "./skills/"
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vizuara Report</title>
+<!-- build.py copies report.css here from the vizuara-ramco-pdf skill -->
+<link rel="stylesheet" href="report.css">
+</head>
+<body>
+
+<!-- ============================ COVER ============================ -->
+<section class="cover">
+  <div class="cover-rule"></div>
+
+  <div class="wordmark"><span class="v">VIZUARA</span><span class="x">×</span>RAMCO</div>
+  <div class="cover-kicker eyebrow">ERP DIVISION · STATUS REVIEW · ONE VIEW</div>
+
+  <h1 class="cover-title">Where the engine<br>stands today.</h1>
+
+  <p class="cover-lead"><strong>The short version.</strong> The Chia engine answers
+  real ERP questions correctly 92.3 percent of the time, above the 90 percent target,
+  and the five build milestones close out in the first week of September. This report
+  lays out the evidence, the plan, and the open decisions in one place.</p>
+
+  <hr class="rule" style="margin:34px 0;">
+
+  <div class="meta-grid">
+    <div>
+      <div class="meta-label">Prepared for</div>
+      <div class="meta-value">Ramco Systems</div>
+      <div class="meta-sub">ERP Division, Management and Board</div>
+    </div>
+    <div>
+      <div class="meta-label">Scope</div>
+      <div class="meta-value">The engagement in full</div>
+      <div class="meta-sub">Phase 1, Chia M1 to M7, HRP, optional projects</div>
+    </div>
+    <div>
+      <div class="meta-label">Prepared by</div>
+      <div class="meta-value">Vizuara AI Labs</div>
+      <div class="meta-sub">Raj, Rajat, Sreedath</div>
+    </div>
+    <div>
+      <div class="meta-label">Document</div>
+      <div class="meta-value">Status Review</div>
+      <div class="meta-sub">Version 1.0</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <strong>The point.</strong> The engine already clears the accuracy bar and the
+    build has a bounded end. What remains are two later stage decisions, not open ended
+    work.
+  </div>
+
+  <p class="cover-foot">This document is commercial in confidence and prepared solely for Ramco Systems.</p>
+</section>
+
+<!-- ============================ EXEC SUMMARY + EVIDENCE ============================ -->
+<section class="page">
+  <div class="section-head">
+    <div class="section-num">1</div>
+    <div class="section-title">Executive summary</div>
+  </div>
+  <p>The engagement with Ramco began on 22 June 2026. It runs several workstreams in
+  parallel: Phase 1 builds the Brain, Chia delivers the journey execution chatbot, and
+  HRP covers HR and Payroll. Read one workstream at a time and it can look like cost
+  keeps being added. Read them together, as this report does, and the shape is clear:
+  the work is bounded and it ends.</p>
+  <p>Two facts anchor the rest of this document. First, the engine is accurate. On a set
+  of 2,313 real questions it returned the correct core answer 92.3 percent of the time,
+  with three hallucinations. Second, the build is nearly closed. Milestone 1 is
+  complete, Milestone 2 is about half built, and the five engine milestones finish in
+  the first week of September. The launch stays targeted for December.</p>
+
+  <div class="section-head" style="margin-top:26px;">
+    <div class="section-num">2</div>
+    <div class="section-title">Evidence: accuracy on real questions</div>
+  </div>
+  <p class="section-sub">Scored against a ground truth set, core correct or better.</p>
+  <p>The figure below shows the full distribution of ratings from 0 to 5. Most answers
+  land at the top of the scale. The share that met or beat the core correct bar sits
+  well above the 90 percent target, and hallucinations were rare enough to count on one
+  hand.</p>
+
+  <figure class="fig">
+    <img src="fig_accuracy.png" alt="accuracy distribution">
+    <figcaption>Figure 1. Rating distribution across 2,313 scored questions. Ratings 3
+    and above count as core correct.</figcaption>
+  </figure>
+</section>
+
+<!-- ============================ TIMELINE ============================ -->
+<section class="page">
+  <div class="section-head">
+    <div class="section-num">3</div>
+    <div class="section-title">Timeline: everything on one calendar</div>
+  </div>
+  <p class="section-sub">One calendar, all workstreams. The dot marks a milestone or launch.</p>
+
+  <table class="gantt">
+    <thead>
+      <tr>
+        <th class="rowhead">Workstream</th>
+        <th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th><th>'27</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="rowhead">Phase 1, Brain</td>
+        <td class="cell"><div class="bar active"></div></td>
+        <td class="cell"><div class="bar active"></div></td>
+        <td class="cell"><div class="bar active"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+      </tr>
+      <tr>
+        <td class="rowhead">Chia engine, M1 to M5</td>
+        <td class="cell"><div class="bar active"></div></td>
+        <td class="cell"><div class="bar active"></div></td>
+        <td class="cell"><div class="bar active"></div></td>
+        <td class="cell"><div class="bar active"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+      </tr>
+      <tr>
+        <td class="rowhead">Chia launch</td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar milestone"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+      </tr>
+      <tr>
+        <td class="rowhead">Data migration, future</td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar"></div></td>
+        <td class="cell"><div class="bar future"></div></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="legend">
+    <span><i class="sw active"></i> active</span>
+    <span><i class="sw milestone"></i> milestone or launch</span>
+    <span><i class="sw future"></i> future, to be decided</span>
+  </div>
+
+  <p style="margin-top:20px;">The roadmap table below reads the same calendar as a list,
+  split into what is committed, what is optional, and what is left for later.</p>
+
+  <table class="tbl">
+    <thead>
+      <tr><th style="width:26%">Workstream</th><th>Scope</th><th style="width:16%">Window</th><th style="width:14%">Status</th></tr>
+    </thead>
+    <tbody>
+      <tr class="band"><td colspan="4">Committed</td></tr>
+      <tr>
+        <td class="k">Chia engine, M1 to M5</td>
+        <td>The conversational journey execution chatbot: context, memory, tools, services, inference.</td>
+        <td>22 Jun to first week Sep</td>
+        <td><span class="pill pill--progress">M1 done, M2 half</span></td>
+      </tr>
+      <tr class="band"><td colspan="4">Future, to be decided</td></tr>
+      <tr>
+        <td class="k">Data migration engine</td>
+        <td>A new project, scoped when it begins.</td>
+        <td>starts around Jan 2027</td>
+        <td><span class="pill pill--tbd">To be decided</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================ DETAIL / MILESTONE ============================ -->
+<section class="page">
+  <div class="section-head">
+    <div class="section-num">4</div>
+    <div class="section-title">Milestone detail</div>
+  </div>
+  <p class="section-sub">Each milestone has a scope, its key activities, and a clear exit test.</p>
+
+  <div class="subsection-head">
+    <span class="subsection-num">4.1</span>
+    <span class="subsection-title">Milestone 1, Chia Foundations</span>
+    <span class="pill pill--done">Complete</span>
+  </div>
+  <div class="subsection-meta"><span class="tag">M1</span> · Delivered in parallel with Phase 1</div>
+
+  <h3 class="block">What we delivered</h3>
+  <ul class="dot">
+    <li><span class="lead">Context engineering architecture</span>, the converged approach the chatbot uses to decide what the model sees on every turn.</li>
+    <li><span class="lead">Memory architecture</span>, the strata that span the live conversation and long term knowledge.</li>
+    <li><span class="lead">Tools and services over gRPC</span>, real Ramco Core API services invoked as agent tools.</li>
+  </ul>
+
+  <div class="callout">
+    <span class="callout-label">Exit criteria</span>
+    <span class="check">✔</span>Foundations resolved and usable by Chia&nbsp;&nbsp;
+    <span class="check">✔</span>context and memory architectures documented&nbsp;&nbsp;
+    <span class="check">✔</span>at least one real service callable as a tool.
+  </div>
+
+  <div class="subsection-head" style="margin-top:24px;">
+    <span class="subsection-num">4.2</span>
+    <span class="subsection-title">Milestone 2, the chatbot for a single journey</span>
+    <span class="pill pill--progress">~50%</span>
+  </div>
+  <div class="subsection-meta"><span class="tag">M2</span> · About one week to finish</div>
+  <h3 class="block">Scope</h3>
+  <p>Build the conversational chatbot, context and memory and tools and services and
+  inference, that runs one journey from start to finish. This is the first time the full
+  loop runs against a live journey rather than a fixture.</p>
+  <div class="callout callout--status">
+    <span class="callout-label">Open question</span>
+    Which journey ships first. The Create Direct PO journey is the leading candidate
+    because its golden payload is already available.
+  </div>
+</section>
+
+<!-- ============================ APPENDIX ============================ -->
+<section class="page">
+  <div class="eyebrow terra" style="margin-bottom:10px;">Appendix</div>
+  <div class="section-head">
+    <div class="appendix-badge">A</div>
+    <div class="section-title">Method and definitions</div>
+  </div>
+  <p>Accuracy was scored by comparing each answer to a ground truth set. An answer that
+  covers the ground truth counts as correct even when it says more, since a fuller
+  answer is not a hallucination. A hallucination is counted only when the answer invents
+  a fact that the source does not support. Inline identifiers look like
+  <code class="mono">pocrmn_ser_crt</code>.</p>
+
+  <div class="doc-foot">Vizuara × Ramco · Status Review · v1.0 · commercial in confidence</div>
+</section>
+
+</body>
+</html>

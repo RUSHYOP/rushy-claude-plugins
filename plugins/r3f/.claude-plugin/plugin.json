@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "r3f",
+  "version": "1.0.0",
+  "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "homepage": "https://github.com/EnzeD/r3f-skills",
+  "keywords": [
+    "react-three-fiber",
+    "three.js",
+    "r3f",
+    "drei",
+    "webgl",
+    "3d"
+  ],
+  "skills": "./skills/"
+}
