@@ -12,6 +12,7 @@ git = "https://github.com/RUSHYOP/rushy-claude-plugins.git"
 [skills]
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/r3f/skills",
@@ -22,6 +23,7 @@ paths = [
 [plugins]
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
   "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
   "/Users/admin/Codes-2/Agentic-setup/plugins/r3f",
@@ -46,6 +48,7 @@ enabled = [
   "playwright",
   "r3f",
   "ramco-brain",
+  "react-native-skills",
   "semgrep-rule-creator",
   "sharp-edges",
   "skill-creator",

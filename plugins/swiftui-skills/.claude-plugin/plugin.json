@@ -1,0 +1,8 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "swiftui-skills",
+  "version": "1.0.0",
+  "description": "Curated, deduped SwiftUI skills from top authors: swiftui-expert-skill (avdlee), swiftui-pro (twostraws), performance-audit/ui-patterns/view-refactor/liquid-glass (dimillian), expo-ui (Expo's SwiftUI-from-React bridge).",
+  "author": { "name": "RUSHYOP (curated)", "email": "alwayspurav@gmail.com" },
+  "skills": "./skills/"
+}

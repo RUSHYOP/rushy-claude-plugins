@@ -1,0 +1,8 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "react-native-skills",
+  "version": "1.0.0",
+  "description": "React Native + Expo best practices (vercel-labs/agent-skills upstream): component patterns, list performance, animations, native modules.",
+  "author": { "name": "Vercel Labs", "url": "https://github.com/vercel-labs/agent-skills" },
+  "skills": "./skills/"
+}

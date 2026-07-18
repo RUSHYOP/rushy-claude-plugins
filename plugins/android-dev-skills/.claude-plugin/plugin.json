@@ -1,0 +1,8 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "android-dev-skills",
+  "version": "1.0.0",
+  "description": "Curated community Android development skills complementing the official android-skills plugin (no overlap): Material/Android design (wshobson), clean architecture, Kotlin coroutines/flows, Kotlin patterns (everything-claude-code).",
+  "author": { "name": "RUSHYOP (curated)", "email": "alwayspurav@gmail.com" },
+  "skills": "./skills/"
+}

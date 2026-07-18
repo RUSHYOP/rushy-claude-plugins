@@ -8,7 +8,6 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 | Plugin | Install from (mirror) | Upstream (sync from) |
 |--------|----------------------|----------------------|
 | `agentic-actions-auditor` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/agentic-actions-auditor` @main | https://github.com/trailofbits/skills.git |
-| `android-skills` | https://github.com/RUSHYOP/mirror-android-skills.git @main | https://github.com/android/skills.git |
 | `chrome-devtools-mcp` | https://github.com/RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp.git @main | https://github.com/ChromeDevTools/chrome-devtools-mcp.git |
 | `claude-md-management` | https://github.com/RUSHYOP/mirror-claude-plugins-official.git → `plugins/claude-md-management` @main | https://github.com/anthropics/claude-plugins-official.git |
 | `claude-mem` | https://github.com/RUSHYOP/mirror-claude-mem.git → `plugin` @main | https://github.com/thedotmack/claude-mem.git |
@@ -19,6 +18,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 | `greptile` | https://github.com/RUSHYOP/mirror-claude-plugins-official.git → `external_plugins/greptile` @main | https://github.com/anthropics/claude-plugins-official.git |
 | `insecure-defaults` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/insecure-defaults` @main | https://github.com/trailofbits/skills.git |
 | `playwright` | https://github.com/RUSHYOP/mirror-claude-plugins-official.git → `external_plugins/playwright` @main | https://github.com/anthropics/claude-plugins-official.git |
+| `react-native-skills` | https://github.com/RUSHYOP/mirror-vercel-labs-agent-skills.git → `skills/react-native-skills` @main | https://github.com/vercel-labs/agent-skills.git |
 | `semgrep-rule-creator` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/semgrep-rule-creator` @main | https://github.com/trailofbits/skills.git |
 | `sharp-edges` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/sharp-edges` @main | https://github.com/trailofbits/skills.git |
 | `skill-creator` | https://github.com/RUSHYOP/mirror-claude-plugins-official.git → `plugins/skill-creator` @main | https://github.com/anthropics/claude-plugins-official.git |
@@ -33,6 +33,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 ## First-party
 
 - `agent-tooling` → `./plugins/agent-tooling`
+- `android-skills` → `./plugins/android-skills`
 - `better-ux-quality` → `./plugins/better-ux-quality`
 - `marketplace-ops` → `./plugins/marketplace-ops`
 - `r3f` → `./plugins/r3f`
