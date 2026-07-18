@@ -164,6 +164,36 @@
       }
     },
     {
+      "name": "android-skills",
+      "description": "Plugin android-skills",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-android-skills.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/android/skills",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/android/skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-android-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-android-skills",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "add-plugin",
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+      }
+    },
+    {
       "name": "chrome-devtools-mcp",
       "description": "Imported from grok",
       "version": "latest",

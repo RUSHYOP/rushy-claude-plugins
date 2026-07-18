@@ -19,6 +19,7 @@
   "enabled": [
     "agent-tooling",
     "agentic-actions-auditor",
+    "android-skills",
     "better-ux-quality",
     "chrome-devtools-mcp",
     "claude-md-management",
@@ -54,6 +55,11 @@
     {
       "name": "agentic-actions-auditor",
       "source": "RUSHYOP/mirror-trailofbits-skills#plugins/agentic-actions-auditor",
+      "kind": "git"
+    },
+    {
+      "name": "android-skills",
+      "source": "RUSHYOP/mirror-android-skills",
       "kind": "git"
     },
     {

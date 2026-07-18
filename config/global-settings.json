@@ -11,6 +11,7 @@
   "enabledPlugins": {
     "agent-tooling@rushy": true,
     "agentic-actions-auditor@rushy": true,
+    "android-skills@rushy": true,
     "better-ux-quality@rushy": true,
     "chrome-devtools-mcp@rushy": true,
     "claude-md-management@rushy": true,

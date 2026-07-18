@@ -8,6 +8,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 | Plugin | Install from (mirror) | Upstream (sync from) |
 |--------|----------------------|----------------------|
 | `agentic-actions-auditor` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/agentic-actions-auditor` @main | https://github.com/trailofbits/skills.git |
+| `android-skills` | https://github.com/RUSHYOP/mirror-android-skills.git @main | https://github.com/android/skills.git |
 | `chrome-devtools-mcp` | https://github.com/RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp.git @main | https://github.com/ChromeDevTools/chrome-devtools-mcp.git |
 | `claude-md-management` | https://github.com/RUSHYOP/mirror-claude-plugins-official.git → `plugins/claude-md-management` @main | https://github.com/anthropics/claude-plugins-official.git |
 | `claude-mem` | https://github.com/RUSHYOP/mirror-claude-mem.git → `plugin` @main | https://github.com/thedotmack/claude-mem.git |
