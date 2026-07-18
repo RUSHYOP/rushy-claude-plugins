@@ -1,0 +1,52 @@
+{
+  "$comment": "Single source of truth for RUSHYOP's MCP servers. This is NOT a plugin — it is a maintained mcpServers config. Apply to a machine with ./scripts/apply-mcp.sh (merges into ~/.claude.json's mcpServers) or copy the block into a project .mcp.json. All machine/org-specific and secret values are ${ENV_VAR} placeholders resolved at launch — never hardcode a token here. See config/mcp-servers.README.md for per-server env + notes.",
+  "mcpServers": {
+    "obsidian": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@mauricio.wolff/mcp-obsidian@latest", "${OBSIDIAN_VAULT_PATH}"],
+      "env": {}
+    },
+    "atlassian-confluence": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.atlassian.com/v1/mcp/authv2",
+        "--header",
+        "X-Atlassian-Site:${ATLASSIAN_SITE}"
+      ]
+    },
+    "pdf-reader": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@sylphx/pdf-reader-mcp"],
+      "env": {}
+    },
+    "nebulastudio-mcp": {
+      "type": "http",
+      "url": "https://designeridst.ramcouat.com/coregwops/proxy/coremcp/mcp"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "env": {}
+    },
+    "rapids-mcp": {
+      "type": "http",
+      "url": "http://hcmwascnv70.pearl.com/RapidsMCPServer/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RAPIDS_MCP_TOKEN}",
+        "context-ou-id": "27",
+        "context-role-name": "MCP_Role",
+        "context-lang-id": "1"
+      }
+    },
+    "mcp-uds-server": {
+      "type": "http",
+      "url": "http://hcmwascnv70.pearl.com/UDSMCPServer/mcp"
+    }
+  }
+}

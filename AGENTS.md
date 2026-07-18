@@ -69,3 +69,12 @@ Then disable non-`@rushy` enables in CLIs so reference is only via this marketpl
 | `rebuild-marketplace.sh` | Refresh first-party from `plugins/*` |
 | `import-from-clis.sh` | Reconcile accidental CLI installs into catalog |
 | `generate-global-config.sh` | Regen enable lists from catalog |
+| `apply-mcp.sh` | Merge `config/mcp-servers.json` into `~/.claude.json` (or `--project <path>`) |
+
+## MCP servers
+
+MCP servers are **not** packaged as individual plugins. They live in one
+maintained file, `config/mcp-servers.json` (source of truth), applied with
+`./scripts/apply-mcp.sh`. All machine/org-specific and secret values are
+`${ENV_VAR}` placeholders — no secrets in the repo. See
+`config/mcp-servers.README.md` for the per-server env table.
