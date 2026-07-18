@@ -16,16 +16,16 @@
     "chrome-devtools-mcp@rushy": true,
     "claude-md-management@rushy": true,
     "claude-mem@rushy": true,
-    "cybersecurity-skills@rushy": true,
+    "cybersecurity-skills@rushy": false,
     "differential-review@rushy": true,
     "figma@rushy": true,
-    "frontend-design@rushy": true,
+    "frontend-design@rushy": false,
     "greptile@rushy": true,
     "insecure-defaults@rushy": true,
     "marketplace-ops@rushy": true,
     "playwright@rushy": true,
-    "r3f@rushy": true,
-    "ramco-brain@rushy": true,
+    "r3f@rushy": false,
+    "ramco-brain@rushy": false,
     "react-native-skills@rushy": true,
     "semgrep-rule-creator@rushy": true,
     "sharp-edges@rushy": true,
@@ -36,7 +36,7 @@
     "testing-handbook-skills@rushy": true,
     "vercel@rushy": true,
     "visual-explainer@rushy": true,
-    "vizuara@rushy": true,
-    "webgpu-threejs-tsl@rushy": true
+    "vizuara@rushy": false,
+    "webgpu-threejs-tsl@rushy": false
   }
 }
