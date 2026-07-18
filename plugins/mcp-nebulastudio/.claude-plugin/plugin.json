@@ -1,0 +1,10 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "mcp-nebulastudio",
+  "version": "1.0.0",
+  "description": "Ramco NebulaStudio MCP (HTTP, UAT designer gateway).",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "mcp-obsidian",
+  "version": "1.0.0",
+  "description": "Obsidian vault MCP (@mauricio.wolff/mcp-obsidian). Set OBSIDIAN_VAULT_PATH to your vault.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  }
+}

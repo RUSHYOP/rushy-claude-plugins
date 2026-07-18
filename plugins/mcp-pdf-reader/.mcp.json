@@ -1,0 +1,10 @@
+{
+  "pdf-reader": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "@sylphx/pdf-reader-mcp"
+    ],
+    "env": {}
+  }
+}

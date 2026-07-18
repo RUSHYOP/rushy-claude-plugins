@@ -1,12 +1,11 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "ramco-brain",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
   "author": {
     "name": "RUSHYOP",
     "email": "alwayspurav@gmail.com"
   },
-  "skills": "./skills/",
-  "agents": "./agents/"
+  "skills": "./skills/"
 }

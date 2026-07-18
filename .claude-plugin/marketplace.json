@@ -116,7 +116,7 @@
     },
     {
       "name": "ramco-brain",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
       "author": {
         "name": "RUSHYOP",
@@ -155,7 +155,7 @@
       "description": "Audits GitHub Actions workflows for security vulnerabilities in AI agent integrations (Claude Code Action, Gemini CLI, OpenAI Codex, GitHub AI Inference)",
       "version": "1.2.1",
       "author": {
-        "name": "Emilio López & Will Vandevanter"
+        "name": "Emilio L\u00f3pez & Will Vandevanter"
       },
       "category": "third-party",
       "source": {
@@ -636,7 +636,7 @@
       "description": "Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing for security vulnerability detection",
       "version": "1.2.2",
       "author": {
-        "name": "Axel Mierczuk & Paweł Płatek"
+        "name": "Axel Mierczuk & Pawe\u0142 P\u0142atek"
       },
       "category": "third-party",
       "source": {
@@ -728,7 +728,7 @@
       "description": "Skills from the Trail of Bits Application Security Testing Handbook (appsec.guide)",
       "version": "1.0.2",
       "author": {
-        "name": "Paweł Płatek"
+        "name": "Pawe\u0142 P\u0142atek"
       },
       "category": "third-party",
       "source": {
@@ -929,6 +929,139 @@
           "https://github.com/affaan-m/everything-claude-code"
         ],
         "note": "Curated composite; see plugins/android-dev-skills/README.md for dedupe decisions + refresh."
+      }
+    },
+    {
+      "name": "mcp-obsidian",
+      "description": "Obsidian vault MCP (@mauricio.wolff/mcp-obsidian). Set OBSIDIAN_VAULT_PATH to your vault. Disabled by default; enable per user.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "category": "mcp",
+      "source": "./plugins/mcp-obsidian",
+      "tags": [
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "packaged-from-system",
+        "defaultState": "disabled",
+        "note": "MCP server plugin; enable individually per user. Machine-specific values are env-parameterized \u2014 see plugin README."
+      }
+    },
+    {
+      "name": "mcp-atlassian",
+      "description": "Atlassian (Jira/Confluence/Compass) remote MCP via mcp-remote + OAuth. Set ATLASSIAN_SITE to your site URL. Disabled by default; enable per user.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "category": "mcp",
+      "source": "./plugins/mcp-atlassian",
+      "tags": [
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "packaged-from-system",
+        "defaultState": "disabled",
+        "note": "MCP server plugin; enable individually per user. Machine-specific values are env-parameterized \u2014 see plugin README."
+      }
+    },
+    {
+      "name": "mcp-pdf-reader",
+      "description": "PDF intelligence MCP (@sylphx/pdf-reader-mcp): read, search, OCR, visual-region evidence. Disabled by default; enable per user.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "category": "mcp",
+      "source": "./plugins/mcp-pdf-reader",
+      "tags": [
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "packaged-from-system",
+        "defaultState": "disabled",
+        "note": "MCP server plugin; enable individually per user. Machine-specific values are env-parameterized \u2014 see plugin README."
+      }
+    },
+    {
+      "name": "mcp-nebulastudio",
+      "description": "Ramco NebulaStudio MCP (HTTP, UAT designer gateway). Disabled by default; enable per user.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "category": "mcp",
+      "source": "./plugins/mcp-nebulastudio",
+      "tags": [
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "packaged-from-system",
+        "defaultState": "disabled",
+        "note": "MCP server plugin; enable individually per user. Machine-specific values are env-parameterized \u2014 see plugin README."
+      }
+    },
+    {
+      "name": "mcp-playwright",
+      "description": "Playwright browser-automation MCP (@playwright/mcp). Note: the official playwright plugin also ships this server \u2014 enable one, not both. Disabled by default; enable per user.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "category": "mcp",
+      "source": "./plugins/mcp-playwright",
+      "tags": [
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "packaged-from-system",
+        "defaultState": "disabled",
+        "note": "MCP server plugin; enable individually per user. Machine-specific values are env-parameterized \u2014 see plugin README."
+      }
+    },
+    {
+      "name": "mcp-rapids",
+      "description": "Ramco RAPIDS MCP (HTTP, internal). Set RAPIDS_MCP_TOKEN. Disabled by default; enable per user.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "category": "mcp",
+      "source": "./plugins/mcp-rapids",
+      "tags": [
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "packaged-from-system",
+        "defaultState": "disabled",
+        "note": "MCP server plugin; enable individually per user. Machine-specific values are env-parameterized \u2014 see plugin README."
+      }
+    },
+    {
+      "name": "mcp-uds",
+      "description": "Ramco UDS MCP (HTTP, internal, pearl.com network). Disabled by default; enable per user.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "category": "mcp",
+      "source": "./plugins/mcp-uds",
+      "tags": [
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "packaged-from-system",
+        "defaultState": "disabled",
+        "note": "MCP server plugin; enable individually per user. Machine-specific values are env-parameterized \u2014 see plugin README."
       }
     }
   ]

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "mcp-atlassian",
+  "version": "1.0.0",
+  "description": "Atlassian (Jira/Confluence/Compass) remote MCP via mcp-remote + OAuth. Set ATLASSIAN_SITE to your site URL.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  }
+}

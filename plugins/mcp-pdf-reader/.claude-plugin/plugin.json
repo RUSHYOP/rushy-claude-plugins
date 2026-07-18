@@ -1,0 +1,10 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "mcp-pdf-reader",
+  "version": "1.0.0",
+  "description": "PDF intelligence MCP (@sylphx/pdf-reader-mcp): read, search, OCR, visual-region evidence.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  }
+}
