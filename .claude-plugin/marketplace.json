@@ -505,8 +505,8 @@
     },
     {
       "name": "react-native-skills",
-      "description": "React Native + Expo best practices (Vercel Labs) — vendored locally; upstream skill dir has SKILL.md at its root (no plugin manifest).",
-      "version": "latest",
+      "description": "Curated React Native skills: Vercel RN/Expo practices, Callstack best-practices + upgrades, RN design/architecture, Expo performance.",
+      "version": "1.1.0",
       "author": {
         "name": "upstream"
       },
@@ -526,7 +526,13 @@
         "mirrorRepo": "RUSHYOP/mirror-vercel-labs-agent-skills",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "add-plugin",
-        "note": "Skill VENDORED under plugins/react-native-skills/skills/vercel-react-native-skills (upstream is a bare agentskills.io skill dir). Mirror kept for provenance; refresh via sync-mirrors.sh then re-copy."
+        "note": "Curated composite (was single vendored vercel skill); see plugins/react-native-skills/README.md for dedupe + refresh.",
+        "upstreams": [
+          "https://github.com/vercel-labs/agent-skills",
+          "https://github.com/callstackincubator/agent-skills",
+          "https://github.com/wshobson/agents",
+          "https://github.com/pproenca/dot-skills"
+        ]
       }
     },
     {
