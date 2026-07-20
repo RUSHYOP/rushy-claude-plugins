@@ -12,27 +12,36 @@ git = "https://github.com/RUSHYOP/rushy-claude-plugins.git"
 [skills]
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/android-dev-skills/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/r3f/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/ramco-brain/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/react-native-skills/skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/swiftui-skills/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara/skills",
 ]
 
 [plugins]
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/android-dev-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
   "/Users/admin/Codes-2/Agentic-setup/plugins/r3f",
   "/Users/admin/Codes-2/Agentic-setup/plugins/ramco-brain",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/react-native-skills",
+  "/Users/admin/Codes-2/Agentic-setup/plugins/swiftui-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara",
 ]
 enabled = [
   "agent-tooling",
   "agentic-actions-auditor",
+  "android-dev-skills",
   "android-skills",
   "better-ux-quality",
   "chrome-devtools-mcp",
@@ -43,7 +52,9 @@ enabled = [
   "figma",
   "frontend-design",
   "greptile",
+  "i-have-adhd",
   "insecure-defaults",
+  "ios-dev-skills",
   "marketplace-ops",
   "playwright",
   "r3f",
@@ -55,6 +66,7 @@ enabled = [
   "static-analysis",
   "superpowers",
   "supply-chain-risk-auditor",
+  "swiftui-skills",
   "testing-handbook-skills",
   "vercel",
   "visual-explainer",

@@ -30,6 +30,24 @@
       }
     },
     {
+      "name": "android-dev-skills",
+      "version": "1.0.0",
+      "description": "Curated community Android development skills complementing the official android-skills plugin (no overlap): Material/Android design (wshobson), clean architecture, Kotlin coroutines/flows, Kotlin patterns (everything-claude-code).",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/android-dev-skills",
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
       "name": "android-skills",
       "version": "1.0.0",
       "description": "Official Android skills for AI agents (android/skills upstream): Compose styles/migration/adaptive, CameraX, Navigation 3, Perfetto tracing + SQL, R8, AGP 9 upgrade, Play Billing/Engage/policy, testing strategy, edge-to-edge, Wear, XR glasses, AppFunctions, intent security, verified email, android CLI.",
@@ -56,6 +74,24 @@
         "email": "alwayspurav@gmail.com"
       },
       "source": "./plugins/better-ux-quality",
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
+      "name": "ios-dev-skills",
+      "version": "1.0.0",
+      "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/ios-dev-skills",
       "keywords": [],
       "tags": [
         "first-party"
@@ -123,6 +159,42 @@
         "email": "alwayspurav@gmail.com"
       },
       "source": "./plugins/ramco-brain",
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
+      "name": "react-native-skills",
+      "version": "1.1.0",
+      "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/react-native-skills",
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
+      "name": "swiftui-skills",
+      "version": "1.0.0",
+      "description": "Curated, deduped SwiftUI skills from top authors: swiftui-expert-skill (avdlee), swiftui-pro (twostraws), performance-audit/ui-patterns/view-refactor/liquid-glass (dimillian), expo-ui (Expo's SwiftUI-from-React bridge).",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/swiftui-skills",
       "keywords": [],
       "tags": [
         "first-party"
@@ -440,6 +512,37 @@
       }
     },
     {
+      "name": "i-have-adhd",
+      "description": "Plugin i-have-adhd",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-ayghri-i-have-adhd.git",
+        "path": "skills/i-have-adhd",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/ayghri/i-have-adhd",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/ayghri/i-have-adhd.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-ayghri-i-have-adhd.git",
+        "mirrorRepo": "RUSHYOP/mirror-ayghri-i-have-adhd",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "add-plugin",
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+      }
+    },
+    {
       "name": "insecure-defaults",
       "description": "Detects insecure default configurations including hardcoded credentials, fallback secrets, weak authentication defaults, and dangerous values in production",
       "version": "1.0.1",
@@ -501,38 +604,6 @@
         "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
-      }
-    },
-    {
-      "name": "react-native-skills",
-      "description": "Curated React Native skills: Vercel RN/Expo practices, Callstack best-practices + upgrades, RN design/architecture, Expo performance.",
-      "version": "1.1.0",
-      "author": {
-        "name": "upstream"
-      },
-      "category": "third-party",
-      "source": "./plugins/react-native-skills",
-      "homepage": "https://github.com/vercel-labs/agent-skills",
-      "tags": [
-        "upstream",
-        "mirrored",
-        "via-add-plugin",
-        "imported"
-      ],
-      "metadata": {
-        "ownership": "upstream",
-        "upstreamUrl": "https://github.com/vercel-labs/agent-skills.git",
-        "mirrorUrl": "https://github.com/RUSHYOP/mirror-vercel-labs-agent-skills.git",
-        "mirrorRepo": "RUSHYOP/mirror-vercel-labs-agent-skills",
-        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "importedFrom": "add-plugin",
-        "note": "Curated composite (was single vendored vercel skill); see plugins/react-native-skills/README.md for dedupe + refresh.",
-        "upstreams": [
-          "https://github.com/vercel-labs/agent-skills",
-          "https://github.com/callstackincubator/agent-skills",
-          "https://github.com/wshobson/agents",
-          "https://github.com/pproenca/dot-skills"
-        ]
       }
     },
     {
@@ -850,85 +921,6 @@
         "upstreamUrl": "https://github.com/dgreenheck/webgpu-claude-skill.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git",
         "mirrorRepo": "RUSHYOP/mirror-webgpu-claude-skill"
-      }
-    },
-    {
-      "name": "swiftui-skills",
-      "description": "Curated deduped SwiftUI skills: avdlee expert, twostraws pro, dimillian performance/patterns/refactor/liquid-glass, expo-ui bridge.",
-      "version": "1.0.0",
-      "author": {
-        "name": "RUSHYOP (curated)"
-      },
-      "category": "curated",
-      "source": "./plugins/swiftui-skills",
-      "tags": [
-        "swiftui",
-        "ios",
-        "curated",
-        "composite"
-      ],
-      "metadata": {
-        "ownership": "composite-vendored",
-        "upstreams": [
-          "https://github.com/avdlee/swiftui-agent-skill",
-          "https://github.com/twostraws/swiftui-agent-skill",
-          "https://github.com/dimillian/skills",
-          "https://github.com/expo/skills"
-        ],
-        "note": "Curated composite; see plugins/swiftui-skills/README.md for dedupe decisions + refresh."
-      }
-    },
-    {
-      "name": "ios-dev-skills",
-      "description": "Curated iOS dev skills: Xcode setup + build-optimization suite, Swift concurrency, iOS design/accessibility/networking/localization, simulator debugging, App Store changelog.",
-      "version": "1.0.0",
-      "author": {
-        "name": "RUSHYOP (curated)"
-      },
-      "category": "curated",
-      "source": "./plugins/ios-dev-skills",
-      "tags": [
-        "ios",
-        "xcode",
-        "swift",
-        "curated",
-        "composite"
-      ],
-      "metadata": {
-        "ownership": "composite-vendored",
-        "upstreams": [
-          "https://github.com/firebase/agent-skills",
-          "https://github.com/wshobson/agents",
-          "https://github.com/avdlee/xcode-build-optimization-agent-skill",
-          "https://github.com/avdlee/swift-concurrency-agent-skill",
-          "https://github.com/dpearson2699/swift-ios-skills",
-          "https://github.com/dimillian/skills"
-        ],
-        "note": "Curated composite; see plugins/ios-dev-skills/README.md for dedupe decisions + refresh."
-      }
-    },
-    {
-      "name": "android-dev-skills",
-      "description": "Curated community Android skills complementing official android-skills: Android design, clean architecture, Kotlin coroutines/flows, Kotlin patterns.",
-      "version": "1.0.0",
-      "author": {
-        "name": "RUSHYOP (curated)"
-      },
-      "category": "curated",
-      "source": "./plugins/android-dev-skills",
-      "tags": [
-        "android",
-        "kotlin",
-        "curated",
-        "composite"
-      ],
-      "metadata": {
-        "ownership": "composite-vendored",
-        "upstreams": [
-          "https://github.com/wshobson/agents",
-          "https://github.com/affaan-m/everything-claude-code"
-        ],
-        "note": "Curated composite; see plugins/android-dev-skills/README.md for dedupe decisions + refresh."
       }
     }
   ]
