@@ -45,6 +45,7 @@
     "ios-dev-skills",
     "kotlin-agent-skills",
     "marketplace-ops",
+    "mirror-kotlin-kotlin-agent-skills-75d3ff0b",
     "playwright",
     "r3f",
     "ramco-brain",
@@ -152,6 +153,11 @@
       "name": "marketplace-ops",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
       "kind": "local"
+    },
+    {
+      "name": "mirror-kotlin-kotlin-agent-skills-75d3ff0b",
+      "source": "RUSHYOP/mirror-kotlin-kotlin-agent-skills",
+      "kind": "git"
     },
     {
       "name": "playwright",
