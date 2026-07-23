@@ -43,6 +43,7 @@
     "i-have-adhd",
     "insecure-defaults",
     "ios-dev-skills",
+    "kotlin-agent-skills",
     "marketplace-ops",
     "playwright",
     "r3f",
@@ -141,6 +142,11 @@
       "name": "ios-dev-skills",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills",
       "kind": "local"
+    },
+    {
+      "name": "kotlin-agent-skills",
+      "source": "RUSHYOP/mirror-kotlin-kotlin-agent-skills#plugins/kotlin-agent-skills",
+      "kind": "git"
     },
     {
       "name": "marketplace-ops",

@@ -576,6 +576,37 @@
       }
     },
     {
+      "name": "kotlin-agent-skills",
+      "description": "JetBrains/Kotlin official AI agent skills for Kotlin: AGP 9, Java-to-Kotlin, KMP native performance, JPA mapping, CocoaPods\u2192SPM, immutable collections.",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-kotlin-kotlin-agent-skills.git",
+        "path": "plugins/kotlin-agent-skills",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/Kotlin/kotlin-agent-skills",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/Kotlin/kotlin-agent-skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-kotlin-kotlin-agent-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-kotlin-kotlin-agent-skills",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "add-plugin",
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+      }
+    },
+    {
       "name": "playwright",
       "description": "Browser automation and end-to-end testing MCP server by Microsoft. Enables Claude to interact with web pages, take screenshots, fill forms, click elements, and perform automated browser testing workflows.",
       "version": "latest",
