@@ -144,3 +144,26 @@ plugins/                 # first-party only (includes marketplace-ops)
 mirrors/registry.tsv
 scripts/add-plugin.sh    # start here for new plugins
 ```
+
+## Troubleshooting (Claude plugin errors)
+
+### `Failed to clone … RUSHYOP/mirror-… Repository not found`
+
+Private DR mirrors are **only** visible to the **RUSHYOP** GitHub account. If the
+active `gh` account is something else (e.g. a work account), HTTPS clones return
+GitHub’s generic 404 (`Repository not found`) even though the repos exist.
+
+```bash
+gh auth switch --user RUSHYOP
+gh auth status   # RUSHYOP must be Active account: true
+# Then restart Claude Code and re-enable / refresh plugins
+```
+
+Git uses `gh auth git-credential` for `https://github.com` — the **active** account
+is the one Claude’s plugin cache uses when re-downloading mirrors.
+
+### `Duplicate hooks file detected: ./hooks/hooks.json`
+
+Claude auto-loads `hooks/hooks.json` for every plugin. Do **not** also set
+`"hooks": "./hooks/hooks.json"` in `plugin.json` (marketplace-ops ≥1.0.1 fixed this).
+
