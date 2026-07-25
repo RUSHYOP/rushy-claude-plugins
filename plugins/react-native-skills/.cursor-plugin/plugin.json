@@ -1,0 +1,10 @@
+{
+  "name": "react-native-skills",
+  "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
+  "version": "1.1.0",
+  "author": {
+    "name": "RUSHYOP (curated)",
+    "email": "alwayspurav@gmail.com"
+  },
+  "skills": "./skills/"
+}

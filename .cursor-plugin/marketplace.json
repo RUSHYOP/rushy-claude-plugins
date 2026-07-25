@@ -1,0 +1,638 @@
+{
+  "name": "rushy",
+  "displayName": "RUSHYOP",
+  "owner": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com",
+    "url": "https://github.com/RUSHYOP"
+  },
+  "metadata": {
+    "description": "RUSHYOP agent plugins/skills (Claude + Cursor). First-party under plugins/; upstream via private RUSHYOP mirrors. Local wire: ./scripts/apply-cursor.sh",
+    "version": "1.2.0",
+    "pluginRoot": "plugins"
+  },
+  "plugins": [
+    {
+      "name": "agent-tooling",
+      "description": "General agent skills: find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn.",
+      "version": "1.0.0",
+      "source": "plugins/agent-tooling",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "android-dev-skills",
+      "description": "Curated community Android development skills complementing the official android-skills plugin (no overlap): Material/Android design (wshobson), clean architecture, Kotlin coroutines/flows, Kotlin patterns (everything-claude-code).",
+      "version": "1.0.0",
+      "source": "plugins/android-dev-skills",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "android-skills",
+      "description": "Official Android skills for AI agents (android/skills upstream): Compose styles/migration/adaptive, CameraX, Navigation 3, Perfetto tracing + SQL, R8, AGP 9 upgrade, Play Billing/Engage/policy, testing strategy, edge-to-edge, Wear, XR glasses, AppFunctions, intent security, verified email, android CLI.",
+      "version": "1.0.0",
+      "source": "plugins/android-skills",
+      "author": {
+        "name": "Android (google)",
+        "url": "https://github.com/android/skills"
+      }
+    },
+    {
+      "name": "better-ux-quality",
+      "description": "Curated skills for improving UI quality and UX on non-3D websites and applications: design-system redesign, motion/UX systems, component polish, and conversion copy.",
+      "version": "0.1.0",
+      "source": "plugins/better-ux-quality",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "cybersecurity-core",
+      "description": "Curated subset of Anthropic Cybersecurity Skills (~70 high-signal skills). Drops OT/vendor sprawl and near-duplicate detect/hunt/tool twins from the full 817-skill catalog. Prefer this over cybersecurity-skills@rushy for agent routing quality.",
+      "version": "1.0.0",
+      "source": "plugins/cybersecurity-core",
+      "author": {
+        "name": "RUSHYOP"
+      }
+    },
+    {
+      "name": "ios-dev-skills",
+      "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",
+      "version": "1.0.0",
+      "source": "plugins/ios-dev-skills",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "marketplace-ops",
+      "description": "Rushy marketplace operations: SessionStart drift checks, post-install reconcile hints, and slash commands to import CLI-installed plugins into the RUSHYOP catalog.",
+      "version": "1.0.1",
+      "source": "plugins/marketplace-ops",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "marketplace",
+        "hooks",
+        "reconcile",
+        "rushy",
+        "plugins"
+      ]
+    },
+    {
+      "name": "r3f",
+      "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
+      "version": "1.0.0",
+      "source": "plugins/r3f",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "react-three-fiber",
+        "three.js",
+        "r3f",
+        "drei",
+        "webgl",
+        "3d"
+      ]
+    },
+    {
+      "name": "ramco-brain",
+      "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
+      "version": "1.0.1",
+      "source": "plugins/ramco-brain",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "react-native-skills",
+      "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
+      "version": "1.1.0",
+      "source": "plugins/react-native-skills",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "swiftui-skills",
+      "description": "Curated, deduped SwiftUI skills from top authors: swiftui-expert-skill (avdlee), swiftui-pro (twostraws), performance-audit/ui-patterns/view-refactor/liquid-glass (dimillian), expo-ui (Expo's SwiftUI-from-React bridge).",
+      "version": "1.0.0",
+      "source": "plugins/swiftui-skills",
+      "author": {
+        "name": "RUSHYOP (curated)",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "vizuara",
+      "description": "Report and figure generation: Vizuara PDF/HTML reports and Wisprflow chart figures.",
+      "version": "1.0.0",
+      "source": "plugins/vizuara",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      }
+    },
+    {
+      "name": "agentic-actions-auditor",
+      "description": "Audits GitHub Actions workflows for security vulnerabilities in AI agent integrations (Claude Code Action, Gemini CLI, OpenAI Codex, GitHub AI Inference)",
+      "version": "1.2.1",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/agentic-actions-auditor",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Emilio L\u00f3pez & Will Vandevanter"
+      }
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "description": "Imported from grok",
+      "version": "latest",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp.git",
+        "ref": "main"
+      },
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-grok",
+        "imported",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "claude-md-management",
+      "description": "Tools to maintain and improve CLAUDE.md files - audit quality, capture session learnings, and keep project memory current.",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "path": "plugins/claude-md-management",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-claude-plugins-official",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      }
+    },
+    {
+      "name": "claude-mem",
+      "description": "Persistent memory system for Claude Code - context compression across sessions",
+      "version": "10.5.5",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-claude-mem.git",
+        "path": "plugin",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-thedotmack",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "cybersecurity-skills",
+      "description": "817 cybersecurity skills covering web security, pentesting, DFIR, threat intelligence, cloud security, malware analysis, and more. Mapped to 6 frameworks.",
+      "version": "1.3.0",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-anthropic-cybersecurity-skills.git",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-anthropic-cybersecurity-skills",
+        "opt-in",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "mukul975"
+      },
+      "keywords": [
+        "cybersecurity",
+        "pentesting",
+        "forensics",
+        "threat-intelligence",
+        "cloud-security",
+        "malware-analysis",
+        "incident-response",
+        "zero-trust",
+        "devsecops"
+      ]
+    },
+    {
+      "name": "differential-review",
+      "description": "Security-focused differential review of code changes with git history analysis and blast radius estimation",
+      "version": "1.1.1",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/differential-review",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Omar Inuwa"
+      }
+    },
+    {
+      "name": "figma",
+      "description": "Figma design platform integration. Access design files, extract component information, read design tokens, and translate designs into code. Bridge the gap between design and development workflows.",
+      "version": "latest",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-figma-mcp-server-guide.git",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-claude-plugins-official",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "frontend-design",
+      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code that avoids generic AI aesthetics.",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "path": "plugins/frontend-design",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-claude-plugins-official",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      }
+    },
+    {
+      "name": "greptile",
+      "description": "AI-powered codebase search and understanding. Query your repositories using natural language to find relevant code, understand dependencies, and get contextual answers about your codebase architecture.",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "path": "external_plugins/greptile",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-claude-plugins-official",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "i-have-adhd",
+      "description": "Plugin i-have-adhd",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-ayghri-i-have-adhd.git",
+        "path": "skills/i-have-adhd",
+        "ref": "main"
+      },
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported",
+        "opt-in",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "insecure-defaults",
+      "description": "Detects insecure default configurations including hardcoded credentials, fallback secrets, weak authentication defaults, and dangerous values in production",
+      "version": "1.0.1",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/insecure-defaults",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Trail of Bits",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      }
+    },
+    {
+      "name": "kotlin-agent-skills",
+      "description": "JetBrains/Kotlin official AI agent skills for Kotlin: AGP 9, Java-to-Kotlin, KMP native performance, JPA mapping, CocoaPods\u2192SPM, immutable collections.",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-kotlin-kotlin-agent-skills.git",
+        "path": "plugins/kotlin-agent-skills",
+        "ref": "main"
+      },
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "playwright",
+      "description": "Browser automation and end-to-end testing MCP server by Microsoft. Enables Claude to interact with web pages, take screenshots, fill forms, click elements, and perform automated browser testing workflows.",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "path": "external_plugins/playwright",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-claude-plugins-official",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "semgrep-rule-creator",
+      "description": "Create custom Semgrep rules for detecting bug patterns and security vulnerabilities",
+      "version": "1.2.2",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/semgrep-rule-creator",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Maciej Domanski"
+      }
+    },
+    {
+      "name": "sharp-edges",
+      "description": "Identify error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes",
+      "version": "1.1.1",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/sharp-edges",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Scott Arciszewski",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      }
+    },
+    {
+      "name": "skill-creator",
+      "description": "Create new skills, improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, update or optimize an existing skill, run evals to test a skill, or benchmark skill performance with variance analysis.",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
+        "path": "plugins/skill-creator",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-claude-plugins-official",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      }
+    },
+    {
+      "name": "static-analysis",
+      "description": "Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing for security vulnerability detection",
+      "version": "1.2.2",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/static-analysis",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Axel Mierczuk & Pawe\u0142 P\u0142atek"
+      }
+    },
+    {
+      "name": "superpowers",
+      "description": "Superpowers teaches Claude brainstorming, subagent driven development with built in code review, systematic debugging, and red/green TDD. Additionally, it teaches Claude how to author and test new skills.",
+      "version": "latest",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-superpowers.git",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-claude-plugins-official",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "supply-chain-risk-auditor",
+      "description": "Audit supply-chain threat landscape of project dependencies for exploitation or takeover risk",
+      "version": "1.0.1",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/supply-chain-risk-auditor",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Spencer Michaels"
+      }
+    },
+    {
+      "name": "testing-handbook-skills",
+      "description": "Skills from the Trail of Bits Application Security Testing Handbook (appsec.guide)",
+      "version": "1.0.2",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
+        "path": "plugins/testing-handbook-skills",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-trailofbits",
+        "opt-in",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "Pawe\u0142 P\u0142atek"
+      }
+    },
+    {
+      "name": "vercel",
+      "description": "Imported from grok",
+      "version": "latest",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-vercel-vercel-plugin.git",
+        "ref": "main"
+      },
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-grok",
+        "imported",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
+      "name": "visual-explainer",
+      "description": "Generate beautiful HTML pages for diagrams, diff reviews, plan reviews, slides, and data tables",
+      "version": "0.7.1",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-visual-explainer.git",
+        "path": "plugins/visual-explainer",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-visual-explainer-marketplace",
+        "opt-in",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "nicobailon"
+      },
+      "keywords": [
+        "diagrams",
+        "html",
+        "visualization",
+        "diff-review",
+        "slides"
+      ]
+    },
+    {
+      "name": "webgpu-threejs-tsl",
+      "description": "Comprehensive guide for WebGPU Three.js with TSL - covers renderer setup, node materials, compute shaders, post-processing, and WGSL integration",
+      "version": "latest",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git",
+        "ref": "main"
+      },
+      "tags": [
+        "mirrored",
+        "upstream",
+        "via-webgpu-threejs-tsl",
+        "opt-in",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    }
+  ]
+}

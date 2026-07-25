@@ -1,0 +1,10 @@
+{
+  "name": "ramco-brain",
+  "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
+  "version": "1.0.1",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "skills": "./skills/"
+}

@@ -28,6 +28,7 @@ After that, tools only **reference** the marketplace:
 
 - Claude: `enabledPlugins["<name>@rushy"] = true`
 - Grok: marketplace source `RUSHYOP/rushy-claude-plugins` / local path; install from there
+- Cursor: `./scripts/apply-cursor.sh` (local `~/.cursor/plugins/local` symlinks + `.cursor-plugin/marketplace.json`); team import via Dashboard → Plugins
 
 ## Do not
 
@@ -70,6 +71,7 @@ Then disable non-`@rushy` enables in CLIs so reference is only via this marketpl
 | `import-from-clis.sh` | Reconcile accidental CLI installs into catalog |
 | `generate-global-config.sh` | Regen enable lists from catalog |
 | `apply-mcp.sh` | Merge `config/mcp-servers.json` into `~/.claude.json` (or `--project <path>`) |
+| `apply-cursor.sh` | Wire this marketplace into Cursor local plugins |
 
 ## MCP servers
 

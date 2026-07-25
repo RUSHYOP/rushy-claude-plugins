@@ -1,0 +1,10 @@
+{
+  "name": "r3f",
+  "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "skills": "./skills/"
+}

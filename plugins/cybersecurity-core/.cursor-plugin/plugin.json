@@ -1,0 +1,8 @@
+{
+  "name": "cybersecurity-core",
+  "description": "Curated subset of Anthropic Cybersecurity Skills (~70 high-signal skills). Drops OT/vendor sprawl and near-duplicate detect/hunt/tool twins from the full 817-skill catalog. Prefer this over cybersecurity-skills@rushy for agent routing quality.",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP"
+  }
+}

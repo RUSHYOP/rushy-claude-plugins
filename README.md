@@ -58,6 +58,12 @@ grok plugin marketplace add /Users/admin/Codes-2/Agentic-setup
 
 # Claude — marketplace rushy + enable name@rushy
 # extraKnownMarketplaces.rushy → RUSHYOP/rushy-claude-plugins
+
+# Cursor — local plugins + dual-format marketplace manifest
+./scripts/apply-cursor.sh
+# Reload Cursor window. Plugins land in ~/.cursor/plugins/local (symlinks).
+# Team/Enterprise org-wide: Dashboard → Plugins → Add Marketplace →
+#   import https://github.com/RUSHYOP/rushy-claude-plugins
 ```
 
 Optional helper to regenerate enable lists / merge Claude `*@rushy`:
@@ -118,6 +124,7 @@ See **[hooks/README.md](./hooks/README.md)**.
 | `import-from-clis.sh` | Reconcile CLI → catalog only |
 | `generate-global-config.sh` | Build `config/*` from catalog |
 | `apply-global.sh` | Optional Claude `*@rushy` merge |
+| `apply-cursor.sh` | Link rushy plugins into `~/.cursor/plugins/local` + write `.cursor-plugin/marketplace.json` |
 | `clean-global-configs.sh` | Reset Claude + Grok globals to **only** this marketplace |
 
 ## Global agent rules (`CLAUDE.md`)

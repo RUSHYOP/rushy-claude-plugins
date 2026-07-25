@@ -1,0 +1,10 @@
+{
+  "name": "vizuara",
+  "description": "Report and figure generation: Vizuara PDF/HTML reports and Wisprflow chart figures.",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "skills": "./skills/"
+}
