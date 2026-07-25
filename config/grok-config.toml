@@ -54,12 +54,10 @@ enabled = [
   "figma",
   "frontend-design",
   "greptile",
-  "i-have-adhd",
   "insecure-defaults",
   "ios-dev-skills",
   "kotlin-agent-skills",
   "marketplace-ops",
-  "mirror-kotlin-kotlin-agent-skills-75d3ff0b",
   "playwright",
   "r3f",
   "ramco-brain",
@@ -71,10 +69,7 @@ enabled = [
   "superpowers",
   "supply-chain-risk-auditor",
   "swiftui-skills",
-  "testing-handbook-skills",
   "vercel",
-  "visual-explainer",
   "vizuara",
-  "webgpu-threejs-tsl",
 ]
 

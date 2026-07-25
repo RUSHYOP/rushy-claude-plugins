@@ -550,7 +550,8 @@
         "upstream",
         "mirrored",
         "via-add-plugin",
-        "imported"
+        "imported",
+        "opt-in"
       ],
       "metadata": {
         "ownership": "upstream",
@@ -559,7 +560,9 @@
         "mirrorRepo": "RUSHYOP/mirror-ayghri-i-have-adhd",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "add-plugin",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl.",
+        "defaultEnabled": false,
+        "replacedByNote": "Personal productivity plugin \u2014 opt-in, not default for all sessions."
       }
     },
     {
@@ -623,36 +626,6 @@
         "mirrorRepo": "RUSHYOP/mirror-kotlin-kotlin-agent-skills",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "add-plugin",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
-      }
-    },
-    {
-      "name": "mirror-kotlin-kotlin-agent-skills-75d3ff0b",
-      "description": "Imported from grok",
-      "version": "latest",
-      "author": {
-        "name": "upstream"
-      },
-      "category": "third-party",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/RUSHYOP/mirror-kotlin-kotlin-agent-skills.git",
-        "ref": "main"
-      },
-      "homepage": "https://github.com/Kotlin/kotlin-agent-skills",
-      "tags": [
-        "upstream",
-        "mirrored",
-        "via-grok",
-        "imported"
-      ],
-      "metadata": {
-        "ownership": "upstream",
-        "upstreamUrl": "https://github.com/Kotlin/kotlin-agent-skills.git",
-        "mirrorUrl": "https://github.com/RUSHYOP/mirror-kotlin-kotlin-agent-skills.git",
-        "mirrorRepo": "RUSHYOP/mirror-kotlin-kotlin-agent-skills",
-        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "importedFrom": "grok",
         "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
       }
     },
@@ -893,7 +866,8 @@
       "tags": [
         "mirrored",
         "upstream",
-        "via-trailofbits"
+        "via-trailofbits",
+        "opt-in"
       ],
       "metadata": {
         "ownership": "upstream",
@@ -903,7 +877,9 @@
         "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
-        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
+        "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills",
+        "defaultEnabled": false,
+        "replacedByNote": "Fuzzing/AppSec testing handbook \u2014 enable only when writing harnesses or fuzz campaigns."
       }
     },
     {
@@ -954,7 +930,8 @@
       "tags": [
         "mirrored",
         "upstream",
-        "via-visual-explainer-marketplace"
+        "via-visual-explainer-marketplace",
+        "opt-in"
       ],
       "metadata": {
         "ownership": "upstream",
@@ -964,7 +941,9 @@
         "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/nicobailon/visual-explainer.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-visual-explainer.git",
-        "mirrorRepo": "RUSHYOP/mirror-visual-explainer"
+        "mirrorRepo": "RUSHYOP/mirror-visual-explainer",
+        "defaultEnabled": false,
+        "replacedByNote": "Diagram/slides generator \u2014 opt-in when producing visual HTML artifacts."
       },
       "keywords": [
         "diagrams",
@@ -991,7 +970,8 @@
       "tags": [
         "mirrored",
         "upstream",
-        "via-webgpu-threejs-tsl"
+        "via-webgpu-threejs-tsl",
+        "opt-in"
       ],
       "metadata": {
         "ownership": "upstream",
@@ -1001,7 +981,9 @@
         "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/dgreenheck/webgpu-claude-skill.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git",
-        "mirrorRepo": "RUSHYOP/mirror-webgpu-claude-skill"
+        "mirrorRepo": "RUSHYOP/mirror-webgpu-claude-skill",
+        "defaultEnabled": false,
+        "replacedByNote": "WebGPU/TSL specialist \u2014 enable only for Three.js WebGPU work."
       }
     }
   ]

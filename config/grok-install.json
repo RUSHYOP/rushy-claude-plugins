@@ -42,12 +42,10 @@
     "figma",
     "frontend-design",
     "greptile",
-    "i-have-adhd",
     "insecure-defaults",
     "ios-dev-skills",
     "kotlin-agent-skills",
     "marketplace-ops",
-    "mirror-kotlin-kotlin-agent-skills-75d3ff0b",
     "playwright",
     "r3f",
     "ramco-brain",
@@ -59,11 +57,8 @@
     "superpowers",
     "supply-chain-risk-auditor",
     "swiftui-skills",
-    "testing-handbook-skills",
     "vercel",
-    "visual-explainer",
-    "vizuara",
-    "webgpu-threejs-tsl"
+    "vizuara"
   ],
   "install": [
     {
@@ -132,11 +127,6 @@
       "kind": "git"
     },
     {
-      "name": "i-have-adhd",
-      "source": "RUSHYOP/mirror-ayghri-i-have-adhd#skills/i-have-adhd",
-      "kind": "git"
-    },
-    {
       "name": "insecure-defaults",
       "source": "RUSHYOP/mirror-trailofbits-skills#plugins/insecure-defaults",
       "kind": "git"
@@ -155,11 +145,6 @@
       "name": "marketplace-ops",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
       "kind": "local"
-    },
-    {
-      "name": "mirror-kotlin-kotlin-agent-skills-75d3ff0b",
-      "source": "RUSHYOP/mirror-kotlin-kotlin-agent-skills",
-      "kind": "git"
     },
     {
       "name": "playwright",
@@ -217,29 +202,14 @@
       "kind": "local"
     },
     {
-      "name": "testing-handbook-skills",
-      "source": "RUSHYOP/mirror-trailofbits-skills#plugins/testing-handbook-skills",
-      "kind": "git"
-    },
-    {
       "name": "vercel",
       "source": "RUSHYOP/mirror-vercel-vercel-plugin",
-      "kind": "git"
-    },
-    {
-      "name": "visual-explainer",
-      "source": "RUSHYOP/mirror-visual-explainer#plugins/visual-explainer",
       "kind": "git"
     },
     {
       "name": "vizuara",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara",
       "kind": "local"
-    },
-    {
-      "name": "webgpu-threejs-tsl",
-      "source": "RUSHYOP/mirror-webgpu-claude-skill",
-      "kind": "git"
     }
   ]
 }
