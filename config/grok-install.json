@@ -5,6 +5,7 @@
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-dev-skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
+    "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core",
     "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
     "/Users/admin/Codes-2/Agentic-setup/plugins/r3f",
@@ -18,6 +19,7 @@
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-dev-skills/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
+    "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/r3f/skills",
@@ -35,7 +37,7 @@
     "chrome-devtools-mcp",
     "claude-md-management",
     "claude-mem",
-    "cybersecurity-skills",
+    "cybersecurity-core",
     "differential-review",
     "figma",
     "frontend-design",
@@ -105,9 +107,9 @@
       "kind": "git"
     },
     {
-      "name": "cybersecurity-skills",
-      "source": "RUSHYOP/mirror-anthropic-cybersecurity-skills",
-      "kind": "git"
+      "name": "cybersecurity-core",
+      "source": "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core",
+      "kind": "local"
     },
     {
       "name": "differential-review",

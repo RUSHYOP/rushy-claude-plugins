@@ -84,6 +84,23 @@
       }
     },
     {
+      "name": "cybersecurity-core",
+      "version": "1.0.0",
+      "description": "Curated subset of Anthropic Cybersecurity Skills (~70 high-signal skills). Drops OT/vendor sprawl and near-duplicate detect/hunt/tool twins from the full 817-skill catalog. Prefer this over cybersecurity-skills@rushy for agent routing quality.",
+      "author": {
+        "name": "RUSHYOP"
+      },
+      "source": "./plugins/cybersecurity-core",
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
       "name": "ios-dev-skills",
       "version": "1.0.0",
       "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",
@@ -363,17 +380,20 @@
       "tags": [
         "mirrored",
         "upstream",
-        "via-anthropic-cybersecurity-skills"
+        "via-anthropic-cybersecurity-skills",
+        "opt-in"
       ],
       "metadata": {
         "ownership": "upstream",
         "upstreamMarketplace": "anthropic-cybersecurity-skills",
         "upstreamRepo": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl. Option B: do not auto-enable; use cybersecurity-core (~81 skills) instead. Full 817 remains available for opt-in.",
         "upstreamUrl": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-anthropic-cybersecurity-skills.git",
-        "mirrorRepo": "RUSHYOP/mirror-anthropic-cybersecurity-skills"
+        "mirrorRepo": "RUSHYOP/mirror-anthropic-cybersecurity-skills",
+        "defaultEnabled": false,
+        "replacedBy": "cybersecurity-core"
       },
       "keywords": [
         "cybersecurity",
