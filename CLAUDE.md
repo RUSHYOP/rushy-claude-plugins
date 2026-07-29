@@ -15,6 +15,7 @@
 14. Maintain `mistakes.md` (separate from learnings.md) recording every concrete error and its correction. Never delete entries. Honesty over polish.
 15. Comment every code change: what it does, why it was changed, and the reasoning.
 16. Make structured logging a core part of the architecture. Store all logs in a `logs/` directory.
+17. No bruteforce methods.
 
 
 ## Plugin installs (marketplace-first)
