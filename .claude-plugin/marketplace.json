@@ -101,6 +101,24 @@
       }
     },
     {
+      "name": "excalidraw-pages",
+      "version": "1.0.0",
+      "description": "Excalidraw-style self-contained HTML pages: hand-drawn diagrams, sketch cards, paper-and-ink design system for plans, architecture docs, and reviews.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/excalidraw-pages",
+      "keywords": [],
+      "tags": [
+        "first-party"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo"
+      }
+    },
+    {
       "name": "ios-dev-skills",
       "version": "1.0.0",
       "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",

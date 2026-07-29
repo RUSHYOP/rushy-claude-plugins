@@ -38,6 +38,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 - `android-skills` → `./plugins/android-skills`
 - `better-ux-quality` → `./plugins/better-ux-quality`
 - `cybersecurity-core` → `./plugins/cybersecurity-core`
+- `excalidraw-pages` → `./plugins/excalidraw-pages`
 - `ios-dev-skills` → `./plugins/ios-dev-skills`
 - `marketplace-ops` → `./plugins/marketplace-ops`
 - `r3f` → `./plugins/r3f`

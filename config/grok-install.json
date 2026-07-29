@@ -6,6 +6,7 @@
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
     "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core",
+    "/Users/admin/Codes-2/Agentic-setup/plugins/excalidraw-pages",
     "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
     "/Users/admin/Codes-2/Agentic-setup/plugins/r3f",
@@ -20,6 +21,7 @@
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core/skills",
+    "/Users/admin/Codes-2/Agentic-setup/plugins/excalidraw-pages/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/r3f/skills",
@@ -39,6 +41,7 @@
     "claude-mem",
     "cybersecurity-core",
     "differential-review",
+    "excalidraw-pages",
     "figma",
     "frontend-design",
     "greptile",
@@ -110,6 +113,11 @@
       "name": "differential-review",
       "source": "RUSHYOP/mirror-trailofbits-skills#plugins/differential-review",
       "kind": "git"
+    },
+    {
+      "name": "excalidraw-pages",
+      "source": "/Users/admin/Codes-2/Agentic-setup/plugins/excalidraw-pages",
+      "kind": "local"
     },
     {
       "name": "figma",
