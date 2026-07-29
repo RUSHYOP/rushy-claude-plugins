@@ -220,9 +220,24 @@ erDiagram
   THING { string id PK }
 ```
 
-Node-emphasis fill/stroke pairs (light-mode values; dark adapts via theme):
-blue `#d0ebff`/`#1971c2` · green `#d3f9d8`/`#2f9e44` · orange `#ffe8cc`/`#f08c00` ·
-red `#ffe3e3`/`#e03131` · violet `#f3d9fa`/`#9c36b5`.
+Node emphasis uses **theme-aware palette tokens** (substituted at render time so the
+node re-colors on theme toggle — raw hex would freeze it in one theme):
+`style NODE fill:@green-fill,stroke:@green,color:@ink`. Available tokens: `@blue`,
+`@red`, `@green`, `@orange`, `@violet` (strokes), their `-fill` variants (backgrounds),
+and `@ink` (label text). Always include `color:@ink` on styled nodes.
+
+Per-diagram layout override (e.g. when ELK scatters a cyclic flow that should read
+left→right, like a lifecycle with loop-backs) — YAML frontmatter at the top of the
+diagram source:
+
+```
+---
+config:
+  layout: dagre
+---
+flowchart LR
+  ...
+```
 
 Rules: `<br/>` for label line breaks (never `\n`); quote labels containing
 punctuation; 15+ elements → overview diagram + detail cards; emojis in labels are fine
@@ -321,5 +336,7 @@ behaviors. Usually wrapped in a green card.
 Paper/ink: `--bg` #faf6ee / #191917 · `--surface` #fffdf7 / #21211e ·
 `--text` #1e1e1e / #ece9e2 · strong borders via `--border-strong`.
 
-Always reference the variables in new markup — hardcoded hex belongs only inside
-Mermaid `style` lines (where CSS vars don't reach).
+Always reference the CSS variables in new markup, and the `@` palette tokens (§9) in
+Mermaid `style` lines — never raw hex in either place. Both themes come free: the
+template's ☀/☾ toggle (fixed top-right) overrides the system preference, persists to
+localStorage, and re-renders all diagrams; it needs no per-page wiring.

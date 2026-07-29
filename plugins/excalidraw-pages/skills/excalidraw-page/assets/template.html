@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('xp-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <!-- ═══ DESIGN CORE : CSS — do not edit ═══ -->
 <style>
   /* ============ THEME — Excalidraw paper & ink ============ */
@@ -37,9 +38,10 @@
     --orange: #f08c00; --orange-fill: #ffe8cc;
     --violet: #9c36b5; --violet-fill: #f3d9fa;
     --marker: rgba(255, 212, 59, 0.45);
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #191917;
       --surface: #21211e;
       --surface2: #2a2a26;
@@ -54,7 +56,25 @@
       --orange: #ffa94d; --orange-fill: #3d2e18;
       --violet: #da77f2; --violet-fill: #3a2242;
       --marker: rgba(255, 212, 59, 0.22);
+      color-scheme: dark;
     }
+  }
+  :root[data-theme="dark"] {
+    --bg: #191917;
+    --surface: #21211e;
+    --surface2: #2a2a26;
+    --border: rgba(255,255,255,0.12);
+    --border-strong: rgba(255,255,255,0.5);
+    --text: #ece9e2;
+    --text-dim: #a5a094;
+
+    --blue: #74c0fc;   --blue-fill: #1d3450;
+    --red: #ff8787;    --red-fill: #4a2222;
+    --green: #8ce99a;  --green-fill: #1e3a24;
+    --orange: #ffa94d; --orange-fill: #3d2e18;
+    --violet: #da77f2; --violet-fill: #3a2242;
+    --marker: rgba(255, 212, 59, 0.22);
+    color-scheme: dark;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -224,11 +244,16 @@
 
   .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 10px 0; font-size: 11px; color: var(--text-dim); align-items: center; }
 
+  .theme-toggle { position: fixed; top: 16px; right: 18px; z-index: 300; font-family: var(--font-hand); font-size: 14px; padding: 4px 14px; background: var(--surface); color: var(--text); border: 1.5px solid var(--border-strong); border-radius: 20px 22px 21px 23px; cursor: pointer; transform: rotate(.8deg); transition: background .15s; }
+  .theme-toggle:hover { background: var(--surface2); }
+  @media (max-width: 1000px) { .theme-toggle { top: auto; bottom: 16px; right: 14px; } }
+
   footer { margin-top: 60px; padding-top: 16px; border-top: 1.5px dashed var(--border-strong); color: var(--text-dim); font-family: var(--font-mono); font-size: 10.5px; }
 </style>
 <!-- ═══ END DESIGN CORE : CSS ═══ -->
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">☾ dark</button>
 <div class="wrap">
 
 <!-- TOC: one link per section; href="#sN" must match each .sec-head id. Keep as first child of .wrap. Drop entirely if fewer than 4 sections. -->
@@ -320,8 +345,8 @@ flowchart TD
   B --> C
   C --> D
   D -->|"labelled edge"| E
-  style D fill:#f3d9fa,stroke:#9c36b5
-  style E fill:#d3f9d8,stroke:#2f9e44
+  style D fill:@violet-fill,stroke:@violet,color:@ink
+  style E fill:@green-fill,stroke:@green,color:@ink
   </script>
 </section>
 
@@ -421,53 +446,80 @@ flowchart TD
   };
   const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
   let activeDrag = null;
+  const rerenders = [];
   addEventListener('mousemove', (e) => activeDrag?.onMove(e));
   addEventListener('mouseup', () => { activeDrag?.onEnd(); activeDrag = null; });
 
-  const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
-  const ink = isDark ? '#ece9e2' : '#1e1e1e';
+  const isDarkNow = () => {
+    const t = document.documentElement.dataset.theme;
+    if (t) return t === 'dark';
+    return matchMedia('(prefers-color-scheme: dark)').matches;
+  };
+  let isDark = isDarkNow();
 
-  mermaid.registerLayoutLoaders(elkLayouts);
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: 'base',
-    look: 'handDrawn',
-    layout: 'elk',
-    themeVariables: {
+  // Theme-aware palette tokens usable inside Mermaid sources (e.g. style X fill:@green-fill,stroke:@green,color:@ink)
+  const PALETTE = {
+    '@blue': ['#1971c2', '#74c0fc'],   '@blue-fill': ['#d0ebff', '#1d3450'],
+    '@red': ['#e03131', '#ff8787'],    '@red-fill': ['#ffe3e3', '#4a2222'],
+    '@green': ['#2f9e44', '#8ce99a'],  '@green-fill': ['#d3f9d8', '#1e3a24'],
+    '@orange': ['#f08c00', '#ffa94d'], '@orange-fill': ['#ffe8cc', '#3d2e18'],
+    '@violet': ['#9c36b5', '#da77f2'], '@violet-fill': ['#f3d9fa', '#3a2242'],
+    '@ink': ['#1e1e1e', '#ece9e2']
+  };
+  const resolvePalette = (code) =>
+    code.replace(/@(?:blue|red|green|orange|violet)(?:-fill)?|@ink/g,
+      m => (PALETTE[m] ? PALETTE[m][isDark ? 1 : 0] : m));
+
+  const themeVarsFor = (dark) => {
+    const ink = dark ? '#ece9e2' : '#1e1e1e';
+    return {
       fontFamily: "'Gochi Hand', cursive",
       fontSize: '16px',
-      primaryColor: isDark ? '#1d3450' : '#d0ebff',
-      primaryBorderColor: isDark ? '#74c0fc' : '#1971c2',
+      primaryColor: dark ? '#1d3450' : '#d0ebff',
+      primaryBorderColor: dark ? '#74c0fc' : '#1971c2',
       primaryTextColor: ink,
-      secondaryColor: isDark ? '#3d2e18' : '#ffe8cc',
-      secondaryBorderColor: isDark ? '#ffa94d' : '#f08c00',
+      secondaryColor: dark ? '#3d2e18' : '#ffe8cc',
+      secondaryBorderColor: dark ? '#ffa94d' : '#f08c00',
       secondaryTextColor: ink,
-      tertiaryColor: isDark ? '#1e3a24' : '#d3f9d8',
-      tertiaryBorderColor: isDark ? '#8ce99a' : '#2f9e44',
+      tertiaryColor: dark ? '#1e3a24' : '#d3f9d8',
+      tertiaryBorderColor: dark ? '#8ce99a' : '#2f9e44',
       tertiaryTextColor: ink,
-      lineColor: isDark ? '#a5a094' : '#4a4740',
+      lineColor: dark ? '#a5a094' : '#4a4740',
       textColor: ink,
-      noteBkgColor: isDark ? '#3d3a18' : '#fff9db',
+      noteBkgColor: dark ? '#3d3a18' : '#fff9db',
       noteTextColor: ink,
-      noteBorderColor: isDark ? '#ffd43b' : '#f08c00',
-      actorBkg: isDark ? '#1d3450' : '#d0ebff',
-      actorBorder: isDark ? '#74c0fc' : '#1971c2',
+      noteBorderColor: dark ? '#ffd43b' : '#f08c00',
+      actorBkg: dark ? '#1d3450' : '#d0ebff',
+      actorBorder: dark ? '#74c0fc' : '#1971c2',
       actorTextColor: ink,
       signalColor: ink, signalTextColor: ink,
-      labelBoxBkgColor: isDark ? '#2a2a26' : '#f3ede0',
+      labelBoxBkgColor: dark ? '#2a2a26' : '#f3ede0',
       labelBoxBorderColor: ink, loopTextColor: ink,
-      activationBkgColor: isDark ? '#3d2e18' : '#ffe8cc',
+      activationBkgColor: dark ? '#3d2e18' : '#ffe8cc',
       git0: '#1971c2', git1: '#f08c00', git2: '#2f9e44', git3: '#e03131',
       gitBranchLabel0: '#ffffff', gitBranchLabel1: '#ffffff',
       gitBranchLabel2: '#ffffff', gitBranchLabel3: '#ffffff',
       commitLabelColor: ink,
-      commitLabelBackground: isDark ? '#2a2a26' : '#fffdf7',
-      tagLabelBackground: isDark ? '#3d3a18' : '#fff9db',
+      commitLabelBackground: dark ? '#2a2a26' : '#fffdf7',
+      tagLabelBackground: dark ? '#3d3a18' : '#fff9db',
       tagLabelColor: ink, tagLabelBorder: ink,
-      attributeBackgroundColorEven: isDark ? '#26261f' : '#f7f2e7',
-      attributeBackgroundColorOdd: isDark ? '#1e1e1c' : '#fffdf7'
-    }
-  });
+      attributeBackgroundColorEven: dark ? '#26261f' : '#f7f2e7',
+      attributeBackgroundColorOdd: dark ? '#1e1e1c' : '#fffdf7'
+    };
+  };
+
+  mermaid.registerLayoutLoaders(elkLayouts);
+  function applyMermaidTheme() {
+    isDark = isDarkNow();
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      look: 'handDrawn',
+      layout: 'elk',
+      themeVariables: themeVarsFor(isDark)
+    });
+  }
+  applyMermaidTheme();
 
   function initDiagram(shell) {
     const wrap = shell.querySelector('.mermaid-wrap');
@@ -560,7 +612,7 @@ flowchart TD
     }
     async function render() {
       try {
-        const code = source.textContent.trim();
+        const code = resolvePalette(source.textContent.trim());
         if (!code) { label.textContent = 'Error: empty source'; return; }
         const id = 'd' + Math.random().toString(36).slice(2, 9);
         const { svg } = await mermaid.render(id, code);
@@ -633,9 +685,35 @@ flowchart TD
       }
     }, { passive: false });
     new ResizeObserver(() => { if (svgW) { setAdaptiveHeight(); fitDiagram(); } }).observe(wrap);
+    rerenders.push(render);
     render();
   }
   document.querySelectorAll('.diagram-shell').forEach(initDiagram);
+
+  const rethemeAll = () => { applyMermaidTheme(); rerenders.forEach(r => r()); };
+  addEventListener('xp-themechange', rethemeAll);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (!document.documentElement.dataset.theme) rethemeAll();
+  });
+</script>
+
+<script>
+(function() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  const effective = () => document.documentElement.dataset.theme
+    || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const paint = () => { btn.textContent = effective() === 'dark' ? '☀ light' : '☾ dark'; };
+  btn.addEventListener('click', () => {
+    const next = effective() === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('xp-theme', next); } catch (e) {}
+    paint();
+    dispatchEvent(new Event('xp-themechange'));
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paint);
+  paint();
+})();
 </script>
 
 <script>

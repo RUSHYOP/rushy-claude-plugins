@@ -62,6 +62,9 @@ sketchbook. Treat the following as fixed:
   sequenceDiagram, gitGraph, and erDiagram all render pre-themed.
 - **Dotted paper background**, staggered `fadeUp` entrances via `--i`, and
   `prefers-reduced-motion` respect.
+- **Built-in theme toggle**: a fixed ☀/☾ button (top-right, bottom-right on mobile)
+  overrides the system theme, persists to localStorage, and re-renders every Mermaid
+  diagram in the new palette. It ships in the template — keep it, don't rebuild it.
 
 ## Content rules
 
@@ -85,8 +88,11 @@ picks up every shell automatically — no per-diagram JS.
 
 - Prefer `flowchart TD`; use `LR` only for short linear flows.
 - Line breaks inside labels: `<br/>` in quoted labels — never `\n`.
-- Emphasis colors inside a diagram: `style NODE fill:#f3d9fa,stroke:#9c36b5` (use the
-  palette's fill/stroke pairs; see the catalog for all five).
+- Emphasis colors inside a diagram: use the theme-aware palette tokens, never raw hex —
+  `style NODE fill:@violet-fill,stroke:@violet,color:@ink`. Tokens (`@blue`, `@blue-fill`,
+  `@red`, `@green`, `@orange`, `@violet`, their `-fill` pairs, and `@ink`) are substituted
+  at render time for the active theme, so styled nodes stay readable when the user
+  toggles light/dark. Raw hex would freeze a node in one theme's colors.
 - 15+ elements → split into a small overview diagram plus detail cards instead of one
   giant graph.
 - Don't define page-level CSS named `.node` — Mermaid owns that class internally.
