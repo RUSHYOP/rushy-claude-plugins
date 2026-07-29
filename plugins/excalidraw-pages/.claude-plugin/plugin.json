@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "excalidraw-pages",
+  "version": "1.0.0",
+  "description": "Excalidraw-style self-contained HTML pages: hand-drawn diagrams, sketch cards, paper-and-ink design system for plans, architecture docs, and reviews.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "skills": "./skills/"
+}
