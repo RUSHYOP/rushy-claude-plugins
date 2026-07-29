@@ -20,6 +20,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 | `insecure-defaults` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/insecure-defaults` @main | https://github.com/trailofbits/skills.git |
 | `kotlin-agent-skills` | https://github.com/RUSHYOP/mirror-kotlin-kotlin-agent-skills.git → `plugins/kotlin-agent-skills` @main | https://github.com/Kotlin/kotlin-agent-skills.git |
 | `playwright` | https://github.com/RUSHYOP/mirror-claude-plugins-official.git → `external_plugins/playwright` @main | https://github.com/anthropics/claude-plugins-official.git |
+| `python-development` | https://github.com/RUSHYOP/mirror-wshobson-agents.git → `plugins/python-development` @main | https://github.com/wshobson/agents.git |
 | `semgrep-rule-creator` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/semgrep-rule-creator` @main | https://github.com/trailofbits/skills.git |
 | `sharp-edges` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/sharp-edges` @main | https://github.com/trailofbits/skills.git |
 | `skill-creator` | https://github.com/RUSHYOP/mirror-claude-plugins-official.git → `plugins/skill-creator` @main | https://github.com/anthropics/claude-plugins-official.git |

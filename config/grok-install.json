@@ -50,6 +50,7 @@
     "kotlin-agent-skills",
     "marketplace-ops",
     "playwright",
+    "python-development",
     "r3f",
     "ramco-brain",
     "react-native-skills",
@@ -158,6 +159,11 @@
     {
       "name": "playwright",
       "source": "RUSHYOP/mirror-claude-plugins-official#external_plugins/playwright",
+      "kind": "git"
+    },
+    {
+      "name": "python-development",
+      "source": "RUSHYOP/mirror-wshobson-agents#plugins/python-development",
       "kind": "git"
     },
     {

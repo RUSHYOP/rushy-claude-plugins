@@ -679,6 +679,37 @@
       }
     },
     {
+      "name": "python-development",
+      "description": "Python engineering skills incl. python-performance-optimization (profiling, hot paths, complexity), async patterns, type safety, testing, packaging, uv.",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-wshobson-agents.git",
+        "path": "plugins/python-development",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/wshobson/agents",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/wshobson/agents.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-wshobson-agents.git",
+        "mirrorRepo": "RUSHYOP/mirror-wshobson-agents",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "add-plugin",
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+      }
+    },
+    {
       "name": "semgrep-rule-creator",
       "description": "Create custom Semgrep rules for detecting bug patterns and security vulnerabilities",
       "version": "1.2.2",
