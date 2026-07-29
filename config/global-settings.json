@@ -44,6 +44,7 @@
     "vercel@rushy": true,
     "visual-explainer@rushy": false,
     "vizuara@rushy": true,
+    "web-quality@rushy": true,
     "webgpu-threejs-tsl@rushy": false
   }
 }

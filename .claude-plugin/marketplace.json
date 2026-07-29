@@ -972,6 +972,36 @@
       ]
     },
     {
+      "name": "web-quality",
+      "description": "Web quality + performance skills from Addy Osmani (Chrome): performance, Core Web Vitals, accessibility, SEO, best practices, audit.",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-addyosmani-web-quality-skills.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/addyosmani/web-quality-skills",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/addyosmani/web-quality-skills.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-addyosmani-web-quality-skills.git",
+        "mirrorRepo": "RUSHYOP/mirror-addyosmani-web-quality-skills",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "add-plugin",
+        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+      }
+    },
+    {
       "name": "webgpu-threejs-tsl",
       "description": "Comprehensive guide for WebGPU Three.js with TSL - covers renderer setup, node materials, compute shaders, post-processing, and WGSL integration",
       "version": "latest",

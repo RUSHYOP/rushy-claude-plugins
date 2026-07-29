@@ -29,6 +29,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 | `testing-handbook-skills` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/testing-handbook-skills` @main | https://github.com/trailofbits/skills.git |
 | `vercel` | https://github.com/RUSHYOP/mirror-vercel-vercel-plugin.git @main | https://github.com/vercel/vercel-plugin.git |
 | `visual-explainer` | https://github.com/RUSHYOP/mirror-visual-explainer.git → `plugins/visual-explainer` @main | https://github.com/nicobailon/visual-explainer.git |
+| `web-quality` | https://github.com/RUSHYOP/mirror-addyosmani-web-quality-skills.git @main | https://github.com/addyosmani/web-quality-skills.git |
 | `webgpu-threejs-tsl` | https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git @main | https://github.com/dgreenheck/webgpu-claude-skill.git |
 
 ## First-party

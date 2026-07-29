@@ -61,7 +61,8 @@
     "supply-chain-risk-auditor",
     "swiftui-skills",
     "vercel",
-    "vizuara"
+    "vizuara",
+    "web-quality"
   ],
   "install": [
     {
@@ -218,6 +219,11 @@
       "name": "vizuara",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara",
       "kind": "local"
+    },
+    {
+      "name": "web-quality",
+      "source": "RUSHYOP/mirror-addyosmani-web-quality-skills",
+      "kind": "git"
     }
   ]
 }
