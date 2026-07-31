@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
-# Sync private RUSHYOP mirrors from upstream remotes.
+# Sync public RUSHYOP mirrors from upstream remotes.
 # Marketplace installs from mirrors; this job keeps mirrors fresh.
+#
+# Mirrors are PUBLIC by policy: the marketplace publishes the mirror URL as the
+# install source, so consumers clone it with their own credentials and a private
+# mirror is a `Repository not found` 404 for everyone but RUSHYOP. Every sync
+# creates new mirrors public and repairs any that are not — see
+# scripts/lib/mirror-visibility.sh.
 #
 # Usage:
 #   ./scripts/sync-mirrors.sh
@@ -13,6 +19,15 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REGISTRY="${ROOT}/mirrors/registry.tsv"
 MIRROR_ROOT="${MIRROR_ROOT:-${HOME}/Codes-2/claude-plugin-mirrors}"
 ONLY=""
+
+# shellcheck source=scripts/lib/mirror-visibility.sh
+source "${ROOT}/scripts/lib/mirror-visibility.sh"
+
+# Mirrors whose visibility could not be set to public — reported at the end and
+# turned into a non-zero exit so a broken mirror never passes silently.
+# Newline-delimited string rather than an array: under `set -u`, bash 3.2 (the
+# system bash on macOS) errors on ${#empty_array[@]}.
+VISIBILITY_FAILURES=""
 
 if [[ "${1:-}" == "--only" ]]; then
   ONLY="${2:-}"
@@ -54,10 +69,14 @@ sync_one() {
   echo "Fetching upstream..."
   git -C "$bare" fetch origin --prune
 
+  # Create as public, and self-heal mirrors that predate the public-mirror policy
+  # (or were created by an older sync-mirrors.sh) instead of leaving them broken.
   if ! gh repo view "$gh_repo" &>/dev/null; then
-    echo "Creating private $gh_repo..."
-    gh repo create "$gh_repo" --private \
-      --description "Private mirror of $upstream (DR for rushy marketplace)"
+    echo "Creating public $gh_repo..."
+    gh repo create "$gh_repo" --public \
+      --description "Public mirror of $upstream (DR for rushy marketplace)"
+  else
+    ensure_mirror_public "$gh_repo" || VISIBILITY_FAILURES="${VISIBILITY_FAILURES}${gh_repo}"$'\n'
   fi
 
   if git -C "$bare" remote | grep -qx github; then
@@ -85,4 +104,11 @@ while IFS='|' read -r upstream name slug; do
 done < "$REGISTRY"
 
 echo ""
-echo "All mirrors synced. Marketplace installs use RUSHYOP/mirror-* URLs."
+if [[ -n "$VISIBILITY_FAILURES" ]]; then
+  echo "WARNING: these mirrors are NOT public and will 404 for marketplace consumers:" >&2
+  printf '%s' "$VISIBILITY_FAILURES" | sed 's/^/  /' >&2
+  echo "Fix with: ./scripts/audit-mirror-visibility.sh --fix" >&2
+  exit 1
+fi
+
+echo "All mirrors synced and public. Marketplace installs use RUSHYOP/mirror-* URLs."

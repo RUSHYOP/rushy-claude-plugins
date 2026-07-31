@@ -1,7 +1,9 @@
 # Upstream plugin catalog (mirrored)
 
-Install **source** = private `RUSHYOP/mirror-*` repo (always available).
+Install **source** = **public** `RUSHYOP/mirror-*` repo (always available,
+clonable by anyone without credentials).
 Refresh from real upstream with `./scripts/sync-mirrors.sh`.
+Verify every mirror is public with `./scripts/audit-mirror-visibility.sh`.
 Import newly enabled Claude plugins with `./scripts/import-from-claude.sh`.
 Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`.
 

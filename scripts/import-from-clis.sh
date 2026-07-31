@@ -11,7 +11,7 @@
 #           (or: grok plugin marketplace add /Users/admin/Codes-2/Agentic-setup)
 #
 # New upstream remotes are registered in mirrors/registry.tsv. Optionally
-# create/refresh those private mirrors with --sync (off by default).
+# create/refresh those public mirrors with --sync (off by default).
 #
 # Usage:
 #   ./scripts/import-from-clis.sh
@@ -90,7 +90,7 @@ print(f"NEW_MIRRORS:{len(mirrors)}")
 for m in mirrors:
     print(f"MIRROR:{m}")
 if added and not dry:
-    print("HINT: run ./scripts/sync-mirrors.sh to create/refresh private mirrors for new remotes")
+    print("HINT: run ./scripts/sync-mirrors.sh to create/refresh public mirrors for new remotes")
     print("HINT: then enable in CLIs via marketplace (no forced install from this script)")
 PY
 )
@@ -145,4 +145,4 @@ echo "Catalog is the source of truth. Point CLIs at this marketplace:"
 echo "  Grok:   grok plugin marketplace add RUSHYOP/rushy-claude-plugins"
 echo "          grok plugin marketplace add $ROOT   # live local checkout"
 echo "  Claude: enable *@rushy after registering RUSHYOP/rushy-claude-plugins"
-echo "Mirrors:  ./scripts/sync-mirrors.sh   # only when you want private DR copies refreshed"
+echo "Mirrors:  ./scripts/sync-mirrors.sh   # only when you want public DR copies refreshed"

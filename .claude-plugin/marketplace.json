@@ -7,7 +7,7 @@
   },
   "metadata": {
     "version": "1.2.0",
-    "description": "RUSHYOP Claude Code marketplace: first-party plugins + upstream plugins installed from private RUSHYOP mirrors (synced from upstream).",
+    "description": "RUSHYOP Claude Code marketplace: first-party plugins + upstream plugins installed from public RUSHYOP mirrors (synced from upstream).",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -282,7 +282,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
@@ -315,7 +315,7 @@
         "mirrorRepo": "RUSHYOP/mirror-chromedevtools-chrome-devtools-mcp",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "grok",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+        "note": "Catalog only in rushy; install from public mirror. sync-mirrors.sh refreshes from upstreamUrl."
       }
     },
     {
@@ -344,7 +344,7 @@
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
@@ -375,7 +375,7 @@
         "upstreamMarketplace": "thedotmack",
         "upstreamRepo": "https://github.com/thedotmack/claude-mem.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/thedotmack/claude-mem.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-mem.git",
         "mirrorRepo": "RUSHYOP/mirror-claude-mem"
@@ -406,7 +406,7 @@
         "upstreamMarketplace": "anthropic-cybersecurity-skills",
         "upstreamRepo": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl. Option B: do not auto-enable; use cybersecurity-core (~81 skills) instead. Full 817 remains available for opt-in.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl. Option B: do not auto-enable; use cybersecurity-core (~81 skills) instead. Full 817 remains available for opt-in.",
         "upstreamUrl": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-anthropic-cybersecurity-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-anthropic-cybersecurity-skills",
@@ -450,7 +450,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
@@ -480,7 +480,7 @@
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/figma/mcp-server-guide.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-figma-mcp-server-guide.git",
         "mirrorRepo": "RUSHYOP/mirror-figma-mcp-server-guide"
@@ -512,7 +512,7 @@
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
@@ -543,7 +543,7 @@
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
@@ -578,7 +578,7 @@
         "mirrorRepo": "RUSHYOP/mirror-ayghri-i-have-adhd",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "add-plugin",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl.",
+        "note": "Catalog only in rushy; install from public mirror. sync-mirrors.sh refreshes from upstreamUrl.",
         "defaultEnabled": false,
         "replacedByNote": "Personal productivity plugin \u2014 opt-in, not default for all sessions."
       }
@@ -610,7 +610,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
@@ -644,7 +644,7 @@
         "mirrorRepo": "RUSHYOP/mirror-kotlin-kotlin-agent-skills",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "add-plugin",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+        "note": "Catalog only in rushy; install from public mirror. sync-mirrors.sh refreshes from upstreamUrl."
       }
     },
     {
@@ -672,7 +672,7 @@
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
@@ -706,7 +706,7 @@
         "mirrorRepo": "RUSHYOP/mirror-wshobson-agents",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "add-plugin",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+        "note": "Catalog only in rushy; install from public mirror. sync-mirrors.sh refreshes from upstreamUrl."
       }
     },
     {
@@ -734,7 +734,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
@@ -767,7 +767,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
@@ -799,7 +799,7 @@
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/anthropics/claude-plugins-official.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-claude-plugins-official.git",
         "mirrorRepo": "RUSHYOP/mirror-claude-plugins-official"
@@ -830,7 +830,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
@@ -860,7 +860,7 @@
         "upstreamMarketplace": "claude-plugins-official",
         "upstreamRepo": "https://github.com/anthropics/claude-plugins-official.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/obra/superpowers.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-superpowers.git",
         "mirrorRepo": "RUSHYOP/mirror-superpowers"
@@ -891,7 +891,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills"
@@ -923,7 +923,7 @@
         "upstreamMarketplace": "trailofbits",
         "upstreamRepo": "https://github.com/trailofbits/skills.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/trailofbits/skills.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-trailofbits-skills.git",
         "mirrorRepo": "RUSHYOP/mirror-trailofbits-skills",
@@ -958,7 +958,7 @@
         "mirrorRepo": "RUSHYOP/mirror-vercel-vercel-plugin",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "grok",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+        "note": "Catalog only in rushy; install from public mirror. sync-mirrors.sh refreshes from upstreamUrl."
       }
     },
     {
@@ -987,7 +987,7 @@
         "upstreamMarketplace": "visual-explainer-marketplace",
         "upstreamRepo": "https://github.com/nicobailon/visual-explainer.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/nicobailon/visual-explainer.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-visual-explainer.git",
         "mirrorRepo": "RUSHYOP/mirror-visual-explainer",
@@ -1029,7 +1029,7 @@
         "mirrorRepo": "RUSHYOP/mirror-addyosmani-web-quality-skills",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
         "importedFrom": "add-plugin",
-        "note": "Catalog only in rushy; install from private mirror. sync-mirrors.sh refreshes from upstreamUrl."
+        "note": "Catalog only in rushy; install from public mirror. sync-mirrors.sh refreshes from upstreamUrl."
       }
     },
     {
@@ -1057,7 +1057,7 @@
         "upstreamMarketplace": "webgpu-threejs-tsl",
         "upstreamRepo": "https://github.com/dgreenheck/webgpu-claude-skill.git",
         "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
-        "note": "Install/source points at private RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
+        "note": "Install/source points at public RUSHYOP mirror (survives upstream delete). Run scripts/sync-mirrors.sh to refresh from upstreamUrl.",
         "upstreamUrl": "https://github.com/dgreenheck/webgpu-claude-skill.git",
         "mirrorUrl": "https://github.com/RUSHYOP/mirror-webgpu-claude-skill.git",
         "mirrorRepo": "RUSHYOP/mirror-webgpu-claude-skill",

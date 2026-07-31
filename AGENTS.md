@@ -2,6 +2,14 @@
 
 This repository is the **only** place new plugins are added for RUSHYOP AI tooling (Claude Code, Grok, Cursor, etc.).
 
+**Visibility policy — non-negotiable:** everything this marketplace serves must be
+installable without credentials. This repo is public (so `./plugins/*` first-party
+entries are public), and every `RUSHYOP/mirror-*` repo must be **public**. Never
+create a mirror with `--private`: the mirror URL is the published install source,
+so a private mirror is a `Repository not found` 404 for every consumer. Use
+`./scripts/sync-mirrors.sh` (creates public, repairs non-public) and verify with
+`./scripts/audit-mirror-visibility.sh`.
+
 ## Non-negotiable workflow
 
 1. **Never** install a plugin only into a CLI (Claude/Grok/Cursor) as the primary step.
@@ -66,7 +74,8 @@ Then disable non-`@rushy` enables in CLIs so reference is only via this marketpl
 | `hooks/reconcile.sh` | Runnable reconcile (CLI → catalog) |
 | `hooks/check-cli-drift.sh` | Dry-run drift status |
 | `hooks/install-user-hooks.sh` | Global SessionStart / PostToolUse hooks |
-| `sync-mirrors.sh` | Private DR mirrors from upstream |
+| `sync-mirrors.sh` | Public DR mirrors from upstream (creates public, repairs non-public) |
+| `audit-mirror-visibility.sh` | Verify every mirror is public; `--fix` to repair |
 | `rebuild-marketplace.sh` | Refresh first-party from `plugins/*` |
 | `import-from-clis.sh` | Reconcile accidental CLI installs into catalog |
 | `generate-global-config.sh` | Regen enable lists from catalog |

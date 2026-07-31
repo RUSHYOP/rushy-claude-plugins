@@ -1,9 +1,18 @@
 # rushy-claude-plugins
 
-Private marketplace: **single source of truth** for RUSHYOP plugins/skills.
+Public marketplace: **single source of truth** for RUSHYOP plugins/skills.
 
 - **Local:** `/Users/admin/Codes-2/Agentic-setup`
-- **Remote:** https://github.com/RUSHYOP/rushy-claude-plugins (private)
+- **Remote:** https://github.com/RUSHYOP/rushy-claude-plugins (public)
+
+Everything this marketplace serves is installable by anyone, with no credentials:
+
+- **First-party plugins** live in this repo under `plugins/` and are served as
+  `./plugins/<name>` — public because this repo is public.
+- **Upstream plugins** install from `RUSHYOP/mirror-*`, which are **public** by
+  policy. A private mirror would 404 for every consumer, so `sync-mirrors.sh`
+  creates mirrors public and repairs any that are not. Audit anytime with
+  `./scripts/audit-mirror-visibility.sh`.
 
 ## Rule
 
@@ -44,7 +53,7 @@ What that does:
 1. Writes an entry in `.claude-plugin/marketplace.json`
 2. For upstream: install URL = **your** `RUSHYOP/mirror-*` (not the owner’s raw URL as the long-term source)
 3. Registers `mirrors/registry.tsv`
-4. Optional `--sync` creates/updates the private mirror
+4. Optional `--sync` creates/updates the **public** mirror
 5. Optional `--commit` / `--push`
 
 ## Wire tools (reference only)
@@ -119,7 +128,8 @@ See **[hooks/README.md](./hooks/README.md)**.
 | **`hooks/reconcile.sh`** | Runnable CLI→catalog reconcile |
 | **`hooks/check-cli-drift.sh`** | Dry-run drift check |
 | **`hooks/install-user-hooks.sh`** | Install global Grok/Claude hooks |
-| `sync-mirrors.sh` | Private DR mirrors |
+| `sync-mirrors.sh` | Public DR mirrors (creates public, repairs non-public) |
+| `audit-mirror-visibility.sh` | Audit mirrors are public; `--fix` to repair |
 | `rebuild-marketplace.sh` | First-party scan of `plugins/*` |
 | `import-from-clis.sh` | Reconcile CLI → catalog only |
 | `generate-global-config.sh` | Build `config/*` from catalog |
@@ -156,18 +166,26 @@ scripts/add-plugin.sh    # start here for new plugins
 
 ### `Failed to clone … RUSHYOP/mirror-… Repository not found`
 
-Private DR mirrors are **only** visible to the **RUSHYOP** GitHub account. If the
-active `gh` account is something else (e.g. a work account), HTTPS clones return
-GitHub’s generic 404 (`Repository not found`) even though the repos exist.
+Mirrors are **public**, so this should not happen for anyone. GitHub returns its
+generic 404 (`Repository not found`) for a private repo you cannot see — so this
+error now means a mirror has drifted back to private, or was created outside
+`sync-mirrors.sh`. Check and repair:
 
 ```bash
-gh auth switch --user RUSHYOP
-gh auth status   # RUSHYOP must be Active account: true
-# Then restart Claude Code and re-enable / refresh plugins
+./scripts/audit-mirror-visibility.sh         # report visibility of every mirror
+./scripts/audit-mirror-visibility.sh --fix   # make any non-public mirror public
 ```
 
-Git uses `gh auth git-credential` for `https://github.com` — the **active** account
-is the one Claude’s plugin cache uses when re-downloading mirrors.
+`--fix` requires the **RUSHYOP** account to be active (`gh auth switch --user
+RUSHYOP`), since only the owner can change visibility. *Consumers* never need to
+authenticate — verify that with:
+
+```bash
+GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_SYSTEM=/dev/null GIT_TERMINAL_PROMPT=0 \
+  git ls-remote https://github.com/RUSHYOP/mirror-superpowers.git HEAD
+```
+
+Then restart Claude Code and re-enable / refresh plugins.
 
 ### `Duplicate hooks file detected: ./hooks/hooks.json`
 

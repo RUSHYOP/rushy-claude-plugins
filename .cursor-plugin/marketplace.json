@@ -7,7 +7,7 @@
     "url": "https://github.com/RUSHYOP"
   },
   "metadata": {
-    "description": "RUSHYOP agent plugins/skills (Claude + Cursor). First-party under plugins/; upstream via private RUSHYOP mirrors. Local wire: ./scripts/apply-cursor.sh",
+    "description": "RUSHYOP agent plugins/skills (Claude + Cursor). First-party under plugins/; upstream via public RUSHYOP mirrors. Local wire: ./scripts/apply-cursor.sh",
     "version": "1.2.0",
     "pluginRoot": "plugins"
   },

@@ -8,7 +8,7 @@
 #   RUSHY_MARKETPLACE_ROOT  — marketplace checkout
 #   RUSHY_AUTO_COMMIT=1     — git commit catalog changes (default: 1)
 #   RUSHY_AUTO_PUSH=0       — git push after commit (default: 0)
-#   RUSHY_AUTO_SYNC=1       — sync new private mirrors only (default: 1)
+#   RUSHY_AUTO_SYNC=1       — sync new public mirrors only (default: 1)
 #   RUSHY_AUTO_SOURCES      — claude,grok | grok | claude (default: both)
 #   RUSHY_AUTO_DRY_RUN=0    — if 1, only dry-run (default: 0)
 

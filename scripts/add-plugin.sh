@@ -181,7 +181,7 @@ fi
 ./scripts/generate-global-config.sh >/dev/null 2>&1 || true
 
 if [[ "$SYNC" -eq 1 && -n "$MIRROR" ]]; then
-  echo "==> Creating/refreshing private mirror $MIRROR"
+  echo "==> Creating/refreshing public mirror $MIRROR"
   ./scripts/sync-mirrors.sh --only "$MIRROR"
 elif [[ -n "$MIRROR" ]]; then
   echo ""

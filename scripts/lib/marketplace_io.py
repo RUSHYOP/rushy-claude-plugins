@@ -24,7 +24,9 @@ MARKETPLACE_GIT: dict[str, str] = {
     "rushy": "https://github.com/RUSHYOP/rushy-claude-plugins.git",
 }
 
-# upstream git URL → private mirror name (RUSHYOP/<name>)
+# upstream git URL → public mirror name (RUSHYOP/<name>)
+# Mirrors are the published install URL, so they must be PUBLIC — consumers clone
+# them with their own credentials. See scripts/lib/mirror-visibility.sh.
 # extended at runtime from registry.tsv
 DEFAULT_MIRROR_NAMES: dict[str, str] = {
     "https://github.com/obra/superpowers.git": "mirror-superpowers",
@@ -182,8 +184,10 @@ def write_upstream_md(mp: dict[str, Any]) -> None:
     lines = [
         "# Upstream plugin catalog (mirrored)",
         "",
-        "Install **source** = private `RUSHYOP/mirror-*` repo (always available).",
+        "Install **source** = **public** `RUSHYOP/mirror-*` repo (always available,",
+        "clonable by anyone without credentials).",
         "Refresh from real upstream with `./scripts/sync-mirrors.sh`.",
+        "Verify every mirror is public with `./scripts/audit-mirror-visibility.sh`.",
         "Import newly enabled Claude plugins with `./scripts/import-from-claude.sh`.",
         "Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`.",
         "",
@@ -221,7 +225,7 @@ def rebuild_marketplace() -> dict[str, Any]:
             "version": "1.2.0",
             "description": (
                 "RUSHYOP Claude Code marketplace: first-party plugins + upstream "
-                "plugins installed from private RUSHYOP mirrors (synced from upstream)."
+                "plugins installed from public RUSHYOP mirrors (synced from upstream)."
             ),
             "pluginRoot": "./plugins",
         },
@@ -324,7 +328,7 @@ def convert_source_to_remote(
             "mirrorRepo": mirror.replace("https://github.com/", "").replace(".git", ""),
             "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
             "note": (
-                "Install points at private RUSHYOP mirror. "
+                "Install points at public RUSHYOP mirror. "
                 "Run scripts/sync-mirrors.sh to refresh from upstreamUrl. "
                 "Imported via import-from-clis.sh."
             ),
@@ -384,7 +388,7 @@ def entry_from_git(
             "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
             "importedFrom": via,
             "note": (
-                "Catalog only in rushy; install from private mirror. "
+                "Catalog only in rushy; install from public mirror. "
                 "sync-mirrors.sh refreshes from upstreamUrl."
             ),
         },

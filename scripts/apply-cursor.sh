@@ -215,7 +215,7 @@ def generate_cursor_marketplace_json(mp: dict) -> None:
         "metadata": {
             "description": (
                 "RUSHYOP agent plugins/skills (Claude + Cursor). "
-                "First-party under plugins/; upstream via private RUSHYOP mirrors. "
+                "First-party under plugins/; upstream via public RUSHYOP mirrors. "
                 "Local wire: ./scripts/apply-cursor.sh"
             ),
             "version": (mp.get("metadata") or {}).get("version", "1.0.0"),
@@ -287,7 +287,7 @@ def main() -> int:
     log("  3. Team-wide marketplace (Teams/Enterprise admin):")
     log("       Dashboard → Plugins → Add Marketplace")
     log("       Import: https://github.com/RUSHYOP/rushy-claude-plugins")
-    log("       (requires Cursor GitHub App access to the private repo)")
+    log("       (public repo — no Cursor GitHub App access needed)")
     log(f"  4. Agent CLI one-shot: agent --plugin-dir {local_dir}/<name> ...")
     log("")
     log("Unlink later: ./scripts/apply-cursor.sh --unlink")
