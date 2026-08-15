@@ -1,0 +1,21 @@
+{
+  "name": "obsidian",
+  "description": "Read/search a local Obsidian vault.",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "mcpServers": {
+    "obsidian": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mauricio.wolff/mcp-obsidian@latest",
+        "${OBSIDIAN_VAULT_PATH}"
+      ],
+      "env": {}
+    }
+  }
+}

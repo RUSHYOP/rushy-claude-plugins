@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "mcp-uds-server",
+  "version": "1.0.0",
+  "description": "Ramco UDS GraphQL MCP.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "defaultEnabled": false,
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "mcpServers": {
+    "mcp-uds-server": {
+      "type": "http",
+      "url": "http://hcmwascnv70.pearl.com/UDSMCPServer/mcp"
+    }
+  }
+}

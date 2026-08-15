@@ -82,6 +82,24 @@ Optional helper to regenerate enable lists / merge Claude `*@rushy`:
 ./scripts/apply-global.sh --claude
 ```
 
+## This repo as a plugin marketplace (Claude / Grok / Cursor / Gemini)
+
+```bash
+# Register on every local harness. MCP plugins stay OFF.
+./scripts/apply-global.sh --all
+```
+
+| Tool | Manifest | Command |
+|---|---|---|
+| Claude | `.claude-plugin/marketplace.json` | already `extraKnownMarketplaces.rushy` |
+| Grok | `.grok-plugin/marketplace.json` | `grok plugin marketplace add RUSHYOP/rushy-claude-plugins` |
+| Cursor | `.cursor-plugin/marketplace.json` | `./scripts/apply-cursor.sh` |
+| Gemini | `plugins/<name>/gemini-extension.json` | `./scripts/apply-gemini.sh` |
+
+MCP servers from Claude live in `config/mcp-servers.json` and are generated as
+opt-in plugins (`defaultEnabled: false`). Enable one at a time — see
+`config/mcp-servers.README.md`.
+
 ## Agents
 
 See **[AGENTS.md](./AGENTS.md)** — any AI working on plugin setup must use `add-plugin.sh`, not CLI-only installs.
@@ -133,8 +151,11 @@ See **[hooks/README.md](./hooks/README.md)**.
 | `rebuild-marketplace.sh` | First-party scan of `plugins/*` |
 | `import-from-clis.sh` | Reconcile CLI → catalog only |
 | `generate-global-config.sh` | Build `config/*` from catalog |
-| `apply-global.sh` | Optional Claude `*@rushy` merge |
+| `apply-global.sh` | Wire Claude / Grok / Cursor / Gemini (`--all`) |
 | `apply-cursor.sh` | Link rushy plugins into `~/.cursor/plugins/local` + write `.cursor-plugin/marketplace.json` |
+| `apply-mcp.sh` | MCP catalog → opt-in plugins; merge **disabled** servers into Cursor/Gemini |
+| `generate-mcp-plugins.sh` | Build `plugins/<mcp>/` + `.grok-plugin/marketplace.json` |
+| `apply-gemini.sh` | Gemini / Antigravity MCP adapters |
 | `clean-global-configs.sh` | Reset Claude + Grok globals to **only** this marketplace |
 
 ## Global agent rules (`CLAUDE.md`)

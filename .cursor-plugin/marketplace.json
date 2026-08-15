@@ -43,6 +43,20 @@
       }
     },
     {
+      "name": "atlassian-confluence",
+      "description": "Atlassian Confluence / Jira via official remote MCP.",
+      "version": "1.0.0",
+      "source": "plugins/atlassian-confluence",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
       "name": "better-ux-quality",
       "description": "Curated skills for improving UI quality and UX on non-3D websites and applications: design-system redesign, motion/UX systems, component polish, and conversion copy.",
       "version": "0.1.0",
@@ -59,6 +73,30 @@
       "source": "plugins/cybersecurity-core",
       "author": {
         "name": "RUSHYOP"
+      }
+    },
+    {
+      "name": "excalidraw",
+      "description": "Excalidraw hosted MCP (diagrams).",
+      "version": "1.0.0",
+      "source": "plugins/excalidraw",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
+      "name": "excalidraw-pages",
+      "description": "Excalidraw-style self-contained HTML pages: hand-drawn diagrams, sketch cards, paper-and-ink design system for plans, architecture docs, and reviews.",
+      "version": "1.1.0",
+      "source": "plugins/excalidraw-pages",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
       }
     },
     {
@@ -86,6 +124,76 @@
         "reconcile",
         "rushy",
         "plugins"
+      ]
+    },
+    {
+      "name": "mcp-uds-server",
+      "description": "Ramco UDS GraphQL MCP.",
+      "version": "1.0.0",
+      "source": "plugins/mcp-uds-server",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
+      "name": "miro-mcp",
+      "description": "Miro boards via official remote MCP.",
+      "version": "1.0.0",
+      "source": "plugins/miro-mcp",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
+      "name": "nebulastudio-mcp",
+      "description": "Ramco Nebula Studio (UAT) MCP.",
+      "version": "1.0.0",
+      "source": "plugins/nebulastudio-mcp",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
+      "name": "obsidian",
+      "description": "Read/search a local Obsidian vault.",
+      "version": "1.0.0",
+      "source": "plugins/obsidian",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
+      "name": "pdf-reader",
+      "description": "PDF read / search / OCR.",
+      "version": "1.0.0",
+      "source": "plugins/pdf-reader",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
       ]
     },
     {
@@ -117,6 +225,20 @@
       }
     },
     {
+      "name": "rapids-mcp",
+      "description": "Ramco RAPIDS MCP.",
+      "version": "1.0.0",
+      "source": "plugins/rapids-mcp",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
       "name": "react-native-skills",
       "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
       "version": "1.1.0",
@@ -125,6 +247,34 @@
         "name": "RUSHYOP (curated)",
         "email": "alwayspurav@gmail.com"
       }
+    },
+    {
+      "name": "rxds-figma-mcp",
+      "description": "Local RXDS Figma MCP (Ramco design-system components).",
+      "version": "1.0.0",
+      "source": "plugins/rxds-figma-mcp",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
+      "name": "shadcn",
+      "description": "shadcn/ui registry MCP.",
+      "version": "1.0.0",
+      "source": "plugins/shadcn",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
     },
     {
       "name": "swiftui-skills",
@@ -145,6 +295,20 @@
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
       }
+    },
+    {
+      "name": "whispr-flow",
+      "description": "Wispr Flow voice-to-text MCP (HTTP). OAuth on first connect.",
+      "version": "1.0.0",
+      "source": "plugins/whispr-flow",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
     },
     {
       "name": "agentic-actions-auditor",
@@ -424,6 +588,27 @@
       }
     },
     {
+      "name": "python-development",
+      "description": "Python engineering skills incl. python-performance-optimization (profiling, hot paths, complexity), async patterns, type safety, testing, packaging, uv.",
+      "version": "latest",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RUSHYOP/mirror-wshobson-agents.git",
+        "path": "plugins/python-development",
+        "ref": "main"
+      },
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
+    },
+    {
       "name": "semgrep-rule-creator",
       "description": "Create custom Semgrep rules for detecting bug patterns and security vulnerabilities",
       "version": "1.2.2",
@@ -613,6 +798,26 @@
         "diff-review",
         "slides"
       ]
+    },
+    {
+      "name": "web-quality",
+      "description": "Web quality + performance skills from Addy Osmani (Chrome): performance, Core Web Vitals, accessibility, SEO, best practices, audit.",
+      "version": "latest",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-addyosmani-web-quality-skills.git",
+        "ref": "main"
+      },
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported",
+        "upstream-mirror"
+      ],
+      "author": {
+        "name": "upstream"
+      }
     },
     {
       "name": "webgpu-threejs-tsl",

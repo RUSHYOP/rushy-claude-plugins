@@ -1,0 +1,10 @@
+{
+  "name": "mcp-uds-server",
+  "version": "1.0.0",
+  "mcpServers": {
+    "mcp-uds-server": {
+      "type": "http",
+      "url": "http://hcmwascnv70.pearl.com/UDSMCPServer/mcp"
+    }
+  }
+}

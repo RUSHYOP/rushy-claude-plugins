@@ -129,6 +129,21 @@ def load_plugin_json(plugin_dir: Path) -> dict[str, Any]:
 def first_party_entry(plugin_dir: Path) -> dict[str, Any]:
     meta = load_plugin_json(plugin_dir)
     name = meta.get("name") or plugin_dir.name
+    tags = ["first-party"]
+    # MCP-only plugins generated from config/mcp-servers.json stay opt-in.
+    if meta.get("defaultEnabled") is False or "mcp" in (meta.get("keywords") or []):
+        if "mcp" not in tags:
+            tags.append("mcp")
+        if "opt-in" not in tags:
+            tags.append("opt-in")
+    md: dict[str, Any] = {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+    }
+    # Honor plugin.json defaultEnabled so generate-global-config leaves them off.
+    if meta.get("defaultEnabled") is False:
+        md["defaultEnabled"] = False
+        md["kind"] = "mcp" if "mcp" in (meta.get("keywords") or []) else md.get("kind", "plugin")
     return {
         "name": name,
         "version": meta.get("version") or "1.0.0",
@@ -137,11 +152,8 @@ def first_party_entry(plugin_dir: Path) -> dict[str, Any]:
         or {"name": "RUSHYOP", "email": "alwayspurav@gmail.com"},
         "source": f"./plugins/{plugin_dir.name}",
         "keywords": meta.get("keywords") or [],
-        "tags": ["first-party"],
-        "metadata": {
-            "ownership": "RUSHYOP",
-            "updatePolicy": "this-repo",
-        },
+        "tags": tags,
+        "metadata": md,
     }
 
 
@@ -239,6 +251,14 @@ def rebuild_marketplace() -> dict[str, Any]:
     mp["plugins"] = first + upstream
     save_marketplace(mp)
     write_upstream_md(mp)
+    # Keep Grok's native index in lockstep (it also accepts .claude-plugin/).
+    try:
+        from mcp_catalog import write_grok_marketplace
+
+        write_grok_marketplace()
+    except Exception:
+        # Adapter is optional; Claude catalog is still the source of truth.
+        pass
     return mp
 
 

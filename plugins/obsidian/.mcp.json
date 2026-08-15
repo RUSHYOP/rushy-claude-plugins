@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "obsidian": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mauricio.wolff/mcp-obsidian@latest",
+        "${OBSIDIAN_VAULT_PATH}"
+      ],
+      "env": {}
+    }
+  }
+}

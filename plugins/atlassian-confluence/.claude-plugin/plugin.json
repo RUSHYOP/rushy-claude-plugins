@@ -1,0 +1,28 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "atlassian-confluence",
+  "version": "1.0.0",
+  "description": "Atlassian Confluence / Jira via official remote MCP.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "defaultEnabled": false,
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "mcpServers": {
+    "atlassian-confluence": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.atlassian.com/v1/mcp/authv2",
+        "--header",
+        "X-Atlassian-Site:${ATLASSIAN_SITE}"
+      ]
+    }
+  }
+}

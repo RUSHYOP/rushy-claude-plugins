@@ -25,6 +25,10 @@ for arg in "$@"; do
   esac
 done
 
+# MCP plugins are generated from config/mcp-servers.json so they exist on disk
+# before the first-party scan. They stay defaultEnabled=false.
+./scripts/generate-mcp-plugins.sh
+
 python3 <<'PY'
 import sys
 sys.path.insert(0, "scripts/lib")
@@ -33,8 +37,10 @@ from marketplace_io import rebuild_marketplace, PLUGINS_DIR
 mp = rebuild_marketplace()
 first = [p["name"] for p in mp["plugins"] if (p.get("metadata") or {}).get("ownership") == "RUSHYOP"]
 up = [p["name"] for p in mp["plugins"] if (p.get("metadata") or {}).get("ownership") != "RUSHYOP"]
-print(f"Rebuilt marketplace: {len(first)} first-party, {len(up)} upstream")
+opt_in = [p["name"] for p in mp["plugins"] if (p.get("metadata") or {}).get("defaultEnabled") is False]
+print(f"Rebuilt marketplace: {len(first)} first-party, {len(up)} upstream, {len(opt_in)} opt-in")
 print("  first-party:", ", ".join(first) or "(none)")
+print("  opt-in (off):", ", ".join(opt_in) or "(none)")
 print("  plugins dir:", PLUGINS_DIR)
 PY
 

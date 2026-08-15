@@ -1,0 +1,10 @@
+{
+  "name": "whispr-flow",
+  "version": "1.0.0",
+  "mcpServers": {
+    "whispr-flow": {
+      "type": "http",
+      "url": "https://api.wisprflow.ai/connect/mcp"
+    }
+  }
+}

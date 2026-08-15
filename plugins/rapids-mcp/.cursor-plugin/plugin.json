@@ -1,0 +1,21 @@
+{
+  "name": "rapids-mcp",
+  "description": "Ramco RAPIDS MCP.",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "mcpServers": {
+    "rapids-mcp": {
+      "type": "http",
+      "url": "http://hcmwascnv70.pearl.com/RapidsMCPServer/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RAPIDS_MCP_TOKEN}",
+        "context-ou-id": "27",
+        "context-role-name": "MCP_Role",
+        "context-lang-id": "1"
+      }
+    }
+  }
+}

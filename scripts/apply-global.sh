@@ -5,6 +5,10 @@
 #   ./scripts/apply-global.sh              # regen config/*
 #   ./scripts/apply-global.sh --claude     # merge *@rushy + install CLAUDE.md → ~/.claude/
 #   ./scripts/apply-global.sh --claude-md  # only install CLAUDE.md to ~/.claude/CLAUDE.md
+#   ./scripts/apply-global.sh --cursor     # symlink first-party plugins into Cursor
+#   ./scripts/apply-global.sh --grok       # ensure rushy marketplace sources in Grok
+#   ./scripts/apply-global.sh --gemini     # merge MCP catalog OFF into Gemini
+#   ./scripts/apply-global.sh --all        # claude + cursor + grok + gemini + mcp-off
 
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -12,12 +16,19 @@ cd "$ROOT"
 
 DO_CLAUDE=0
 DO_CLAUDE_MD=0
+DO_CURSOR=0
+DO_GROK=0
+DO_GEMINI=0
 for arg in "$@"; do
   case "$arg" in
     --claude) DO_CLAUDE=1; DO_CLAUDE_MD=1 ;;
     --claude-md) DO_CLAUDE_MD=1 ;;
+    --cursor) DO_CURSOR=1 ;;
+    --grok) DO_GROK=1 ;;
+    --gemini) DO_GEMINI=1 ;;
+    --all) DO_CLAUDE=1; DO_CLAUDE_MD=1; DO_CURSOR=1; DO_GROK=1; DO_GEMINI=1 ;;
     -h|--help)
-      sed -n '2,12p' "$0"
+      sed -n '2,18p' "$0"
       exit 0
       ;;
     *)
@@ -27,7 +38,9 @@ for arg in "$@"; do
   esac
 done
 
-./scripts/generate-global-config.sh
+# Keep MCP plugin trees, marketplace.json, and enable lists in lockstep.
+# rebuild-marketplace.sh generates MCP plugins then scans plugins/*.
+./scripts/rebuild-marketplace.sh
 
 if [[ "$DO_CLAUDE_MD" -eq 1 ]]; then
   if [[ ! -f "$ROOT/CLAUDE.md" ]]; then
@@ -76,8 +89,61 @@ print("Merged *@rushy into", sp)
 PY
 fi
 
+if [[ "$DO_CURSOR" -eq 1 ]]; then
+  ./scripts/apply-cursor.sh
+fi
+
+# Write disabled MCP adapter entries (Cursor/Gemini/Grok fragment) once.
+if [[ "$DO_CURSOR" -eq 1 || "$DO_GEMINI" -eq 1 || "$DO_GROK" -eq 1 ]]; then
+  ./scripts/apply-mcp.sh
+fi
+
+if [[ "$DO_GEMINI" -eq 1 ]]; then
+  # apply-mcp already merged Gemini mcp_config; --link only if CLI exists.
+  if command -v gemini >/dev/null 2>&1; then
+    ./scripts/apply-gemini.sh --link
+  fi
+fi
+
+if [[ "$DO_GROK" -eq 1 ]]; then
+  # Grok already has rushy path + git sources when clean-global-configs was used.
+  # Re-assert them without rewriting models/ui.
+  python3 <<'PY'
+from pathlib import Path
+import re
+root = Path(".").resolve()
+cfg = Path.home() / ".grok" / "config.toml"
+text = cfg.read_text() if cfg.exists() else ""
+need_path = str(root)
+need_git = "https://github.com/RUSHYOP/rushy-claude-plugins.git"
+changed = False
+if "name = \"rushy\"" not in text or need_path not in text:
+    text += (
+        "\n[[marketplace.sources]]\n"
+        'name = "rushy"\n'
+        f'path = "{need_path}"\n'
+    )
+    changed = True
+if "name = \"rushy-git\"" not in text or need_git not in text:
+    text += (
+        "\n[[marketplace.sources]]\n"
+        'name = "rushy-git"\n'
+        f'git = "{need_git}"\n'
+    )
+    changed = True
+if changed:
+    cfg.parent.mkdir(parents=True, exist_ok=True)
+    cfg.write_text(text)
+    print("Ensured Grok marketplace sources rushy + rushy-git →", cfg)
+else:
+    print("Grok marketplace already lists rushy / rushy-git")
+PY
+fi
+
 echo ""
 echo "Marketplace catalog: $ROOT"
 echo "  Global rules: CLAUDE.md (apply with: ./scripts/apply-global.sh --claude-md)"
 echo "  Add plugins:  ./scripts/add-plugin.sh … --sync --commit --push"
+echo "  Wire all:     ./scripts/apply-global.sh --all"
+echo "  MCP (off):    ./scripts/apply-mcp.sh"
 echo "  Wire CLIs to RUSHYOP/rushy-claude-plugins only (*@rushy)."

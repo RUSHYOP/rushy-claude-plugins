@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "miro-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.miro.com/"
+      ],
+      "env": {}
+    }
+  }
+}

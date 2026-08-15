@@ -1,0 +1,22 @@
+{
+  "name": "atlassian-confluence",
+  "description": "Atlassian Confluence / Jira via official remote MCP.",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "mcpServers": {
+    "atlassian-confluence": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.atlassian.com/v1/mcp/authv2",
+        "--header",
+        "X-Atlassian-Site:${ATLASSIAN_SITE}"
+      ]
+    }
+  }
+}

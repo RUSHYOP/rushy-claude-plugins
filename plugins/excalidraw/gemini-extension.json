@@ -1,0 +1,21 @@
+{
+  "name": "excalidraw",
+  "version": "1.0.0",
+  "mcpServers": {
+    "excalidraw": {
+      "type": "http",
+      "url": "https://api.excalidraw.com/api/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer ${EXCALIDRAW_MCP_TOKEN}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "EXCALIDRAW_MCP_TOKEN",
+      "description": "Required env for excalidraw",
+      "envVar": "EXCALIDRAW_MCP_TOKEN",
+      "sensitive": true
+    }
+  ]
+}

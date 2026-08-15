@@ -18,7 +18,12 @@ from datetime import datetime, timezone
 
 root = Path(".").resolve()
 mp = json.loads((root / ".claude-plugin" / "marketplace.json").read_text())
-names = sorted({p["name"] for p in mp.get("plugins", []) if p.get("name")})
+# Opt-in plugins (MCP catalog, full cyber pack, …) stay off.
+def _on(p):
+    return (p.get("metadata") or {}).get("defaultEnabled") is not False
+
+names = sorted({p["name"] for p in mp.get("plugins", []) if p.get("name") and _on(p)})
+opt_in = sorted({p["name"] for p in mp.get("plugins", []) if p.get("name") and not _on(p)})
 
 # ── Claude ──
 home = Path.home() / ".claude"
@@ -29,7 +34,11 @@ settings["extraKnownMarketplaces"] = {
         "source": {"source": "github", "repo": "RUSHYOP/rushy-claude-plugins"}
     }
 }
-settings["enabledPlugins"] = {f"{n}@rushy": True for n in names}
+# Default-on plugins true; catalog opt-ins (MCP, full cyber, …) explicitly false.
+settings["enabledPlugins"] = {
+    **{f"{n}@rushy": True for n in names},
+    **{f"{n}@rushy": False for n in opt_in},
+}
 settings_path.parent.mkdir(parents=True, exist_ok=True)
 settings_path.write_text(json.dumps(settings, indent=2) + "\n")
 
@@ -82,7 +91,10 @@ gs.write_text(
                     }
                 }
             },
-            "enabledPlugins": {f"{n}@rushy": True for n in names},
+            "enabledPlugins": {
+                **{f"{n}@rushy": True for n in names},
+                **{f"{n}@rushy": False for n in opt_in},
+            },
         },
         indent=2,
     )

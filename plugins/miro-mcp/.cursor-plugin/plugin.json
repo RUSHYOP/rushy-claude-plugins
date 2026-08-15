@@ -1,0 +1,21 @@
+{
+  "name": "miro-mcp",
+  "description": "Miro boards via official remote MCP.",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "mcpServers": {
+    "miro-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.miro.com/"
+      ],
+      "env": {}
+    }
+  }
+}

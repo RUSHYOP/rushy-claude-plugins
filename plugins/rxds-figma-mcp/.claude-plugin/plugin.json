@@ -1,0 +1,29 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "rxds-figma-mcp",
+  "version": "1.0.0",
+  "description": "Local RXDS Figma MCP (Ramco design-system components).",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "defaultEnabled": false,
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "mcpServers": {
+    "rxds-figma-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${RXDS_FIGMA_MCP_ENTRY}"
+      ],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "${FIGMA_ACCESS_TOKEN}",
+        "RXDS_COMPONENTS_PATH": "${RXDS_COMPONENTS_PATH}",
+        "RXDS_FIGMA_MCP_CONFIG": "${RXDS_FIGMA_MCP_CONFIG}"
+      }
+    }
+  }
+}

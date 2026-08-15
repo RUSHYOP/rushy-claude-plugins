@@ -1,0 +1,24 @@
+{
+  "name": "rapids-mcp",
+  "version": "1.0.0",
+  "mcpServers": {
+    "rapids-mcp": {
+      "type": "http",
+      "url": "http://hcmwascnv70.pearl.com/RapidsMCPServer/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RAPIDS_MCP_TOKEN}",
+        "context-ou-id": "27",
+        "context-role-name": "MCP_Role",
+        "context-lang-id": "1"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "RAPIDS_MCP_TOKEN",
+      "description": "Required env for rapids-mcp",
+      "envVar": "RAPIDS_MCP_TOKEN",
+      "sensitive": true
+    }
+  ]
+}

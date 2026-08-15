@@ -1,0 +1,44 @@
+{
+  "name": "rxds-figma-mcp",
+  "version": "1.0.0",
+  "mcpServers": {
+    "rxds-figma-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${RXDS_FIGMA_MCP_ENTRY}"
+      ],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "${FIGMA_ACCESS_TOKEN}",
+        "RXDS_COMPONENTS_PATH": "${RXDS_COMPONENTS_PATH}",
+        "RXDS_FIGMA_MCP_CONFIG": "${RXDS_FIGMA_MCP_CONFIG}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "RXDS_FIGMA_MCP_ENTRY",
+      "description": "Required env for rxds-figma-mcp",
+      "envVar": "RXDS_FIGMA_MCP_ENTRY",
+      "sensitive": false
+    },
+    {
+      "name": "FIGMA_ACCESS_TOKEN",
+      "description": "Required env for rxds-figma-mcp",
+      "envVar": "FIGMA_ACCESS_TOKEN",
+      "sensitive": true
+    },
+    {
+      "name": "RXDS_COMPONENTS_PATH",
+      "description": "Required env for rxds-figma-mcp",
+      "envVar": "RXDS_COMPONENTS_PATH",
+      "sensitive": false
+    },
+    {
+      "name": "RXDS_FIGMA_MCP_CONFIG",
+      "description": "Required env for rxds-figma-mcp",
+      "envVar": "RXDS_FIGMA_MCP_CONFIG",
+      "sensitive": false
+    }
+  ]
+}

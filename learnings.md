@@ -46,6 +46,22 @@ without fixing the wording would have invited the next mirror to be created
 private again. Hence the wording sweep, and the explicit visibility policy at the
 top of `AGENTS.md`.
 
+## MCP as opt-in plugins, not a forced blob
+
+Applying `config/mcp-servers.json` into `~/.claude.json` as a merge-all turned
+every personal/internal server on for anyone who ran `apply-mcp.sh`. The catalog
+is now the source of truth, and each server is a marketplace plugin with
+`defaultEnabled: false`. Clients get disabled adapter entries unless `--enable`
+is passed. `playwright` is not duplicated as a first-party plugin because
+`playwright@rushy` already ships that MCP.
+
+## Gemini has no marketplace.json
+
+Claude/Grok/Cursor all have a catalog file. Gemini CLI / Antigravity consume
+per-directory `gemini-extension.json`. Resolving this repo for Gemini means
+linking (or merging) each `plugins/<mcp>/` extension, not adding one marketplace
+URL.
+
 ## Portability: don't assume bash 4+
 
 These scripts run on any machine that clones the marketplace, and macOS ships

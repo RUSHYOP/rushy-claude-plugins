@@ -1,0 +1,26 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "pdf-reader",
+  "version": "1.0.0",
+  "description": "PDF read / search / OCR.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "defaultEnabled": false,
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "mcpServers": {
+    "pdf-reader": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@sylphx/pdf-reader-mcp"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -1,5 +1,31 @@
 # Worklog — rushy marketplace
 
+## 2026-08-15 — Claude MCPs → opt-in marketplace plugins + multi-harness wire
+
+**Ask:** take every MCP in Claude and add it to this marketplace off by default;
+resolve this repo as a plugin source for Claude, Grok, Cursor, Gemini.
+
+**Discovered in Claude `~/.claude.json` + `~/.mcp.json` (user + projects):**
+whispr-flow, obsidian, atlassian-confluence, pdf-reader, nebulastudio-mcp,
+playwright, mcp-uds-server, rapids-mcp, excalidraw, miro-mcp, shadcn,
+rxds-figma-mcp.
+
+**Changes:**
+
+1. Expanded `config/mcp-servers.json` (v2) with `_rushy` metadata, placeholders only.
+2. `scripts/lib/mcp_catalog.py` generates one first-party plugin per server
+   (Claude / Cursor / `.mcp.json` / `gemini-extension.json`), all
+   `defaultEnabled: false`.
+3. `playwright` is `skipPlugin` (already `playwright@rushy`).
+4. `apply-mcp.sh` default-off; `--enable NAME` to turn one on.
+5. `.grok-plugin/marketplace.json` generated so Grok has a native index.
+6. `apply-global.sh --all` / `apply-gemini.sh` wire the four harnesses.
+7. `clean-global-configs.sh` no longer auto-enables opt-in plugins.
+
+**Success criteria:** catalog lists MCP plugins with `defaultEnabled: false`;
+no live tokens in git; apply-global --all registers rushy; Gemini/Cursor get
+disabled server entries; Claude live `mcpServers` left as the user had them.
+
 ## 2026-08-01 — Make all mirrors public (marketplace consumable by anyone)
 
 **Problem reported:** people could not access the marketplace's mirror

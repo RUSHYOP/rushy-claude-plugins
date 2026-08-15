@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "nebulastudio-mcp",
+  "version": "1.0.0",
+  "description": "Ramco Nebula Studio (UAT) MCP.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "defaultEnabled": false,
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "mcpServers": {
+    "nebulastudio-mcp": {
+      "type": "http",
+      "url": "https://designeridst.ramcouat.com/coregwops/proxy/coremcp/mcp"
+    }
+  }
+}

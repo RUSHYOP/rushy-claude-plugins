@@ -1,0 +1,24 @@
+{
+  "name": "obsidian",
+  "version": "1.0.0",
+  "mcpServers": {
+    "obsidian": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mauricio.wolff/mcp-obsidian@latest",
+        "${OBSIDIAN_VAULT_PATH}"
+      ],
+      "env": {}
+    }
+  },
+  "settings": [
+    {
+      "name": "OBSIDIAN_VAULT_PATH",
+      "description": "Required env for obsidian",
+      "envVar": "OBSIDIAN_VAULT_PATH",
+      "sensitive": false
+    }
+  ]
+}

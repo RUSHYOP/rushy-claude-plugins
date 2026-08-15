@@ -1,0 +1,15 @@
+{
+  "name": "pdf-reader",
+  "version": "1.0.0",
+  "mcpServers": {
+    "pdf-reader": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@sylphx/pdf-reader-mcp"
+      ],
+      "env": {}
+    }
+  }
+}

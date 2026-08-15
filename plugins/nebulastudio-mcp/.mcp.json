@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "nebulastudio-mcp": {
+      "type": "http",
+      "url": "https://designeridst.ramcouat.com/coregwops/proxy/coremcp/mcp"
+    }
+  }
+}
