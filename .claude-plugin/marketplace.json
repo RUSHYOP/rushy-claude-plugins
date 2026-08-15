@@ -66,6 +66,31 @@
       }
     },
     {
+      "name": "atlassian-confluence",
+      "version": "1.0.0",
+      "description": "Atlassian Confluence / Jira via official remote MCP.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/atlassian-confluence",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
       "name": "better-ux-quality",
       "version": "0.1.0",
       "description": "Curated skills for improving UI quality and UX on non-3D websites and applications: design-system redesign, motion/UX systems, component polish, and conversion copy.",
@@ -98,6 +123,31 @@
       "metadata": {
         "ownership": "RUSHYOP",
         "updatePolicy": "this-repo"
+      }
+    },
+    {
+      "name": "excalidraw",
+      "version": "1.0.0",
+      "description": "Excalidraw hosted MCP (diagrams).",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/excalidraw",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
       }
     },
     {
@@ -161,6 +211,131 @@
       }
     },
     {
+      "name": "mcp-uds-server",
+      "version": "1.0.0",
+      "description": "Ramco UDS GraphQL MCP.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/mcp-uds-server",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
+      "name": "miro-mcp",
+      "version": "1.0.0",
+      "description": "Miro boards via official remote MCP.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/miro-mcp",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
+      "name": "nebulastudio-mcp",
+      "version": "1.0.0",
+      "description": "Ramco Nebula Studio (UAT) MCP.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/nebulastudio-mcp",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
+      "name": "obsidian",
+      "version": "1.0.0",
+      "description": "Read/search a local Obsidian vault.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/obsidian",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
+      "name": "pdf-reader",
+      "version": "1.0.0",
+      "description": "PDF read / search / OCR.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/pdf-reader",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
       "name": "r3f",
       "version": "1.0.0",
       "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
@@ -204,6 +379,31 @@
       }
     },
     {
+      "name": "rapids-mcp",
+      "version": "1.0.0",
+      "description": "Ramco RAPIDS MCP.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/rapids-mcp",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
       "name": "react-native-skills",
       "version": "1.1.0",
       "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
@@ -219,6 +419,56 @@
       "metadata": {
         "ownership": "RUSHYOP",
         "updatePolicy": "this-repo"
+      }
+    },
+    {
+      "name": "rxds-figma-mcp",
+      "version": "1.0.0",
+      "description": "Local RXDS Figma MCP (Ramco design-system components).",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/rxds-figma-mcp",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
+      "name": "shadcn",
+      "version": "1.0.0",
+      "description": "shadcn/ui registry MCP.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/shadcn",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
       }
     },
     {
@@ -255,6 +505,31 @@
       "metadata": {
         "ownership": "RUSHYOP",
         "updatePolicy": "this-repo"
+      }
+    },
+    {
+      "name": "whispr-flow",
+      "version": "1.0.0",
+      "description": "Wispr Flow voice-to-text MCP (HTTP). OAuth on first connect.",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/whispr-flow",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
       }
     },
     {
