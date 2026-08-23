@@ -1,0 +1,20 @@
+{
+  "name": "mcp-uds-server",
+  "version": "1.0.0",
+  "description": "Ramco UDS GraphQL MCP.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "defaultEnabled": false,
+  "mcpServers": {
+    "mcp-uds-server": {
+      "type": "http",
+      "url": "http://hcmwascnv70.pearl.com/UDSMCPServer/mcp"
+    }
+  }
+}

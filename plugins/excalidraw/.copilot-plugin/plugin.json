@@ -1,0 +1,23 @@
+{
+  "name": "excalidraw",
+  "version": "1.0.0",
+  "description": "Excalidraw hosted MCP (diagrams).",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "defaultEnabled": false,
+  "mcpServers": {
+    "excalidraw": {
+      "type": "http",
+      "url": "https://api.excalidraw.com/api/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer ${EXCALIDRAW_MCP_TOKEN}"
+      }
+    }
+  }
+}

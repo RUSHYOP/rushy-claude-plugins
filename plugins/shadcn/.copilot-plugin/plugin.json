@@ -1,0 +1,25 @@
+{
+  "name": "shadcn",
+  "version": "1.0.0",
+  "description": "shadcn/ui registry MCP.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "defaultEnabled": false,
+  "mcpServers": {
+    "shadcn": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "shadcn@latest",
+        "mcp"
+      ]
+    }
+  }
+}

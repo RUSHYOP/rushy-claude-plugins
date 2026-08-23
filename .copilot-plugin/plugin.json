@@ -1,0 +1,43 @@
+{
+  "name": "rushy-claude-plugins",
+  "version": "1.0.0",
+  "description": "RUSHYOP plugin marketplace \u2014 single source of truth for all RUSHYOP AI tooling plugins (Claude Code, GitHub Copilot, Grok, Cursor, Gemini).",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "homepage": "https://github.com/RUSHYOP/rushy-claude-plugins",
+  "keywords": [
+    "marketplace",
+    "plugins",
+    "rushy",
+    "copilot",
+    "mcp"
+  ],
+  "plugins": [
+    "agent-tooling",
+    "android-dev-skills",
+    "android-skills",
+    "atlassian-confluence",
+    "better-ux-quality",
+    "cybersecurity-core",
+    "excalidraw",
+    "excalidraw-pages",
+    "ios-dev-skills",
+    "marketplace-ops",
+    "mcp-uds-server",
+    "miro-mcp",
+    "nebulastudio-mcp",
+    "obsidian",
+    "pdf-reader",
+    "r3f",
+    "ramco-brain",
+    "rapids-mcp",
+    "react-native-skills",
+    "rxds-figma-mcp",
+    "shadcn",
+    "swiftui-skills",
+    "vizuara",
+    "whispr-flow"
+  ]
+}

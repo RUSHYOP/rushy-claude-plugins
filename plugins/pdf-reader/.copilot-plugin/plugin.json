@@ -1,0 +1,25 @@
+{
+  "name": "pdf-reader",
+  "version": "1.0.0",
+  "description": "PDF read / search / OCR.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "defaultEnabled": false,
+  "mcpServers": {
+    "pdf-reader": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@sylphx/pdf-reader-mcp"
+      ],
+      "env": {}
+    }
+  }
+}

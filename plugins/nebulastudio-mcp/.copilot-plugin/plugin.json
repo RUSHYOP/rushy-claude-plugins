@@ -1,0 +1,20 @@
+{
+  "name": "nebulastudio-mcp",
+  "version": "1.0.0",
+  "description": "Ramco Nebula Studio (UAT) MCP.",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "defaultEnabled": false,
+  "mcpServers": {
+    "nebulastudio-mcp": {
+      "type": "http",
+      "url": "https://designeridst.ramcouat.com/coregwops/proxy/coremcp/mcp"
+    }
+  }
+}
