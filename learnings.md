@@ -106,3 +106,24 @@ HEAD. That is what isolated the real collision from the noise.
 sum across Grok/Cursor/Claude caches and per-version directories inflate wildly; those are
 copies of one file, not competing skills. Only the **enabled** set costs tokens — 13 plugins /
 84 skills / ~6.8k tokens here. The other ~140 repo skills cost nothing.
+
+## 2026-08-30 (2) — MCP "always on" came from direct config, not plugins
+
+The marketplace packages every MCP as an opt-in (defaultEnabled=false) plugin — correct. But
+the same servers were *also* hand-configured as direct mcpServers in ~/.claude.json, which are
+always-on and take effect regardless of plugin enablement. That is what made "all MCPs on" and
+what double-loaded tools (direct namespace mcp__X__ + plugin namespace mcp__plugin_X_X__).
+
+**Rule learned:** direct mcpServers in ~/.claude.json and a marketplace MCP plugin for the same
+server are redundant. Pick one. Since the marketplace policy here is opt-in plugins, the direct
+entries are the ones to delete — that yields off-by-default AND single-source in one move.
+
+**Removing marketplaces:** use `claude plugin marketplace remove <name>`, not hand-editing
+known_marketplaces.json — the CLI also uninstalls that marketplace's plugins and cleans enable
+entries atomically. Verified: zero cross-marketplace dupes and zero stale enable entries after.
+
+**Cache prune ordering trap:** after bumping versions, a marketplace *catalog* update fetches
+the new version into cache but installed_plugins.json still points at the OLD version until
+`claude plugin update <p>` runs. Pruning "versions not in installed_plugins" BEFORE running the
+per-plugin update would delete the new culled versions and keep the old un-culled ones. Always
+update-then-prune.

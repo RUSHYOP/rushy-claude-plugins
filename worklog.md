@@ -155,3 +155,30 @@ removed the whole plugin. Regenerated .claude-plugin + .grok-plugin marketplaces
 config/grok-* via scripts/rebuild-marketplace.sh (auto-updated UPSTREAM.md too); hand-removed the entry
 from .cursor-plugin/marketplace.json and .copilot-plugin/plugin.json (no generator covers those).
 All other skills=0 plugins are MCP servers — legitimately kept. First-party now 24 (was 25).
+
+## 2026-08-30 (4) — Local duplication + MCP defaults cleanup
+
+**Task:** local skill/plugin duplication; all MCPs off by default; no MCP duplication.
+
+**Root cause of "all MCPs on":** 11 MCP servers were configured as *direct* entries in
+~/.claude.json (top-level + per-project) — always-on — while every one also exists as an
+opt-in (defaultEnabled=false) plugin in the marketplace. That double-definition also caused
+the same MCP to load twice (e.g. mcp__playwright__* AND mcp__plugin_playwright_playwright__*).
+
+**Done (all on local ~/.claude, backed up first — repo unchanged):**
+- Removed all direct mcpServers from ~/.claude.json (9 top-level + 6 per-project) and cleared
+  stale enabled/disabledMcpjsonServers. MCPs are now off by default, available only via their
+  single opt-in plugin. Backup: ~/.claude/backups-claude-json-<ts>.bak
+- Removed 5 redundant marketplaces via `claude plugin marketplace remove` (nothing enabled
+  from any): ccm, claude-plugins-official, trailofbits, visual-explainer-marketplace,
+  webgpu-threejs-tsl — all mirrored in rushy or collision sources. Kept rushy + the two
+  unique Ramco work marketplaces. Eliminated 4 cross-marketplace plugin dupes
+  (claude-md-management, frontend-design, playwright, skill-creator).
+- Removed 1 dangling dead enable entry (mirror-kotlin-...-75d3ff0b@rushy, plugin deleted
+  2026-07-25). Backups: known_marketplaces/installed_plugins/settings .bak-<ts>
+- Updated all installed rushy plugins to the bumped versions, then pruned 44 stale cache
+  version dirs + 4 removed-marketplace cache dirs (~31 MB).
+
+**Left as-is (user's explicit boundary "don't configure my enablements"):** figma, playwright,
+chrome-devtools-mcp plugins remain enabled — deliberate dev-tool choices, now single-sourced.
+Flagged for the user: `claude plugin disable <name>@rushy` to reach zero MCPs.
