@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>warp-factory — editorial register example</title>
+<link rel="stylesheet" href="warp-factory.css">
+<style>
+  body { margin: 0; }
+  /* EDITORIAL REGISTER (see variations.md): warm ground, looser 28px grid,
+     15px base, softer -1px tracking, column rails off. Same language,
+     different register — and a completely different section rhythm from
+     the page this design was extracted from. */
+  .wf {
+    --wf-bg: var(--p-braun-white);
+    --wf-maxw: 1120px;
+    font-size: 15px;
+    background:
+      radial-gradient(circle at 1px 1px, var(--wf-line-soft) 1px, transparent 0) 0 0 / 28px 28px,
+      var(--wf-bg);
+  }
+  .wf::before { display: none; }              /* rails off */
+  .wf h1, .wf h2, .wf h3 { letter-spacing: -1px; }
+  .measure { max-width: 68ch; }
+  .rel { padding: 40px 0; border-bottom: 1px solid var(--wf-line); }
+  .rel-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+</style></head>
+<body><div class="wf">
+
+<nav><div class="wrap">
+  <strong class="foot-brand">herdr</strong>
+  <div class="navlinks"><a href="#">Docs</a><a href="#">Changelog</a><a href="#">Source</a></div>
+  <div class="navcta"><span class="status ok">all systems normal</span>
+    <button class="navcta-btn">install</button></div>
+</div></nav>
+
+<!-- H5 · Index hero — opens straight onto the list, no pitch -->
+<section><div class="wrap" style="padding:56px 0 32px">
+  <div class="eyebrow">Changelog</div>
+  <h1 style="font-size:clamp(38px,4.4vw,56px);margin-top:12px">Everything that shipped</h1>
+  <p class="measure" style="margin-top:16px">Released weekly. Every entry links to the
+    commit range. Breaking changes are marked <span class="mark">inline</span> and never
+    land in a patch release.</p>
+  <div style="display:flex;gap:0;margin-top:26px;max-width:420px">
+    <input type="search" placeholder="filter releases…" aria-label="Filter releases">
+    <button class="btn btn-primary" style="border-left:none">search</button>
+  </div>
+</div></section>
+
+<!-- B4 · Spec table as the index -->
+<section><div class="wrap" style="padding:32px 0">
+  <table>
+    <thead><tr><th>Version</th><th>Date</th><th>Type</th><th class="num">Commits</th><th class="num">Δ</th></tr></thead>
+    <tbody>
+      <tr><td>0.8.2</td><td>2026&#8209;08&#8209;20</td><td>patch</td><td class="num">14</td><td class="num">+312 / −88</td></tr>
+      <tr><td>0.8.0</td><td>2026&#8209;08&#8209;04</td><td>minor</td><td class="num">61</td><td class="num">+2,904 / −1,177</td></tr>
+      <tr><td>0.7.4</td><td>2026&#8209;07&#8209;22</td><td>patch</td><td class="num">9</td><td class="num">+118 / −40</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<!-- B7 · Repeating log blocks under date headings -->
+<div class="wrap">
+  <article class="rel">
+    <div class="rel-head"><h2 style="font-size:26px">0.8.2</h2><span class="eyebrow">20 Aug 2026</span>
+      <span class="chip">patch</span></div>
+    <p class="measure" style="margin-bottom:16px">Pane movement across tabs, and a fix for
+      the detach race that could strand a session.</p>
+    <div class="panel" style="padding:10px 0">
+      <div class="line line-add"><span>+</span><code>pane move &lt;id&gt; --tab &lt;id&gt; --split right|down</code></div>
+      <div class="line line-add"><span>+</span><code>pane move --new-tab / --new-workspace</code></div>
+      <div class="line line-remove"><span>−</span><code>pane join (superseded by pane move)</code></div>
+    </div>
+    <ul class="callouts" style="margin-top:18px">
+      <li>Moving the last pane out of a tab now closes the tab cleanly.</li>
+      <li>Detach no longer races the server on slow sockets.</li>
+    </ul>
+  </article>
+
+  <article class="rel">
+    <div class="rel-head"><h2 style="font-size:26px">0.8.0</h2><span class="eyebrow">04 Aug 2026</span>
+      <span class="chip">minor</span></div>
+    <p class="measure" style="margin-bottom:16px">Agent state detection, and the sidebar
+      rewrite. <span class="mark">Breaking:</span> <code class="code-inline">indexed.tabs</code>
+      is replaced by <code class="code-inline">switch_tab</code>.</p>
+    <div class="code"><pre>[keys]
+switch_tab       = "prefix+1..9"
+move_tab_next    = "prefix+shift+right"
+move_tab_previous = "prefix+shift+left"</pre></div>
+    <p style="margin-top:12px"><span class="status wait">migration required</span></p>
+  </article>
+</div>
+
+<!-- B3 · Stats band as a rhythm break -->
+<section><div class="wrap" style="padding:0"><div class="stats-grid">
+  <div class="stat"><div class="stat-content"><div class="num">84</div>
+    <div class="label">releases</div><div class="desc">since first commit</div></div></div>
+  <div class="stat"><div class="stat-content"><div class="num">6.2d</div>
+    <div class="label">median cadence</div><div class="desc">trailing 12 weeks</div></div></div>
+  <div class="stat"><div class="stat-content"><div class="num">0</div>
+    <div class="label">breaking in patch</div><div class="desc">by policy</div></div></div>
+</div></div></section>
+
+<!-- B8 · Accordion -->
+<section><div class="wrap" style="padding:40px 0">
+  <h2 style="font-size:26px;margin-bottom:20px">Release policy</h2>
+  <details><summary>How are versions numbered?</summary>
+    <div class="details-body">Semver. Patch releases never contain breaking changes;
+      minor releases may, and always ship a migration note in this changelog.</div></details>
+  <details><summary>What counts as breaking?</summary>
+    <div class="details-body">Any change that requires editing your config, or that
+      changes the meaning of an existing keybinding or CLI flag.</div></details>
+  <details><summary>Where do I report a regression?</summary>
+    <div class="details-body">Open an issue with the output of <code class="code-inline">herdr status</code>
+      and the release you upgraded from.</div></details>
+</div></section>
+
+<!-- B9 · Inverted band, once, as punctuation -->
+<section class="band-dark"><div class="wrap" style="padding:48px 0">
+  <h2 style="font-size:24px;max-width:24ch">Every release is reproducible from the tag.</h2>
+  <p style="margin-top:12px;max-width:56ch">Build inputs are pinned and the checksum
+    is published with the binary.</p>
+  <div style="display:flex;gap:12px;margin-top:22px">
+    <span class="chip">signed</span><span class="chip">sbom</span><span class="chip">reproducible</span>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot-grid" style="--foot-cols:3">
+    <div><div class="foot-brand">herdr</div><p style="margin-top:10px;font-size:11px">Terminal workspace manager.</p></div>
+    <div><h5>product</h5><a href="#">Download</a><a href="#">Docs</a><a href="#">Changelog</a></div>
+    <div><h5>source</h5><a href="#">Repository</a><a href="#">Issues</a><a href="#">Releases</a></div>
+    <div><h5>legal</h5><a href="#">Licence</a><a href="#">Privacy</a></div>
+  </div>
+  <div class="foot-bottom">Built in warp-factory · editorial register</div>
+</div></footer>
+
+</div></body></html>

@@ -13,11 +13,17 @@ original.
 
 | Name | Source | Character | Best for |
 |---|---|---|---|
-| **warp-factory** | warp.dev | Monospace engineering drawing. Hairline rules, 22px dot grid, zero radius, zero shadows, one electric-blue accent. | Developer tools, technical docs, changelogs, dashboards, CLI companion sites |
+| **warp-factory** | warp.dev | Monospace engineering drawing. Hairline rules, 22px dot grid, zero radius, zero shadows, one electric-blue accent. Three registers: technical, editorial, console. | Developer tools, technical docs, changelogs, dashboards, status pages, CLI companion sites |
 
-Each design lives in `designs/<name>/` with two files:
-- `<name>.md` — the spec: tokens, rules, rationale, and a build checklist
-- `<name>.css` — a drop-in stylesheet, scoped to a single root class
+Each design lives in `designs/<name>/`:
+
+| File | What it is | Read it when |
+|---|---|---|
+| `<name>.md` | The spec — tokens, rules, rationale, build checklist | Always, first |
+| `<name>.css` | Drop-in stylesheet scoped to one root class | Always |
+| `variations.md` | What is load-bearing vs. what you should vary, plus registers | Before you choose a look |
+| `patterns.md` | Section archetypes and page compositions to recombine | While laying out the page |
+| `example.html` | A worked page in a *different* register from the source | For reference, not to copy |
 
 ## Building something in a design
 
@@ -25,15 +31,30 @@ Each design lives in `designs/<name>/` with two files:
    you values, but the spec explains which choices are load-bearing and which
    are incidental. Skipping it is how you end up with something that has the
    right colours and still looks wrong.
-2. **Link or inline the CSS** and apply the root class to your wrapper.
+2. **Read `variations.md` and pick a register** before you write markup. Each
+   design ships two or three tested registers (technical / editorial / console
+   for warp-factory). Picking one up front is what stops every page you build
+   from looking like the site the design came from.
+3. **Compose the page from `patterns.md`**, not from memory of the source site.
+   The section archetypes there are deliberately more varied than any single
+   real page, and the compositions table gives a starting rhythm per page type.
+4. **Link or inline the CSS** and apply the root class to your wrapper.
    `warp-factory` scopes everything to `.wf`, so it composes with existing
    styles instead of fighting them.
-3. **Use the documented component classes** rather than inventing new ones.
+5. **Use the documented component classes** rather than inventing new ones.
    If a design has `.btn` / `.cell` / `.panel`, those encode the language's
    proportions — a hand-rolled equivalent will drift.
-4. **Work the checklist** at the end of every spec before calling it done.
+6. **Work the checklist** at the end of every spec before calling it done.
    Most failures are a small number of repeat offenders: a stray border-radius,
    a second accent colour, or a shadow that shouldn't be there.
+
+### Build in the language, don't clone the source
+The most common failure is producing a near-copy of the site the design was
+extracted from — same section order, same hero split, same signature component.
+That is a *page*, not a design language. Two pages in the same language should
+share every component and share almost no section order. Each design's
+`variations.md` ends with an "Avoiding the clone" section listing the specific
+tells; check your layout against it before you finish.
 
 ### Choosing when the user hasn't named one
 Match on the *register* of the project, not just the subject. A design language

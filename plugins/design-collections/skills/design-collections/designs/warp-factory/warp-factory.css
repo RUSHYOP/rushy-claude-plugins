@@ -284,3 +284,239 @@
   .wf .step:first-child { border-top: none; }
   .wf h1 { font-size: clamp(34px, 9vw, 46px); }
 }
+
+/* ============================================================================
+   PART II — FULL COMPONENT SET
+   Part I covers what appears on the page this language was extracted from.
+   Everything below is the rest of a real site, built from the same tokens and
+   the same five rules. Nothing here introduces a new colour, radius or shadow.
+   ========================================================================== */
+
+/* --- 17. NAVIGATION -------------------------------------------------------- */
+.wf nav { background: var(--wf-bg); position: relative; z-index: 5; transition: transform .25s; }
+.wf nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+/* The nav's bottom edge is a dotted rule, not a solid one — a small tell that
+   separates chrome from content.                                            */
+.wf nav::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background-image: radial-gradient(circle, var(--wf-line) 1px, transparent 1.1px);
+  background-size: 7px 3px;
+  pointer-events: none;
+}
+.wf .navlinks { display: flex; gap: 22px; font-size: 12px; font-weight: 500; color: var(--wf-fg); }
+.wf .navlinks a {
+  border-bottom: 1px solid transparent; padding-bottom: 3px;
+  text-transform: lowercase;
+  transition: color .15s, border-color .15s;
+}
+.wf .navlinks a:hover { color: var(--wf-fg); border-color: var(--wf-accent); }
+.wf .navcta { display: flex; align-items: center; gap: 18px; margin-left: auto; font-size: 12px; font-weight: 500; }
+/* The one uppercase, tracked button in the language — reserved for the single
+   highest-priority action on the page.                                      */
+.wf .navcta-btn {
+  border: none; padding: 12px 18px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .08em;
+  background: var(--wf-fg); color: var(--wf-bg); cursor: pointer;
+}
+.wf .navcta-btn:hover { background: var(--wf-accent); }
+
+/* Sticky secondary bar: solid accent, white text, lilac for the de-emphasised
+   half. Its CTA inverts to yellow on hover — the only place yield appears.  */
+.wf .subnav { background: var(--wf-accent); color: #fff; }
+.wf .subnav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; font-size: 13px; font-weight: 500; }
+.wf .subnav b { color: var(--p-lilac); font-weight: 500; margin-right: 2px; }
+.wf .subnav-cta { margin-left: auto; padding: 6px 14px; background: var(--wf-bg); color: var(--wf-accent); font-weight: 500; }
+.wf .subnav-cta:hover { background: var(--wf-accent-yellow); color: var(--wf-fg); }
+
+/* Dropdown — carries the single shadow permitted in this language. */
+.wf .nav-pop {
+  position: absolute; top: calc(100% + 13px); left: -14px; z-index: 6;
+  min-width: 280px; max-width: min(560px, 100vw - 48px);
+  background: var(--wf-bg); border: 1px solid var(--wf-line);
+  box-shadow: 0 14px 44px #0d0a3d24;
+}
+.wf .pop-bar {
+  display: flex; justify-content: space-between; gap: 20px;
+  border-bottom: 1px solid var(--wf-line); padding: 7px 12px;
+  color: var(--wf-muted-2); font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+}
+.wf .pop-body {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 1fr);
+  gap: 20px; padding: 13px 16px;
+  background-image: radial-gradient(circle at 1px 1px, var(--wf-line-soft) 1.2px, transparent 0);
+  background-size: 26px 26px;
+}
+.wf .pop-body h6 { margin: 0 0 8px; color: var(--wf-muted-2); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.wf .pop-body a { display: block; padding: 5px 0; color: var(--wf-fg); font-size: 12px; text-transform: lowercase; }
+.wf .pop-body a:hover { color: var(--wf-accent); }
+.wf .pop-body a .desc { display: block; color: var(--wf-muted-2); font-size: 10.5px; text-transform: none; }
+
+/* --- 18. FOOTER ------------------------------------------------------------ */
+.wf footer { padding: 36px 0 28px; }
+.wf .foot-grid { display: grid; grid-template-columns: repeat(calc(var(--foot-cols, 5) + 1), minmax(0, 1fr)); }
+.wf .foot-grid > div { padding-right: 24px; }
+.wf .foot-brand { font-size: 14px; font-weight: 600; text-transform: lowercase; }
+.wf .foot-grid h5 { margin: 0 0 10px; color: var(--wf-muted-2); font-size: 10.5px; text-transform: lowercase; }
+.wf .foot-grid a { display: block; padding: 3px 0; color: var(--wf-muted); font-size: 12px; text-transform: lowercase; transition: color .15s; }
+.wf .foot-grid a:hover { color: var(--wf-accent); }
+.wf .foot-bottom { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--wf-line); color: var(--wf-muted-2); font-size: 11px; }
+
+/* --- 19. ASCII STATUS MARKERS ---------------------------------------------
+   Status is spelled, not just coloured — bracketed tokens read correctly in
+   monochrome and for colour-blind users. Prefer these over coloured dots.  */
+.wf .status { color: var(--wf-muted-2); font-size: 10px; }
+.wf .status.ok::before   { content: "[ok] "; color: var(--wf-ok); }
+.wf .status.wait::before { content: "[..] "; color: var(--wf-wait); }
+.wf .status.err::before  { content: "[!!] "; color: var(--wf-err); }
+.wf .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+.wf .dot.ok { background: var(--wf-ok); } .wf .dot.wait { background: var(--wf-wait); } .wf .dot.err { background: var(--wf-err); }
+.wf .dot.live { animation: wf-blink 2s step-end infinite; }
+
+/* --- 20. STATS BAND -------------------------------------------------------- */
+.wf .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.wf .stat { display: flex; justify-content: center; padding: 42px 28px; background: var(--wf-bg-panel); border-left: 1px solid var(--wf-line); }
+.wf .stat:first-child { border-left: none; }
+.wf .stat .label { margin-top: 8px; color: var(--wf-muted); font-size: 12.5px; text-transform: lowercase; }
+.wf .stat .desc  { margin-top: 3px; color: var(--wf-muted-2); font-size: 11.5px; }
+
+/* --- 21. ACCORDION / FAQ ---------------------------------------------------
+   Disclosure uses ASCII [+] / [−] rather than a rotating chevron. It is
+   quieter, needs no SVG, and matches the terminal register.               */
+.wf details { border-bottom: 1px solid var(--wf-line); }
+/* summary is `block`, not `flex`, on purpose: ::first-letter only applies to
+   block containers, and losing it would leave every question lowercase. The
+   marker is positioned instead of being a flex sibling.                    */
+.wf details > summary {
+  display: block; position: relative;
+  padding: 14px 28px 14px 0; cursor: pointer; list-style: none;
+  color: var(--wf-fg); font-size: 14px; font-weight: 500; text-transform: lowercase;
+}
+.wf details > summary::first-letter { text-transform: uppercase; }
+.wf details > summary::-webkit-details-marker { display: none; }
+.wf details > summary::after {
+  content: "[+]"; position: absolute; right: 0; top: 14px;
+  color: var(--wf-muted-2); font-size: 11px;
+}
+.wf details[open] > summary::after { content: "[\2212]"; }
+.wf details > summary:hover { color: var(--wf-accent); }
+.wf .details-body { padding: 0 0 16px; color: var(--wf-muted); font-size: 13px; max-width: 68ch; }
+
+/* --- 22. TABS -------------------------------------------------------------- */
+.wf .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--wf-line); }
+.wf .tab {
+  padding: 10px 16px; margin-bottom: -1px; cursor: pointer;
+  background: none; border: none; border-bottom: 1px solid transparent;
+  font-family: var(--wf-font-mono); font-size: 12px; font-weight: 500;
+  color: var(--wf-muted); text-transform: lowercase;
+  transition: color .15s, border-color .15s;
+}
+.wf .tab:hover { color: var(--wf-fg); }
+.wf .tab[aria-selected="true"] { color: var(--wf-accent); border-bottom-color: var(--wf-accent); }
+
+/* --- 23. TABLES -----------------------------------------------------------
+   Horizontal rules only. No zebra striping, no vertical borders — the column
+   rails already do that work.                                             */
+.wf table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.wf thead th {
+  text-align: left; padding: 9px 16px 9px 0;
+  border-bottom: 1px solid var(--wf-line);
+  color: var(--wf-muted-2); font-size: 9px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.wf tbody td { padding: 11px 16px 11px 0; border-bottom: 1px solid var(--wf-line-soft); color: var(--wf-muted); }
+.wf tbody tr:hover td { color: var(--wf-fg); }
+.wf tbody td:first-child { color: var(--wf-fg); }
+.wf td.num, .wf th.num { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+
+/* --- 24. FORMS ------------------------------------------------------------- */
+.wf label { display: block; margin-bottom: 6px; color: var(--wf-muted-2); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.wf input[type="text"], .wf input[type="email"], .wf input[type="search"], .wf textarea, .wf select {
+  width: 100%; padding: 10px 12px;
+  font-family: var(--wf-font-mono); font-size: 12.5px; color: var(--wf-fg);
+  background: var(--wf-bg); border: 1px solid var(--wf-line); border-radius: 0;
+  transition: border-color .15s;
+}
+.wf input:focus, .wf textarea:focus, .wf select:focus { outline: none; border-color: var(--wf-accent); }
+.wf input::placeholder, .wf textarea::placeholder { color: var(--wf-muted-2); }
+.wf input[aria-invalid="true"] { border-color: var(--wf-err); }
+.wf .field-hint { margin-top: 5px; color: var(--wf-muted-2); font-size: 11px; }
+.wf .field-error { margin-top: 5px; color: var(--wf-err); font-size: 11px; }
+/* Square checkboxes with an accent fill, consistent with the no-radius rule. */
+.wf input[type="checkbox"], .wf input[type="radio"] {
+  appearance: none; width: 13px; height: 13px; margin: 0 6px 0 0; vertical-align: -2px;
+  border: 1px solid var(--wf-line); background: var(--wf-bg); cursor: pointer;
+}
+.wf input[type="radio"] { border-radius: 50%; }
+.wf input[type="checkbox"]:checked, .wf input[type="radio"]:checked { background: var(--wf-accent); border-color: var(--wf-accent); }
+.wf .inline-form { display: flex; gap: 0; }
+.wf .inline-form input { border-right: none; }
+
+/* --- 25. CODE BLOCK -------------------------------------------------------- */
+.wf .code {
+  border: 1px solid var(--wf-line); background: var(--wf-bg);
+}
+.wf .code pre {
+  margin: 0; padding: 13px 16px;
+  color: var(--wf-code-fg); font-size: 10.5px; line-height: 1.7;
+  white-space: pre-wrap; overflow-wrap: break-word;
+  background-image: radial-gradient(circle at 1px 1px, var(--wf-line-soft) 1.2px, transparent 0);
+  background-size: 26px 26px;
+}
+.wf code { font-family: var(--wf-font-mono); color: var(--wf-code-fg); }
+.wf .code-inline { background: var(--wf-bg-panel); border: 1px solid var(--wf-line-soft); padding: 1px 5px; font-size: .92em; }
+
+/* --- 26. EDGE LABELS ------------------------------------------------------
+   Rotated technical annotations on the edges of a figure. Pure signature —
+   nothing functional depends on them, but they carry the drafting register. */
+.wf .edge-label { position: absolute; color: var(--wf-muted-2); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.wf .edge-label.left  { writing-mode: vertical-rl; top: 50%; left: 18px; transform: translateY(-50%) rotate(180deg); }
+.wf .edge-label.right { writing-mode: vertical-rl; top: 50%; right: 18px; transform: translateY(-50%); }
+.wf .edge-label.top   { top: 12px; left: 50%; transform: translateX(-50%); }
+
+/* --- 27. INVERTED BAND ----------------------------------------------------
+   The dark counterpart. Space ground, paper text, chips outlined in white at
+   45%. Use for at most one section per page — it is punctuation.          */
+.wf .band-dark {
+  background: var(--p-space); color: var(--p-braun-white);
+  --wf-fg: var(--p-braun-white);
+  --wf-muted: #b9b4c2;
+  --wf-muted-2: #8b8694;
+  --wf-line: #ffffff2e;
+  --wf-line-soft: #ffffff14;
+  --wf-bg: var(--p-space);
+  --wf-bg-panel: #241d2f;
+  --wf-accent: var(--p-lilac);
+}
+.wf .band-dark .chip { background: none; border-color: #ffffff73; color: var(--p-braun-white); }
+.wf .band-warm { background: var(--p-braun-white); --wf-bg: var(--p-braun-white); }
+
+/* --- 28. NOTICES + EMPTY STATE --------------------------------------------- */
+.wf .notice { border: 1px solid var(--wf-line); border-left-width: 1px; padding: 12px 14px; font-size: 12.5px; background: var(--wf-bg-panel); }
+.wf .notice-ok  { border-color: var(--wf-ok);  background: color-mix(in srgb, var(--wf-ok) 7%, transparent); color: var(--wf-ok); }
+.wf .notice-err { border-color: var(--wf-err); background: color-mix(in srgb, var(--wf-err) 7%, transparent); color: var(--wf-err); }
+.wf .empty {
+  border: 1px solid var(--wf-line); padding: 48px 24px; text-align: center;
+  color: var(--wf-muted-2); font-size: 12.5px;
+  background-image: radial-gradient(circle at 1px 1px, var(--wf-line-soft) 1.2px, transparent 0);
+  background-size: 26px 26px;
+}
+.wf .empty .empty-mark { display: block; margin-bottom: 10px; color: var(--wf-line); font-size: 28px; letter-spacing: .1em; }
+
+/* --- 29. MARQUEE / LOGO ROW ------------------------------------------------ */
+.wf .logo-row { display: flex; align-items: center; gap: 40px; padding: 22px 0; overflow: hidden; }
+.wf .logo-row img { height: 22px; width: auto; opacity: .55; filter: grayscale(1); transition: opacity .15s; }
+.wf .logo-row img:hover { opacity: 1; }
+
+/* --- 30. UTILITIES --------------------------------------------------------- */
+.wf .upper-acronym { text-transform: uppercase; }
+.wf .mark { background: var(--wf-accent-yellow); padding: 0 3px; }
+.wf .kbd { border: 1px solid var(--wf-line); padding: 1px 5px; font-size: 10.5px; color: var(--wf-muted); }
+.wf .divider { height: 1px; background: var(--wf-line); border: 0; margin: 0; }
+
+@media (max-width: 860px) {
+  .wf .stats-grid, .wf .foot-grid { grid-template-columns: 1fr; }
+  .wf .stat { border-left: none; border-top: 1px solid var(--wf-line); }
+  .wf .stat:first-child { border-top: none; }
+  .wf nav .wrap { gap: 16px; }
+  .wf .navlinks { display: none; }
+}

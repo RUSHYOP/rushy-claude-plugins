@@ -1,8 +1,14 @@
 # Warp Factory
 
 > Design language extracted from **warp.dev/skill-doctor** (2026-08).
-> Ships with `warp-factory.css`. All values below are transcribed from the
-> site's own `.factories-landing` token block — not eyeballed from screenshots.
+> All values below are transcribed from the site's own `.factories-landing`
+> token block — not eyeballed from screenshots.
+>
+> **This file is the reference. It is not a template.** Read
+> [`variations.md`](variations.md) for what you may change and the three
+> registers, and [`patterns.md`](patterns.md) for section archetypes to
+> recombine. [`example.html`](example.html) is a worked page in the editorial
+> register — deliberately sharing no layout with the source site.
 
 ---
 
@@ -246,7 +252,21 @@ animations outright. Honour this.
 - [ ] Hovers at 150ms, entrances on `cubic-bezier(.22, 1, .36, 1)`
 - [ ] `prefers-reduced-motion` respected
 
-## 11. Where it breaks
+## 11. Building in this language without cloning it
+
+Sections 1–10 describe the language. They do **not** describe a page layout —
+the hero split, the grade block and the three-step rail belong to
+warp.dev/skill-doctor, not to warp-factory.
+
+- `variations.md` — the five load-bearing rules, the free dimensions with
+  their usable ranges, three registers, and the specific tells that mean you
+  have drifted into cloning.
+- `patterns.md` — five hero variants, ten body sections, and six page
+  compositions built from the primitives above.
+- `example.html` — a changelog in the editorial register: warm ground, rails
+  off, 15px, table-led. Same language, unmistakably a different product.
+
+## 12. Where it breaks
 
 This language suits developer tools, technical docs, changelogs and dashboards.
 It fights back when you need: dense photography (the dot grid clashes), long-form

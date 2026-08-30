@@ -93,3 +93,10 @@ independent backstops: the `else` self-heal in `sync_one`, and the audit script.
 - First entry `warp-factory`, extracted from warp.dev/skill-doctor: `warp-factory.css` (285 lines, scoped to `.wf`) + `warp-factory.md` spec covering palette, typography, spacing, shape, icons, motion, components.
 - Verified by building a demo page from the shipped CSS only, screenshotting it, and diffing against a live screenshot of the source page.
 - Registered via `rebuild-marketplace.sh` (51 plugins, 26 first-party).
+
+## 2026-08-30 (cont.) — warp-factory: generative, not a skeleton
+- Feedback: the entry was a transcript of one page rather than a reusable language.
+- Expanded `warp-factory.css` 286 -> 522 lines: nav/subnav/dropdown, footer, ASCII status markers, stats band, accordion, tabs, tables, forms, code block, edge labels, inverted dark band, notices, empty state, logo row, utilities. All derived from the source site's real rules; no new colours, radii or shadows.
+- Added `variations.md` (load-bearing vs. free dimensions, three registers, "avoiding the clone") and `patterns.md` (5 hero variants, 10 body sections, 6 page compositions).
+- Added `example.html`: a changelog in the editorial register, sharing no layout with the source page. Rendered and screenshot-verified.
+- Fixed a real defect found by rendering: `::first-letter` silently no-ops on a `display:flex` summary, so accordion labels stayed lowercase. Summary is now `block` with a positioned marker.

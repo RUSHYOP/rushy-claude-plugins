@@ -76,3 +76,9 @@ here, but it is bash 4+ only.)
 - **Icons are never in the CSS.** Identify from SVG `viewBox`: `0 0 256 256` = Phosphor, `0 0 24 24` + `stroke-width=2` = Lucide/Feather, `0 0 20 20` solid = Heroicons.
 - **For font substitution, use the site's own declared fallback** rather than picking a lookalike — it is the substitution the original designers already accepted (Warp's `matterMono` falls back to Azeret Mono, which is free on Google Fonts).
 - **Verify by rebuild, not by reading.** Building a demo page from only the shipped CSS and screenshot-diffing it against the live page caught a real semantic error: the 30px diff gutter holds a single `+`/`-` marker, not a line number.
+
+## 2026-08-30 — A design language is not a page
+- Extracting tokens + the components that happen to appear on one page produces a **skeleton of that page**, not a reusable language. The missing layer is explicit: which choices are load-bearing (change them and the identity dies) vs. which are free (vary them or every output is a clone).
+- Shipping *registers* (named combinations of the free dimensions — technical / editorial / console) is what makes a design language generative. It gives a concrete starting point that is not the source page.
+- Section **rhythm** is what makes pages look copied, far more than component styling. Two pages should share every component and almost no section order.
+- `::first-letter` only applies to block containers. A `display:flex` summary silently ignores it — the rule looks correct in the stylesheet and does nothing. Caught only by rendering, not by reading.
