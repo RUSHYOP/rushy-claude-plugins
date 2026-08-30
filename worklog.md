@@ -122,3 +122,28 @@ that deleted `better-ux-quality/frontend-design`) never reached the running agen
 
 **Not done (needs user decision):** dropping `cybersecurity-core` (81-skill local subset that
 duplicates `mirror-anthropic-cybersecurity-skills`), and pruning `enabledPlugins`.
+
+## 2026-08-30 (2) — Skill necessity cull
+
+**Task:** Delete skills that are redundant with base-model capability; keep only what teaches
+something I'd otherwise get wrong. Explicitly NOT touching enabledPlugins.
+
+**Test applied:** per skill — "if this skill didn't exist and I were prompted to handle that
+aspect, would I do it confidently AND currently-correctly?" Yes => delete. Keep only for
+(a) org/project-specific, (b) exact contract I can't reproduce, (c) post-cutoff/churning API.
+
+**Result: 106 deleted, 65 kept** (docs/skill-necessity-audit-2026-08.md).
+- cybersecurity-core 81->10 (kept only real tool cheat-sheets: volatility3, plaso, certipy,
+  bloodhound-ce, ghidra, yara, zeek, falco, trivy, wireshark; dropped 71 generated methodology)
+- android-dev-skills 4->0 (all generic; plugin now empty — flagged as removal candidate)
+- better-ux-quality 11->2, ios-dev-skills 13->5, swiftui-skills 7->2, react-native-skills 5->1,
+  agent-tooling 6->4, android-skills 20->18, r3f 12->11
+- Kept intact: ramco-brain, vizuara, design-collections, excalidraw-pages, skill-doctor,
+  marketplace-ops (all project-specific)
+
+**Housekeeping:** minor-bumped all 9 touched plugins (plugin.json + marketplace.json), updated
+agent-tooling description (dropped git-commit/find-skills from the enumerated list),
+check-plugin-versions.sh passes. Pre-existing warp-factory.css change was already committed
+(cfa70d2) — not mine to touch.
+
+**Open (not done):** empty android-dev-skills removal; cyber-core-vs-mirror catalog overlap.
