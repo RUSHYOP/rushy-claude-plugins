@@ -1,0 +1,10 @@
+{
+  "name": "skill-doctor",
+  "version": "1.0.0",
+  "description": "Grade agent skills from local conversation history (efficiency + code quality), draft skill edits, and render a shareable HTML report. Runs entirely locally.",
+  "author": {
+    "name": "RUSHYOP (vendored from warpdotdev/common-skills)",
+    "email": "alwayspurav@gmail.com"
+  },
+  "skills": "./skills/"
+}

@@ -58,6 +58,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 - `react-native-skills` → `./plugins/react-native-skills`
 - `rxds-figma-mcp` → `./plugins/rxds-figma-mcp`
 - `shadcn` → `./plugins/shadcn`
+- `skill-doctor` → `./plugins/skill-doctor`
 - `swiftui-skills` → `./plugins/swiftui-skills`
 - `vizuara` → `./plugins/vizuara`
 - `whispr-flow` → `./plugins/whispr-flow`

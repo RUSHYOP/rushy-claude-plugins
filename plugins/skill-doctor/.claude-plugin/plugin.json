@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "skill-doctor",
+  "version": "1.0.0",
+  "description": "Grade agent skills from local conversation history (efficiency + code quality), draft skill edits, and render a shareable HTML report. Runs entirely locally.",
+  "author": {
+    "name": "RUSHYOP (vendored from warpdotdev/common-skills)",
+    "email": "alwayspurav@gmail.com"
+  },
+  "homepage": "https://github.com/warpdotdev/common-skills/tree/main/.agents/skills/skill-doctor",
+  "keywords": ["skills", "eval", "report", "efficiency"],
+  "skills": "./skills/"
+}

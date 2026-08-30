@@ -21,6 +21,13 @@ credentials to clone.
   (`./scripts/generate-global-config.sh`)
 - `metadata.defaultEnabled: false` = opt-in (not auto-enabled)
 
+## skill-doctor
+
+First-party plugin `plugins/skill-doctor` (vendored from
+`warpdotdev/common-skills`). Grades local conversations; reports go in a temp
+dir, never this repo. Enable `skill-doctor@rushy`. Refresh by re-copying the
+upstream skill directory.
+
 ## How to add a plugin
 
 ```bash

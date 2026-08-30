@@ -1,5 +1,12 @@
 # Worklog — rushy marketplace
 
+## 2026-08-30 — Add skill-doctor first-party plugin
+
+Vendored Warp's skill-doctor (`warpdotdev/common-skills` `.agents/skills/skill-doctor`,
+MIT) as `plugins/skill-doctor` so it installs from rushy (`skill-doctor@rushy`).
+Collector/render unit tests passed locally. Not run as a grade from Grok: the
+skill's harness gate only supports Warp, Claude Code, and Codex.
+
 ## 2026-08-15 — Claude MCPs → opt-in marketplace plugins + multi-harness wire
 
 **Ask:** take every MCP in Claude and add it to this marketplace off by default;

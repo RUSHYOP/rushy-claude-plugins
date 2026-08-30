@@ -418,6 +418,28 @@
       }
     },
     {
+      "name": "skill-doctor",
+      "description": "Grade agent skills from local conversation history (efficiency + code quality), draft skill edits, and render a shareable HTML report. Runs entirely locally.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP (vendored from warpdotdev/common-skills)",
+        "email": "alwayspurav@gmail.com"
+      },
+      "tags": [
+        "first-party"
+      ],
+      "keywords": [
+        "skills",
+        "eval",
+        "report",
+        "efficiency"
+      ],
+      "source": {
+        "type": "local",
+        "path": "./plugins/skill-doctor"
+      }
+    },
+    {
       "name": "swiftui-skills",
       "description": "Curated, deduped SwiftUI skills from top authors: swiftui-expert-skill (avdlee), swiftui-pro (twostraws), performance-audit/ui-patterns/view-refactor/liquid-glass (dimillian), expo-ui (Expo's SwiftUI-from-React bridge).",
       "version": "1.0.0",
