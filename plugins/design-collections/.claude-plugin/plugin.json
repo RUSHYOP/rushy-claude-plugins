@@ -1,6 +1,6 @@
 {
   "name": "design-collections",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A growing library of reusable design languages reverse-engineered from real production sites. Each entry ships a token-complete CSS file plus a design spec covering colour, typography, spacing, icons, components and motion.",
   "author": { "name": "RUSHYOP", "email": "alwayspurav@gmail.com" },
   "keywords": ["design", "css", "design-system", "design-tokens", "ui"]
