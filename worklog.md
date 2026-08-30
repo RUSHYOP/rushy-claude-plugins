@@ -147,3 +147,11 @@ check-plugin-versions.sh passes. Pre-existing warp-factory.css change was alread
 (cfa70d2) — not mine to touch.
 
 **Open (not done):** empty android-dev-skills removal; cyber-core-vs-mirror catalog overlap.
+
+## 2026-08-30 (3) — Remove empty plugin android-dev-skills
+
+After the necessity cull left android-dev-skills with 0 skills and no MCP/commands/agents/hooks,
+removed the whole plugin. Regenerated .claude-plugin + .grok-plugin marketplaces, config/global-settings,
+config/grok-* via scripts/rebuild-marketplace.sh (auto-updated UPSTREAM.md too); hand-removed the entry
+from .cursor-plugin/marketplace.json and .copilot-plugin/plugin.json (no generator covers those).
+All other skills=0 plugins are MCP servers — legitimately kept. First-party now 24 (was 25).

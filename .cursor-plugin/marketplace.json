@@ -23,16 +23,6 @@
       }
     },
     {
-      "name": "android-dev-skills",
-      "description": "Curated community Android development skills complementing the official android-skills plugin (no overlap): Material/Android design (wshobson), clean architecture, Kotlin coroutines/flows, Kotlin patterns (everything-claude-code).",
-      "version": "1.0.0",
-      "source": "plugins/android-dev-skills",
-      "author": {
-        "name": "RUSHYOP (curated)",
-        "email": "alwayspurav@gmail.com"
-      }
-    },
-    {
       "name": "android-skills",
       "description": "Official Android skills for AI agents (android/skills upstream): Compose styles/migration/adaptive, CameraX, Navigation 3, Perfetto tracing + SQL, R8, AGP 9 upgrade, Play Billing/Engage/policy, testing strategy, edge-to-edge, Wear, XR glasses, AppFunctions, intent security, verified email, android CLI.",
       "version": "1.0.0",

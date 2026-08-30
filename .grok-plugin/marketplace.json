@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "agent-tooling",
-      "description": "General agent skills: find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn.",
-      "version": "1.0.0",
+      "description": "General agent skills: graphify, migrate-radix-to-base, project-sites, shadcn.",
+      "version": "1.1.0",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
@@ -24,25 +24,9 @@
       }
     },
     {
-      "name": "android-dev-skills",
-      "description": "Curated community Android development skills complementing the official android-skills plugin (no overlap): Material/Android design (wshobson), clean architecture, Kotlin coroutines/flows, Kotlin patterns (everything-claude-code).",
-      "version": "1.0.0",
-      "author": {
-        "name": "RUSHYOP (curated)",
-        "email": "alwayspurav@gmail.com"
-      },
-      "tags": [
-        "first-party"
-      ],
-      "source": {
-        "type": "local",
-        "path": "./plugins/android-dev-skills"
-      }
-    },
-    {
       "name": "android-skills",
       "description": "Official Android skills for AI agents (android/skills upstream): Compose styles/migration/adaptive, CameraX, Navigation 3, Perfetto tracing + SQL, R8, AGP 9 upgrade, Play Billing/Engage/policy, testing strategy, edge-to-edge, Wear, XR glasses, AppFunctions, intent security, verified email, android CLI.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Android (google)",
         "url": "https://github.com/android/skills"
@@ -80,7 +64,7 @@
     {
       "name": "better-ux-quality",
       "description": "Curated skills for improving UI quality and UX on non-3D websites and applications: design-system redesign, motion/UX systems, component polish, and conversion copy.",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
@@ -96,7 +80,7 @@
     {
       "name": "cybersecurity-core",
       "description": "Curated subset of Anthropic Cybersecurity Skills (~70 high-signal skills). Drops OT/vendor sprawl and near-duplicate detect/hunt/tool twins from the full 817-skill catalog. Prefer this over cybersecurity-skills@rushy for agent routing quality.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "RUSHYOP"
       },
@@ -111,7 +95,7 @@
     {
       "name": "design-collections",
       "description": "A growing library of reusable design languages reverse-engineered from real production sites. Each entry ships a token-complete CSS file plus a design spec covering colour, typography, spacing, icons, components and motion.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
@@ -156,7 +140,7 @@
     {
       "name": "excalidraw-pages",
       "description": "Excalidraw-style self-contained HTML pages: hand-drawn diagrams, sketch cards, paper-and-ink design system for plans, architecture docs, and reviews.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
@@ -172,7 +156,7 @@
     {
       "name": "ios-dev-skills",
       "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "RUSHYOP (curated)",
         "email": "alwayspurav@gmail.com"
@@ -188,7 +172,7 @@
     {
       "name": "marketplace-ops",
       "description": "Rushy marketplace operations: SessionStart drift checks, post-install reconcile hints, and slash commands to import CLI-installed plugins into the RUSHYOP catalog.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
@@ -321,7 +305,7 @@
     {
       "name": "r3f",
       "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
@@ -345,7 +329,7 @@
     {
       "name": "ramco-brain",
       "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"
@@ -383,7 +367,7 @@
     {
       "name": "react-native-skills",
       "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
-      "version": "1.1.0",
+      "version": "1.3.0",
       "author": {
         "name": "RUSHYOP (curated)",
         "email": "alwayspurav@gmail.com"
@@ -465,7 +449,7 @@
     {
       "name": "swiftui-skills",
       "description": "Curated, deduped SwiftUI skills from top authors: swiftui-expert-skill (avdlee), swiftui-pro (twostraws), performance-audit/ui-patterns/view-refactor/liquid-glass (dimillian), expo-ui (Expo's SwiftUI-from-React bridge).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "RUSHYOP (curated)",
         "email": "alwayspurav@gmail.com"
@@ -481,7 +465,7 @@
     {
       "name": "vizuara",
       "description": "Report and figure generation: Vizuara PDF/HTML reports and Wisprflow chart figures.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "RUSHYOP",
         "email": "alwayspurav@gmail.com"

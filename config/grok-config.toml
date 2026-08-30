@@ -12,7 +12,6 @@ git = "https://github.com/RUSHYOP/rushy-claude-plugins.git"
 [skills]
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling/skills",
-  "/Users/admin/Codes-2/Agentic-setup/plugins/android-dev-skills/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core/skills",
@@ -31,7 +30,6 @@ paths = [
 [plugins]
 paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling",
-  "/Users/admin/Codes-2/Agentic-setup/plugins/android-dev-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
   "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core",
@@ -49,7 +47,6 @@ paths = [
 enabled = [
   "agent-tooling",
   "agentic-actions-auditor",
-  "android-dev-skills",
   "android-skills",
   "better-ux-quality",
   "chrome-devtools-mcp",

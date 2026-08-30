@@ -16,7 +16,6 @@
   ],
   "plugins": [
     "agent-tooling",
-    "android-dev-skills",
     "android-skills",
     "atlassian-confluence",
     "better-ux-quality",
