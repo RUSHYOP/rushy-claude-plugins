@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "agent-tooling",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "General agent skills: find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn.",
   "author": {
     "name": "RUSHYOP",

@@ -13,7 +13,7 @@
   "plugins": [
     {
       "name": "agent-tooling",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "General agent skills: find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn.",
       "author": {
         "name": "RUSHYOP",
@@ -31,7 +31,7 @@
     },
     {
       "name": "android-dev-skills",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Curated community Android development skills complementing the official android-skills plugin (no overlap): Material/Android design (wshobson), clean architecture, Kotlin coroutines/flows, Kotlin patterns (everything-claude-code).",
       "author": {
         "name": "RUSHYOP (curated)",
@@ -49,7 +49,7 @@
     },
     {
       "name": "android-skills",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Official Android skills for AI agents (android/skills upstream): Compose styles/migration/adaptive, CameraX, Navigation 3, Perfetto tracing + SQL, R8, AGP 9 upgrade, Play Billing/Engage/policy, testing strategy, edge-to-edge, Wear, XR glasses, AppFunctions, intent security, verified email, android CLI.",
       "author": {
         "name": "Android (google)",
@@ -92,7 +92,7 @@
     },
     {
       "name": "better-ux-quality",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Curated skills for improving UI quality and UX on non-3D websites and applications: design-system redesign, motion/UX systems, component polish, and conversion copy.",
       "author": {
         "name": "RUSHYOP",
@@ -176,7 +176,7 @@
     },
     {
       "name": "excalidraw-pages",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Excalidraw-style self-contained HTML pages: hand-drawn diagrams, sketch cards, paper-and-ink design system for plans, architecture docs, and reviews.",
       "author": {
         "name": "RUSHYOP",
@@ -194,7 +194,7 @@
     },
     {
       "name": "ios-dev-skills",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",
       "author": {
         "name": "RUSHYOP (curated)",
@@ -212,7 +212,7 @@
     },
     {
       "name": "marketplace-ops",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Rushy marketplace operations: SessionStart drift checks, post-install reconcile hints, and slash commands to import CLI-installed plugins into the RUSHYOP catalog.",
       "author": {
         "name": "RUSHYOP",
@@ -361,7 +361,7 @@
     },
     {
       "name": "r3f",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
       "author": {
         "name": "RUSHYOP",
@@ -386,7 +386,7 @@
     },
     {
       "name": "ramco-brain",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
       "author": {
         "name": "RUSHYOP",
@@ -429,7 +429,7 @@
     },
     {
       "name": "react-native-skills",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
       "author": {
         "name": "RUSHYOP (curated)",
@@ -520,7 +520,7 @@
     },
     {
       "name": "swiftui-skills",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Curated, deduped SwiftUI skills from top authors: swiftui-expert-skill (avdlee), swiftui-pro (twostraws), performance-audit/ui-patterns/view-refactor/liquid-glass (dimillian), expo-ui (Expo's SwiftUI-from-React bridge).",
       "author": {
         "name": "RUSHYOP (curated)",
@@ -538,7 +538,7 @@
     },
     {
       "name": "vizuara",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Report and figure generation: Vizuara PDF/HTML reports and Wisprflow chart figures.",
       "author": {
         "name": "RUSHYOP",

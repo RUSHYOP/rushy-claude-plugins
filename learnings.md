@@ -82,3 +82,27 @@ here, but it is bash 4+ only.)
 - Shipping *registers* (named combinations of the free dimensions — technical / editorial / console) is what makes a design language generative. It gives a concrete starting point that is not the source page.
 - Section **rhythm** is what makes pages look copied, far more than component styling. Two pages should share every component and almost no section order.
 - `::first-letter` only applies to block containers. A `display:flex` summary silently ignores it — the rule looks correct in the stylesheet and does nothing. Caught only by rendering, not by reading.
+
+## 2026-08-30 — A version-pinned cache silently reverts your audits
+
+The Claude plugin cache lives at `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/`.
+The **version is the cache key**. Shipping content without bumping it means installed clients
+never refetch — indefinitely.
+
+This turned a completed, correct skill audit (2026-07-25, commit `85c9c4f`) into a no-op for
+5 weeks. Skills deleted from the repo kept appearing in live sessions, which read as
+"the marketplace is bloated with duplicates" when the marketplace was actually clean.
+
+**Tradeoff considered:** bumping every plugin unconditionally on any commit would guarantee
+freshness but churn versions meaninglessly. Chose a scoped check instead — only
+`.claude-plugin/`, `skills/`, `commands/`, `agents/`, `hooks/` changes require a bump, since
+`.copilot-plugin/` and `.grok-plugin/` manifests do not affect what the Claude cache serves.
+
+**Diagnostic worth reusing:** compare each plugin's repo tree against
+`installed_plugins.json[].gitCommitSha` to list "ghost" skills — present in cache, absent from
+HEAD. That is what isolated the real collision from the noise.
+
+**Second lesson:** measure before accepting a bug report's numbers. Duplicate-file counts that
+sum across Grok/Cursor/Claude caches and per-version directories inflate wildly; those are
+copies of one file, not competing skills. Only the **enabled** set costs tokens — 13 plugins /
+84 skills / ~6.8k tokens here. The other ~140 repo skills cost nothing.

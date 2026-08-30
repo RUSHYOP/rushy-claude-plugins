@@ -100,3 +100,25 @@ independent backstops: the `else` self-heal in `sync_one`, and the audit script.
 - Added `variations.md` (load-bearing vs. free dimensions, three registers, "avoiding the clone") and `patterns.md` (5 hero variants, 10 body sections, 6 page compositions).
 - Added `example.html`: a changelog in the editorial register, sharing no layout with the source page. Rendered and screenshot-verified.
 - Fixed a real defect found by rendering: `::first-letter` silently no-ops on a `display:flex` summary, so accordion labels stayed lowercase. Summary is now `block` with a positioned marker.
+
+## 2026-08-30 — Skill collision audit + cache-staleness fix
+
+**Task:** Investigate reported skill collisions / marketplace bloat; recommend removals.
+
+**Finding:** The repo has 171 skills with **zero** internal name collisions. The reported
+duplicate counts (shadcn ×9, frontend-design ×11, 1,129 dups) did not reproduce — the
+Claude cache shows ×2 and ×3. Root cause of the one live collision was **cache staleness**,
+not catalog content: the plugin cache is version-keyed, no local plugin had been version-
+bumped since first install, so 36 commits of changes (including the 2026-07-25 skill audit
+that deleted `better-ux-quality/frontend-design`) never reached the running agent.
+
+**Done:**
+- `docs/skill-audit-2026-08.md` — measured audit, claim-vs-reality table, enabled-set token
+  costs (~6.9k → ~6.8k after refresh), pruning recommendations.
+- Version-bumped 12 local plugins (minor where skills were removed, patch otherwise) in both
+  `plugin.json` and `marketplace.json` so the cache invalidates.
+- `scripts/check-plugin-versions.sh` — CI guard: fails when a plugin's Claude-relevant paths
+  changed after its last version bump, or when the two manifests disagree.
+
+**Not done (needs user decision):** dropping `cybersecurity-core` (81-skill local subset that
+duplicates `mirror-anthropic-cybersecurity-skills`), and pruning `enabledPlugins`.
