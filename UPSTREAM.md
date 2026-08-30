@@ -43,6 +43,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 - `atlassian-confluence` → `./plugins/atlassian-confluence`
 - `better-ux-quality` → `./plugins/better-ux-quality`
 - `cybersecurity-core` → `./plugins/cybersecurity-core`
+- `design-collections` → `./plugins/design-collections`
 - `excalidraw` → `./plugins/excalidraw`
 - `excalidraw-pages` → `./plugins/excalidraw-pages`
 - `ios-dev-skills` → `./plugins/ios-dev-skills`

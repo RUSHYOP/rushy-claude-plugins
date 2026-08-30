@@ -69,3 +69,10 @@ bash 3.2, where `mapfile` does not exist and `${#empty_array[@]}` errors under
 `set -u`. New scripts use newline-delimited strings and counters instead of
 arrays. (The pre-existing `import-from-clis.sh` still uses `mapfile` — untouched
 here, but it is bash 4+ only.)
+
+## 2026-08-30 — Extracting a design language from a production site
+- **Flattening CSS custom properties across files produces a chimera.** A `grep`-all + `sort -u` over warp.dev's four stylesheets yielded contradictory tokens (`--radius` as both `.125rem` and `.625rem`, three different `--color-border`). Production sites ship a Tailwind/utility bundle *plus* a small brand file; only the latter is the design language.
+- **Find the brand layer by grepping each file for the brand-token names, not by size.** Here the 242KB file was utilities and the identity lived in a single `.factories-landing{...}` block of 30 declarations inside the 58KB file.
+- **Icons are never in the CSS.** Identify from SVG `viewBox`: `0 0 256 256` = Phosphor, `0 0 24 24` + `stroke-width=2` = Lucide/Feather, `0 0 20 20` solid = Heroicons.
+- **For font substitution, use the site's own declared fallback** rather than picking a lookalike — it is the substitution the original designers already accepted (Warp's `matterMono` falls back to Azeret Mono, which is free on Google Fonts).
+- **Verify by rebuild, not by reading.** Building a demo page from only the shipped CSS and screenshot-diffing it against the live page caught a real semantic error: the 30px diff gutter holds a single `+`/`-` marker, not a line number.

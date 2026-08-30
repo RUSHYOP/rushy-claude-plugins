@@ -109,6 +109,29 @@
       }
     },
     {
+      "name": "design-collections",
+      "description": "A growing library of reusable design languages reverse-engineered from real production sites. Each entry ships a token-complete CSS file plus a design spec covering colour, typography, spacing, icons, components and motion.",
+      "version": "1.0.0",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "tags": [
+        "first-party"
+      ],
+      "keywords": [
+        "design",
+        "css",
+        "design-system",
+        "design-tokens",
+        "ui"
+      ],
+      "source": {
+        "type": "local",
+        "path": "./plugins/design-collections"
+      }
+    },
+    {
       "name": "excalidraw",
       "description": "Excalidraw hosted MCP (diagrams).",
       "version": "1.0.0",

@@ -6,6 +6,7 @@
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
     "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core",
+    "/Users/admin/Codes-2/Agentic-setup/plugins/design-collections",
     "/Users/admin/Codes-2/Agentic-setup/plugins/excalidraw-pages",
     "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops",
@@ -22,6 +23,7 @@
     "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core/skills",
+    "/Users/admin/Codes-2/Agentic-setup/plugins/design-collections/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/excalidraw-pages/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/ios-dev-skills/skills",
     "/Users/admin/Codes-2/Agentic-setup/plugins/marketplace-ops/skills",
@@ -42,6 +44,7 @@
     "claude-md-management",
     "claude-mem",
     "cybersecurity-core",
+    "design-collections",
     "differential-review",
     "excalidraw-pages",
     "figma",
@@ -112,6 +115,11 @@
     {
       "name": "cybersecurity-core",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/cybersecurity-core",
+      "kind": "local"
+    },
+    {
+      "name": "design-collections",
+      "source": "/Users/admin/Codes-2/Agentic-setup/plugins/design-collections",
       "kind": "local"
     },
     {

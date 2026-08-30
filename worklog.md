@@ -87,3 +87,9 @@ the marketplace was private was stale and part of what made this confusing.
 inspection-only. Creating a throwaway repo to test it would leave a stray repo
 behind, since the RUSHYOP token lacks the `delete_repo` scope. Mitigated by two
 independent backstops: the `else` self-heal in `sync_one`, and the audit script.
+
+## 2026-08-30 — design-collections plugin (warp-factory)
+- Created first-party plugin `design-collections`: a router skill holding reusable design languages extracted from real sites.
+- First entry `warp-factory`, extracted from warp.dev/skill-doctor: `warp-factory.css` (285 lines, scoped to `.wf`) + `warp-factory.md` spec covering palette, typography, spacing, shape, icons, motion, components.
+- Verified by building a demo page from the shipped CSS only, screenshotting it, and diffing against a live screenshot of the source page.
+- Registered via `rebuild-marketplace.sh` (51 plugins, 26 first-party).

@@ -1,0 +1,286 @@
+/* ============================================================================
+   WARP FACTORY — design language
+   Extracted from warp.dev/skill-doctor (brand layer scoped to `.factories-landing`).
+   Source of truth: the site's own CSS custom properties, transcribed verbatim.
+   Everything is scoped to `.wf` so this can drop into an existing page safely.
+   ========================================================================== */
+
+/* --- 1. FONTS -------------------------------------------------------------
+   Warp ships two commercial faces: `matterMono` (body/UI, Matter Mono by
+   Displaay) and `theFuture` (display). Neither is redistributable, so this
+   sheet defaults to Azeret Mono — which is already the site's own declared
+   fallback and is free on Google Fonts, so the substitution is the one Warp
+   themselves chose. Swap --wf-font-mono if you have licences.              */
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&display=swap");
+
+.wf {
+  /* --- 2. RAW PALETTE ---------------------------------------------------
+     Warp names these `--p-*`. Only seven colours in the whole language.   */
+  --p-8bit:        #2a1eff;  /* electric blue — the single accent          */
+  --p-space:       #1a1522;  /* near-black ink, faintly violet             */
+  --p-night:       #0d0a3d;  /* deep navy — used ONLY as translucent rules */
+  --p-lilac:       #b7a4f2;
+  --p-braun-white: #fdfcf1;  /* warm paper                                 */
+  --p-yield:       #eef17c;  /* acid highlighter yellow                    */
+  --p-cool-white:  #f6f5fb;  /* panel fill                                 */
+
+  /* --- 3. SEMANTIC TOKENS ---------------------------------------------- */
+  --wf-bg:        #fff;
+  --wf-bg-panel:  var(--p-cool-white);
+  --wf-fg:        var(--p-space);
+  --wf-muted:     #5d5966;   /* body copy                                  */
+  --wf-muted-2:   #918d9a;   /* eyebrows, captions, line numbers           */
+  --wf-accent:    var(--p-8bit);
+  --wf-accent-2:  #7267ff;   /* softer blue for inline marks               */
+  --wf-accent-yellow: var(--p-yield);
+  --wf-code-fg:   #2a2534;
+
+  /* Rules are never opaque — always night at low alpha, so they sit on any
+     background without the "grey box" look.                               */
+  --wf-line:      #0d0a3d29; /* ~16% — real borders                        */
+  --wf-line-soft: #0d0a3d12; /* ~7%  — grid dots, column rails, tracks     */
+
+  /* Status: desaturated and earthy, never pure red/green.                 */
+  --wf-ok:   #3f6b3f;
+  --wf-wait: #8a7d1a;
+  --wf-err:  #b23a2f;
+
+  /* --- 4. TYPE + METRICS ------------------------------------------------ */
+  --wf-font-mono: "Azeret Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --wf-font-sans: ui-sans-serif, system-ui, sans-serif;
+  --wf-maxw: 1180px;
+  --wf-gutter: 24px;
+
+  /* The whole page is monospace at 13px. This is the defining choice.     */
+  font-family: var(--wf-font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--wf-fg);
+  position: relative;
+
+  /* --- 5. THE DOT GRID --------------------------------------------------
+     A 22px engineering-paper lattice under everything. Non-negotiable —
+     it is what makes the language read as "factory floor" not "SaaS".    */
+  background:
+    radial-gradient(circle at 1px 1px, var(--wf-line-soft) 1px, transparent 0) 0 0 / 22px 22px,
+    var(--wf-bg);
+}
+
+.wf *, .wf *::before, .wf *::after { box-sizing: border-box; }
+.wf a { color: inherit; text-decoration: none; }
+.wf ::selection { background: var(--wf-accent); color: var(--wf-bg); }
+
+/* --- 6. COLUMN RAILS -------------------------------------------------------
+   Five hairlines at sixth-points plus two edge rules, spanning the full page
+   height behind the content. Reads as a technical drawing substrate.       */
+.wf::before {
+  content: "";
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 48px), calc(var(--wf-maxw) - 48px));
+  border-left: 1px solid var(--wf-line-soft);
+  border-right: 1px solid var(--wf-line-soft);
+  background-image:
+    linear-gradient(var(--wf-line-soft), var(--wf-line-soft)),
+    linear-gradient(var(--wf-line-soft), var(--wf-line-soft)),
+    linear-gradient(var(--wf-line-soft), var(--wf-line-soft)),
+    linear-gradient(var(--wf-line-soft), var(--wf-line-soft)),
+    linear-gradient(var(--wf-line-soft), var(--wf-line-soft));
+  background-position: 16.6667% 0, 33.3333% 0, 50% 0, 66.6667% 0, 83.3333% 0;
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- 7. LAYOUT -------------------------------------------------------------
+   Sections are separated by full-bleed hairlines, never by whitespace alone
+   or by cards. Structure comes from rules, not shadows.                    */
+.wf .wrap { max-width: var(--wf-maxw); margin: 0 auto; padding: 0 var(--wf-gutter); position: relative; }
+.wf section { border-bottom: 1px solid var(--wf-line); }
+
+/* --- 8. TYPOGRAPHY ---------------------------------------------------------
+   Headings are the SAME monospace face as body, at weight 500 with hard
+   negative tracking. The -2px is absolute, not em-relative — so it bites
+   hard at display sizes and stays subtle at small ones.                    */
+.wf h1, .wf h2, .wf h3 {
+  font-family: var(--wf-font-mono);
+  font-weight: 500;
+  letter-spacing: -2px;
+  text-wrap: balance;
+  margin: 0;
+}
+.wf h1 { font-size: clamp(46px, 5.4vw, 72px); line-height: 0.94; max-width: 720px; }
+.wf .section-head { margin-bottom: 34px; }
+.wf .section-head h2 { font-size: 34px; margin-top: 10px; }
+.wf .section-head p  { max-width: 560px; margin-top: 10px; font-size: 13.5px; }
+.wf .cta h2 { font-size: 28px; margin-top: 10px; }
+
+.wf p { color: var(--wf-muted); font-weight: 500; margin: 0; }
+
+/* Sub-headings are lowercased, then the first letter is restored. This gives
+   the "terminal output" cadence while keeping sentences readable.          */
+.wf h4 {
+  font-family: var(--wf-font-mono);
+  font-size: 14px; font-weight: 600; margin: 0;
+  text-transform: lowercase;
+}
+.wf h4::first-letter { text-transform: uppercase; }
+.wf p::first-letter  { text-transform: uppercase; }
+
+/* Eyebrows / captions / meta: tiny, uppercase, widely tracked.            */
+.wf .eyebrow {
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--wf-muted-2);
+}
+.wf .tag  { color: var(--wf-accent); text-transform: lowercase; font-size: 11px; }
+.wf .prompt { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--wf-muted-2); }
+.wf .prompt .p { color: var(--wf-accent-2); }
+
+/* --- 9. BUTTONS ------------------------------------------------------------
+   Square. Bordered. Lowercase. No radius, no shadow, no gradient.         */
+.wf .btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--wf-font-mono); font-size: 12px; font-weight: 600;
+  text-transform: lowercase;
+  padding: 9px 14px;
+  border: 1px solid var(--wf-line);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.wf .btn-primary { background: var(--wf-fg); color: var(--wf-bg); border-color: var(--wf-fg); }
+.wf .btn-primary:hover { background: var(--wf-accent); border-color: var(--wf-accent); color: var(--wf-bg); }
+.wf .btn-ghost { background: var(--wf-bg); color: var(--wf-fg); }
+.wf .btn-ghost:hover { border-color: var(--wf-accent); color: var(--wf-accent); }
+.wf .btn-lg { min-height: 46px; padding: 13px 18px; font-size: 13px; }
+
+/* Chips are the single exception to the no-radius rule.                   */
+.wf .chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--wf-font-mono); font-size: 10px;
+  color: var(--wf-muted); white-space: nowrap;
+  border: 1px solid var(--wf-line); background: var(--wf-bg);
+  border-radius: 20px; padding: 3px 10px;
+}
+
+/* --- 10. SURFACES ----------------------------------------------------------
+   A "cell" is the atom of layout: a bordered region in a grid, dividers
+   shared between neighbours (border-left, first-child cleared).           */
+.wf .three-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.wf .three-grid .cell { border-left: 1px solid var(--wf-line); padding: 18px; min-width: 0; }
+.wf .three-grid .cell:first-child { border-left: none; }
+
+.wf figure { border: 1px solid var(--wf-line); background: var(--wf-bg); margin: 0; }
+.wf figcaption {
+  display: flex; justify-content: space-between; gap: 12px;
+  border-bottom: 1px solid var(--wf-line);
+  color: var(--wf-muted-2);
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 9px 16px;
+}
+.wf .panel {
+  background: var(--wf-bg-panel);
+  background-image: radial-gradient(circle at 1px 1px, var(--wf-line-soft) 1.2px, transparent 0);
+  background-size: 26px 26px;
+  border: 1px solid var(--wf-line);
+  padding: 14px 16px;
+}
+/* Note the panel grid is 26px, not the page's 22px — panels read as a
+   separate sheet laid on the page rather than a hole cut into it.        */
+
+/* --- 11. DATA DISPLAY ------------------------------------------------------ */
+.wf .metric p { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 7px; }
+.wf .metric span, .wf .metric b { font-size: 12px; }
+.wf .metric b { color: var(--wf-fg); font-weight: 600; }
+.wf .track { background: var(--wf-line-soft); height: 6px; }
+.wf .track i {
+  display: block; height: 100%; width: var(--fill, 0%);
+  background: var(--wf-accent); transform-origin: 0;
+  animation: wf-fill .7s cubic-bezier(.22, 1, .36, 1) var(--metric-delay, 0s) both;
+}
+.wf .grade strong {
+  color: var(--wf-accent);
+  font-size: 78px; font-weight: 500; line-height: .8; letter-spacing: -.1em;
+}
+.wf .stat .num { color: var(--wf-fg); font-size: 46px; font-weight: 600; letter-spacing: -.02em; }
+
+/* Diff / log lines. The 30px gutter holds a SINGLE marker character (+ / -),
+   not a line number — that is why 30px is enough. Row backgrounds are tinted
+   at 8-9% so the text, not the fill, stays the signal.                     */
+.wf .line { display: grid; grid-template-columns: 30px 1fr; padding: 1px 0; font-size: 11.5px; line-height: 1.7; }
+.wf .line > span { color: var(--wf-muted-2); padding-left: 16px; padding-right: 4px; }
+.wf .line code { color: var(--wf-code-fg); white-space: pre-wrap; overflow-wrap: anywhere; padding-right: 16px; }
+.wf .line-add    { background: color-mix(in srgb, var(--wf-ok) 9%, transparent); }
+.wf .line-add > span, .wf .line-add code { color: var(--wf-ok); }
+.wf .line-remove { background: color-mix(in srgb, var(--wf-err) 8%, transparent); }
+.wf .line-remove > span, .wf .line-remove code { color: var(--wf-err); }
+
+/* --- 12. STEP RAIL ---------------------------------------------------------
+   Numbered steps joined by a hairline with hollow circular nodes.         */
+.wf .steps { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; }
+.wf .step { border-left: 1px solid var(--wf-line); padding: 18px; min-width: 0; }
+.wf .step:first-child { border-left: none; }
+.wf .step-rail { position: relative; height: 9px; margin: 0 -18px 18px; }
+.wf .step-rail::before {
+  content: ""; position: absolute; top: 50%; left: 0; right: 0;
+  height: 1px; background: var(--wf-line);
+}
+.wf .step:first-child .step-rail::before { left: 18px; }
+.wf .step:last-child  .step-rail::before { right: calc(100% - 18px); }
+.wf .step-node {
+  position: absolute; top: 50%; left: 18px; transform: translate(-50%, -50%);
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1px solid var(--wf-accent); background: var(--wf-bg-panel);
+}
+.wf .step-n { color: var(--wf-accent); font-size: 11px; letter-spacing: .1em; }
+
+/* --- 13. LISTS -------------------------------------------------------------
+   Bullets are a monospace "+", never a disc.                              */
+.wf .callouts { margin: 0; padding: 0; list-style: none; }
+.wf .callouts li {
+  position: relative; padding-left: 22px;
+  color: var(--wf-muted); font-size: 13.5px; font-weight: 500; line-height: 1.65;
+}
+.wf .callouts li + li { margin-top: 12px; }
+.wf .callouts li::before {
+  content: "+"; position: absolute; top: 0; left: 0;
+  color: var(--wf-accent-2); font-family: var(--wf-font-mono);
+  font-size: 13px; font-weight: 600;
+}
+
+/* --- 14. LINKS + ICONS -----------------------------------------------------
+   Icons are Phosphor (viewBox 0 0 256 256, fill=currentColor) at 14px.
+   They inherit colour and are nudged up ~1-2px to sit on the text baseline. */
+.wf .link { color: var(--wf-accent); display: inline-flex; align-items: baseline; gap: 3px; white-space: nowrap; }
+.wf .link:hover { text-decoration: underline; }
+.wf .link svg, .wf .btn svg { flex: none; align-self: center; }
+.wf .icon { width: 14px; height: 14px; fill: currentColor; transform: translateY(-1px); }
+
+/* Cursor caret — a solid accent block, step-blinking.                     */
+.wf .caret {
+  display: inline-block; vertical-align: middle;
+  width: 6px; height: 12px; background: var(--wf-accent);
+  animation: wf-blink 1s step-end infinite;
+}
+
+/* --- 15. MOTION ------------------------------------------------------------
+   Fast and mechanical. Hovers 120-150ms linear-ish; entrances use a single
+   overshoot curve. Nothing bounces, nothing floats.                       */
+@keyframes wf-fill   { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes wf-reveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes wf-blink  { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wf .track i, .wf .line, .wf .caret { animation: none; }
+  .wf * { transition-duration: .01ms !important; }
+}
+
+/* --- 16. RESPONSIVE --------------------------------------------------------
+   The site collapses to single column at 860px and drops the column rails. */
+@media (max-width: 860px) {
+  .wf::before { display: none; }
+  .wf .three-grid, .wf .steps { grid-template-columns: 1fr; }
+  .wf .three-grid .cell, .wf .step { border-left: none; border-top: 1px solid var(--wf-line); }
+  .wf .step:first-child { border-top: none; }
+  .wf h1 { font-size: clamp(34px, 9vw, 46px); }
+}
