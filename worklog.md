@@ -1,5 +1,11 @@
 # Worklog — rushy marketplace
 
+## 2026-09-03 — Add frontend-checklist MCP
+
+Cataloged remote HTTP MCP `https://mcp.frontendchecklist.io` as first-party
+plugin `frontend-checklist` (opt-in). Enabled locally in Cursor (`mcp.json`)
+and Claude (`frontend-checklist@rushy`).
+
 ## 2026-08-30 — Add skill-doctor first-party plugin
 
 Vendored Warp's skill-doctor (`warpdotdev/common-skills` `.agents/skills/skill-doctor`,

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "frontend-checklist",
+  "version": "1.0.0",
+  "description": "Front-End Checklist rules MCP (HTML/CSS/JS/React/a11y/perf/SEO).",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "defaultEnabled": false,
+  "keywords": [
+    "mcp",
+    "opt-in"
+  ],
+  "mcpServers": {
+    "frontend-checklist": {
+      "type": "http",
+      "url": "https://mcp.frontendchecklist.io"
+    }
+  }
+}

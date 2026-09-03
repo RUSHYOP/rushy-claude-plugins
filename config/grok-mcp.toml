@@ -58,6 +58,10 @@ enabled = false
 command = "npx"
 args = ["-y", "shadcn@latest", "mcp"]
 
+[mcp_servers.frontend-checklist]
+enabled = true
+url = "https://mcp.frontendchecklist.io"
+
 [mcp_servers.rxds-figma-mcp]
 enabled = false
 command = "node"

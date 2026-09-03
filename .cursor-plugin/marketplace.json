@@ -14,8 +14,8 @@
   "plugins": [
     {
       "name": "agent-tooling",
-      "description": "General agent skills: find-skills, git-commit, graphify, migrate-radix-to-base, project-sites, shadcn.",
-      "version": "1.0.0",
+      "description": "General agent skills: graphify, migrate-radix-to-base, project-sites, shadcn.",
+      "version": "1.1.0",
       "source": "plugins/agent-tooling",
       "author": {
         "name": "RUSHYOP",
@@ -25,7 +25,7 @@
     {
       "name": "android-skills",
       "description": "Official Android skills for AI agents (android/skills upstream): Compose styles/migration/adaptive, CameraX, Navigation 3, Perfetto tracing + SQL, R8, AGP 9 upgrade, Play Billing/Engage/policy, testing strategy, edge-to-edge, Wear, XR glasses, AppFunctions, intent security, verified email, android CLI.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "plugins/android-skills",
       "author": {
         "name": "Android (google)",
@@ -49,7 +49,7 @@
     {
       "name": "better-ux-quality",
       "description": "Curated skills for improving UI quality and UX on non-3D websites and applications: design-system redesign, motion/UX systems, component polish, and conversion copy.",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "source": "plugins/better-ux-quality",
       "author": {
         "name": "RUSHYOP",
@@ -59,11 +59,28 @@
     {
       "name": "cybersecurity-core",
       "description": "Curated subset of Anthropic Cybersecurity Skills (~70 high-signal skills). Drops OT/vendor sprawl and near-duplicate detect/hunt/tool twins from the full 817-skill catalog. Prefer this over cybersecurity-skills@rushy for agent routing quality.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "plugins/cybersecurity-core",
       "author": {
         "name": "RUSHYOP"
       }
+    },
+    {
+      "name": "design-collections",
+      "description": "A growing library of reusable design languages reverse-engineered from real production sites. Each entry ships a token-complete CSS file plus a design spec covering colour, typography, spacing, icons, components and motion.",
+      "version": "1.1.0",
+      "source": "plugins/design-collections",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "design",
+        "css",
+        "design-system",
+        "design-tokens",
+        "ui"
+      ]
     },
     {
       "name": "excalidraw",
@@ -82,7 +99,7 @@
     {
       "name": "excalidraw-pages",
       "description": "Excalidraw-style self-contained HTML pages: hand-drawn diagrams, sketch cards, paper-and-ink design system for plans, architecture docs, and reviews.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "source": "plugins/excalidraw-pages",
       "author": {
         "name": "RUSHYOP",
@@ -90,9 +107,23 @@
       }
     },
     {
+      "name": "frontend-checklist",
+      "description": "Front-End Checklist rules MCP (HTML/CSS/JS/React/a11y/perf/SEO).",
+      "version": "1.0.0",
+      "source": "plugins/frontend-checklist",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ]
+    },
+    {
       "name": "ios-dev-skills",
       "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "plugins/ios-dev-skills",
       "author": {
         "name": "RUSHYOP (curated)",
@@ -102,7 +133,7 @@
     {
       "name": "marketplace-ops",
       "description": "Rushy marketplace operations: SessionStart drift checks, post-install reconcile hints, and slash commands to import CLI-installed plugins into the RUSHYOP catalog.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "source": "plugins/marketplace-ops",
       "author": {
         "name": "RUSHYOP",
@@ -189,7 +220,7 @@
     {
       "name": "r3f",
       "description": "React Three Fiber skill pack: fundamentals, geometry, materials, lighting, textures, shaders, animation, interaction, loaders, physics, postprocessing, plus brain-viz large-graph renderer patterns. Vendored r3f-* from EnzeD/r3f-skills (MIT).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "plugins/r3f",
       "author": {
         "name": "RUSHYOP",
@@ -207,7 +238,7 @@
     {
       "name": "ramco-brain",
       "description": "Ramco ERP brain skills: journey extraction, eval, reindex, sync, plus ramco-data-locator agent.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "source": "plugins/ramco-brain",
       "author": {
         "name": "RUSHYOP",
@@ -231,7 +262,7 @@
     {
       "name": "react-native-skills",
       "description": "Curated React Native skills: Vercel Labs RN/Expo best practices, Callstack best-practices + upgrade guide, RN design + architecture (wshobson), Expo/RN performance (pproenca).",
-      "version": "1.1.0",
+      "version": "1.3.0",
       "source": "plugins/react-native-skills",
       "author": {
         "name": "RUSHYOP (curated)",
@@ -285,7 +316,7 @@
     {
       "name": "swiftui-skills",
       "description": "Curated, deduped SwiftUI skills from top authors: swiftui-expert-skill (avdlee), swiftui-pro (twostraws), performance-audit/ui-patterns/view-refactor/liquid-glass (dimillian), expo-ui (Expo's SwiftUI-from-React bridge).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "plugins/swiftui-skills",
       "author": {
         "name": "RUSHYOP (curated)",
@@ -295,7 +326,7 @@
     {
       "name": "vizuara",
       "description": "Report and figure generation: Vizuara PDF/HTML reports and Wisprflow chart figures.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "source": "plugins/vizuara",
       "author": {
         "name": "RUSHYOP",

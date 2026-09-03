@@ -55,6 +55,7 @@ at launch. Set them in `~/.claude/settings.json`'s `env` block (or your shell).
 | `excalidraw` | http | `EXCALIDRAW_MCP_TOKEN` | off | Hosted Excalidraw MCP. Not `excalidraw-pages`. |
 | `miro-mcp` | stdio | — | off | Official Miro remote MCP. OAuth. |
 | `shadcn` | stdio | — | off | `npx shadcn@latest mcp`. |
+| `frontend-checklist` | http | — | off | Remote `https://mcp.frontendchecklist.io`. Frontend review / a11y / perf / SEO. |
 | `rxds-figma-mcp` | stdio | `RXDS_FIGMA_MCP_ENTRY`, `FIGMA_ACCESS_TOKEN`, `RXDS_COMPONENTS_PATH`, `RXDS_FIGMA_MCP_CONFIG` | off | Local RXDS server; not portable without that checkout. |
 
 ## This repo as a plugin marketplace

@@ -175,6 +175,31 @@
       }
     },
     {
+      "name": "frontend-checklist",
+      "version": "1.0.0",
+      "description": "Front-End Checklist rules MCP (HTML/CSS/JS/React/a11y/perf/SEO).",
+      "author": {
+        "name": "RUSHYOP",
+        "email": "alwayspurav@gmail.com"
+      },
+      "source": "./plugins/frontend-checklist",
+      "keywords": [
+        "mcp",
+        "opt-in"
+      ],
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "metadata": {
+        "ownership": "RUSHYOP",
+        "updatePolicy": "this-repo",
+        "defaultEnabled": false,
+        "kind": "mcp"
+      }
+    },
+    {
       "name": "ios-dev-skills",
       "version": "1.1.0",
       "description": "Curated iOS development skills (non-SwiftUI-UI; see swiftui-skills for those): Xcode project setup (Firebase), Xcode build optimization suite (avdlee), Swift concurrency (avdlee), iOS design/HIG (wshobson), accessibility/networking/localization (dpearson2699), simulator debugging + App Store changelog (dimillian).",

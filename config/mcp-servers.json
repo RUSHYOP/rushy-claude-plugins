@@ -138,6 +138,16 @@
         "notes": "From ~/.mcp.json. Complements agent-tooling's shadcn skill; this plugin is the MCP server only."
       }
     },
+    "frontend-checklist": {
+      "type": "http",
+      "url": "https://mcp.frontendchecklist.io",
+      "_rushy": {
+        "description": "Front-End Checklist rules MCP (HTML/CSS/JS/React/a11y/perf/SEO).",
+        "defaultEnabled": false,
+        "env": [],
+        "notes": "Remote HTTP MCP. Use for frontend review, accessibility, performance, SEO, and launch-readiness. Docs: https://frontendchecklist.io/en/mcp"
+      }
+    },
     "rxds-figma-mcp": {
       "type": "stdio",
       "command": "node",

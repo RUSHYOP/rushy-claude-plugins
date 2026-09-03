@@ -1,0 +1,15 @@
+{
+  "name": "frontend-checklist",
+  "description": "Front-End Checklist rules MCP (HTML/CSS/JS/React/a11y/perf/SEO).",
+  "version": "1.0.0",
+  "author": {
+    "name": "RUSHYOP",
+    "email": "alwayspurav@gmail.com"
+  },
+  "mcpServers": {
+    "frontend-checklist": {
+      "type": "http",
+      "url": "https://mcp.frontendchecklist.io"
+    }
+  }
+}
