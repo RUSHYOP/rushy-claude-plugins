@@ -1,5 +1,12 @@
 # Worklog — rushy marketplace
 
+## 2026-09-03 — Add front-end-checklist skills plugin
+
+Vendored `thedaviddias/Front-End-Checklist` `skills/` (390 SKILL.md files, the
+`npx skills add thedaviddias/front-end-checklist` pack) as first-party plugin
+`front-end-checklist`. Opt-in: hundreds of per-rule skills crowd routing.
+Hosted MCP remains `frontend-checklist@rushy`.
+
 ## 2026-09-03 — Add frontend-checklist MCP
 
 Cataloged remote HTTP MCP `https://mcp.frontendchecklist.io` as first-party

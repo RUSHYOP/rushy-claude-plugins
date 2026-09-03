@@ -1,0 +1,10 @@
+{
+  "name": "front-end-checklist",
+  "version": "1.0.0",
+  "description": "Front-End Checklist skills from thedaviddias/Front-End-Checklist: 390 per-rule skills plus frontend-checklist-global. Prefer the hosted MCP (frontend-checklist@rushy) for retrieval instead of loading every rule into context.",
+  "author": {
+    "name": "David Dias",
+    "url": "https://github.com/thedaviddias/Front-End-Checklist"
+  },
+  "skills": "./skills/"
+}

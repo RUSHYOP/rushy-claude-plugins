@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "front-end-checklist",
+  "version": "1.0.0",
+  "description": "Front-End Checklist skills from thedaviddias/Front-End-Checklist: 390 per-rule skills plus frontend-checklist-global. Prefer the hosted MCP (frontend-checklist@rushy) for retrieval instead of loading every rule into context.",
+  "author": {
+    "name": "David Dias",
+    "url": "https://github.com/thedaviddias/Front-End-Checklist"
+  },
+  "homepage": "https://frontendchecklist.io",
+  "keywords": [
+    "frontend",
+    "checklist",
+    "accessibility",
+    "performance",
+    "seo",
+    "opt-in"
+  ],
+  "defaultEnabled": false,
+  "skills": "./skills/"
+}

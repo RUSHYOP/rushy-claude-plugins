@@ -154,6 +154,32 @@
       }
     },
     {
+      "name": "front-end-checklist",
+      "description": "Front-End Checklist skills from thedaviddias/Front-End-Checklist: 390 per-rule skills plus frontend-checklist-global. Prefer the hosted MCP (frontend-checklist@rushy) for retrieval instead of loading every rule into context.",
+      "version": "1.0.0",
+      "author": {
+        "name": "David Dias",
+        "url": "https://github.com/thedaviddias/Front-End-Checklist"
+      },
+      "tags": [
+        "first-party",
+        "mcp",
+        "opt-in"
+      ],
+      "keywords": [
+        "frontend",
+        "checklist",
+        "accessibility",
+        "performance",
+        "seo",
+        "opt-in"
+      ],
+      "source": {
+        "type": "local",
+        "path": "./plugins/front-end-checklist"
+      }
+    },
+    {
       "name": "frontend-checklist",
       "description": "Front-End Checklist rules MCP (HTML/CSS/JS/React/a11y/perf/SEO).",
       "version": "1.0.0",

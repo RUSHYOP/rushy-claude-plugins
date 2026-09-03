@@ -45,6 +45,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 - `design-collections` → `./plugins/design-collections`
 - `excalidraw` → `./plugins/excalidraw`
 - `excalidraw-pages` → `./plugins/excalidraw-pages`
+- `front-end-checklist` → `./plugins/front-end-checklist`
 - `frontend-checklist` → `./plugins/frontend-checklist`
 - `ios-dev-skills` → `./plugins/ios-dev-skills`
 - `marketplace-ops` → `./plugins/marketplace-ops`
