@@ -195,3 +195,16 @@ the same MCP to load twice (e.g. mcp__playwright__* AND mcp__plugin_playwright_p
 **Left as-is (user's explicit boundary "don't configure my enablements"):** figma, playwright,
 chrome-devtools-mcp plugins remain enabled — deliberate dev-tool choices, now single-sourced.
 Flagged for the user: `claude plugin disable <name>@rushy` to reach zero MCPs.
+
+## 2026-09-27 — design-collections: field-report (1.1.0 -> 1.2.0)
+
+- New entry `field-report`, an original in-house design generalised from an engineering overview page: editorial
+  engineering report (warm paper + grain, Instrument Serif 400 display, Geist text, Geist Mono labels and figures,
+  one vermilion accent, 1.5px / 1px rules, one dark band). All three fonts SIL OFL.
+- Files: `field-report.css` (scoped to `.fr`, tokens + 20 components incl. SVG diagram classes, motion readable
+  without JS), `field-report.md` spec, `variations.md` (report / briefing / ledger registers), `patterns.md`
+  (4 heroes, 11 sections, 6 compositions), `example.html` (fictional co-op annual report, ledger register).
+- Stripped of every trace of the source project (names, figures, systems). Checked in a browser at 1440 and 390 px:
+  fonts load, no page-level horizontal overflow (ledger tables scroll inside themselves on mobile).
+- SKILL.md table row + note on original designs; version 1.2.0 in all three manifests and marketplace.json.
+

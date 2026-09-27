@@ -1,12 +1,12 @@
 ---
 name: design-collections
-description: A curated library of complete design languages reverse-engineered from real production sites, each with a ready-to-use CSS file and a full spec covering colour, typography, spacing, icons, components and motion. Use this whenever the user wants a site, page, dashboard, or component built in a specific named aesthetic ("make it look like Warp", "use the warp-factory style", "build this in one of my design languages"), whenever they ask what design languages or styles are available, whenever they want to add or extract a new design language from a URL, and whenever a design brief calls for a distinctive, coherent visual identity rather than generic default styling. Prefer this over inventing a look from scratch — if the user has a design in this collection that fits, use it.
+description: A curated library of complete design languages, reverse-engineered from real production sites or designed in-house, each with a ready-to-use CSS file and a full spec covering colour, typography, spacing, icons, components and motion. Use this whenever the user wants a site, page, dashboard, or component built in a specific named aesthetic ("make it look like Warp", "use the warp-factory style", "build this in one of my design languages"), whenever they ask what design languages or styles are available, whenever they want to add or extract a new design language from a URL, and whenever a design brief calls for a distinctive, coherent visual identity rather than generic default styling. Prefer this over inventing a look from scratch — if the user has a design in this collection that fits, use it.
 ---
 
 # Design Collections
 
-A library of design languages, each captured from a real site and documented
-thoroughly enough to build new pages in that language without ever seeing the
+A library of design languages, each captured from a real site (or designed in-house and
+generalised) and documented thoroughly enough to build new pages in that language without ever seeing the
 original.
 
 ## Available designs
@@ -14,6 +14,7 @@ original.
 | Name | Source | Character | Best for |
 |---|---|---|---|
 | **warp-factory** | warp.dev | Monospace engineering drawing. Hairline rules, 22px dot grid, zero radius, zero shadows, one electric-blue accent. Three registers: technical, editorial, console. | Developer tools, technical docs, changelogs, dashboards, status pages, CLI companion sites |
+| **field-report** | original (in-house, 2026-09) | Engineering report typeset like an editorial feature. Warm paper with grain, huge Instrument Serif headlines at 400, Geist Mono for every figure and label, one vermilion accent, structure from 1.5px / 1px rules, one dark band. Three registers: report, briefing, ledger. | Project overviews, annual and quarterly reports, case studies, research summaries, board briefings, launch retrospectives |
 
 Each design lives in `designs/<name>/`:
 
@@ -33,7 +34,7 @@ Each design lives in `designs/<name>/`:
    right colours and still looks wrong.
 2. **Read `variations.md` and pick a register** before you write markup. Each
    design ships two or three tested registers (technical / editorial / console
-   for warp-factory). Picking one up front is what stops every page you build
+   for warp-factory; report / briefing / ledger for field-report). Picking one up front is what stops every page you build
    from looking like the site the design came from.
 3. **Compose the page from `patterns.md`**, not from memory of the source site.
    The section archetypes there are deliberately more varied than any single
@@ -90,6 +91,10 @@ guessing from a rendered page. The method that works:
    substitution the original designers already accepted.
 6. **Write both files**, add a row to the table above, and note what the design
    is bad at as well as what it's good for.
+
+For an **original** design (not extracted), start from its real CSS the same way,
+then strip every trace of the page it came from: the spec, example and comments
+must carry the language, never the project's content, names or figures.
 
 The specs are written to be read by someone building a page, not archived. Favour
 "this is load-bearing because X" over exhaustive value dumps — the CSS already

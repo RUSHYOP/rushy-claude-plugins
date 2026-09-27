@@ -1,0 +1,256 @@
+/* ============================================================================
+   FIELD REPORT — design language
+   An original in-house design (2026-09): an engineering report typeset like an
+   editorial feature. Warm paper, huge serif headlines, monospace figures and
+   labels, one vermilion accent, and structure from rules — never from cards.
+   Everything is scoped to `.fr` so it drops into an existing page safely.
+   Motion helpers need one line in <head>:
+     <script>document.documentElement.classList.add("js")</script>
+   ========================================================================== */
+
+/* --- 1. FONTS -------------------------------------------------------------
+   All three faces are free (SIL OFL): Instrument Serif (display), Geist (text),
+   Geist Mono (figures, labels, captions). The fallbacks are chosen so the page
+   still reads as the same language offline.                                */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap");
+
+.fr {
+  /* --- 2. RAW PALETTE: paper, ink, one accent ---------------------------- */
+  --fr-paper:     #f4f1ea;  /* warm ground                                    */
+  --fr-paper-2:   #ebe6db;  /* tracks, insets, external-system boxes        */
+  --fr-card:      #f8f6f1;  /* the one lighter fill: diagram boxes, pills     */
+  --fr-ink:       #15120f;  /* headings, heavy rules, solid fills             */
+  --fr-ink-2:     #3b3530;  /* body copy                                      */
+  --fr-muted:     #6f675e;  /* labels, captions, secondary copy               */
+  --fr-rule:      #d6cebf;  /* hairlines                                      */
+  --fr-accent:    #d9481f;  /* vermilion — the ONLY accent                    */
+  --fr-accent-ink:#a8330f;  /* accent for small text (AA on paper)            */
+  --fr-accent-soft:#fbe8df; /* accent tint: fills only, never text            */
+  --fr-night:     #16130f;  /* the dark band                                  */
+  --fr-night-rule:#3a322a;
+  --fr-night-text:#fbf7f0;
+  --fr-night-muted:#b9b0a4;
+  --fr-night-accent:#f08a63;
+
+  /* --- 3. TYPE + METRICS ------------------------------------------------ */
+  --fr-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --fr-sans:  "Geist", "Avenir Next", "Segoe UI", sans-serif;
+  --fr-mono:  "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --fr-maxw:  1240px;
+  --fr-gutter: 40px;
+  --fr-section: 112px;       /* the page's breathing rhythm                   */
+  --fr-ease: cubic-bezier(.2, .7, .2, 1);
+
+  background-color: var(--fr-paper);
+  /* paper grain: an SVG noise tile at 5% alpha — present, never visible as texture */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--fr-ink);
+  font: 400 18px/1.55 var(--fr-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.fr *, .fr *::before, .fr *::after { box-sizing: border-box; }
+.fr ::selection { background: var(--fr-accent); color: #fff; }
+.fr a { color: var(--fr-accent-ink); text-underline-offset: 3px; }
+.fr a:focus-visible { outline: 2px solid var(--fr-accent); outline-offset: 3px; }
+.fr .wrap { max-width: var(--fr-maxw); margin: 0 auto; padding: 0 var(--fr-gutter); }
+.fr .mono { font-family: var(--fr-mono); }
+@media (max-width: 720px) { .fr { --fr-gutter: 22px; font-size: 17px; } }
+
+/* --- 4. LABELS: the mono voice ------------------------------------------
+   Every label, caption, index and figure unit is mono, uppercase, tracked.  */
+.fr .eyebrow, .fr .kicker { font: 500 13px/1.5 var(--fr-mono); letter-spacing: .12em; text-transform: uppercase; }
+.fr .kicker { color: var(--fr-accent-ink); }
+.fr .eyebrow { color: var(--fr-muted); font-size: 12px; letter-spacing: .1em; }
+
+/* --- 5. TOP BAR --------------------------------------------------------- */
+.fr .topbar { display: flex; justify-content: space-between; align-items: center; padding: 22px 0;
+  border-bottom: 1px solid var(--fr-rule); font: 500 13px/1 var(--fr-mono); letter-spacing: .06em;
+  text-transform: uppercase; color: var(--fr-muted); }
+.fr .topbar b { color: var(--fr-ink); font-weight: 500; }
+.fr .topbar nav { display: flex; gap: 22px; }
+.fr .topbar nav a { color: var(--fr-muted); text-decoration: none; }
+.fr .topbar nav a:hover { color: var(--fr-accent); }
+@media (max-width: 860px) { .fr .topbar nav { display: none; } }
+
+/* --- 6. DISPLAY TYPE ------------------------------------------------------
+   Serif at 400 only. Size does the work; weight never does.                 */
+.fr h1, .fr .display { font: 400 clamp(56px, 9.2vw, 140px)/.92 var(--fr-serif); letter-spacing: -.02em; margin: 0; max-width: 14ch; text-wrap: balance; }
+.fr h1 em, .fr h2 em, .fr .display em { font-style: italic; color: var(--fr-accent); }
+.fr h2 { font: 400 clamp(40px, 5vw, 72px)/1 var(--fr-serif); letter-spacing: -.015em; margin: 0; max-width: 18ch; text-wrap: balance; }
+.fr h3 { font: 400 32px/1.08 var(--fr-serif); margin: 0; }
+.fr .lede { font-size: clamp(19px, 1.9vw, 24px); line-height: 1.45; color: var(--fr-ink-2); max-width: 34em; margin: 36px 0 0; text-wrap: pretty; }
+.fr p { text-wrap: pretty; }
+
+/* --- 7. HERO + FACT ROW ------------------------------------------------- */
+.fr .hero { padding: 96px 0 72px; }
+.fr .hero .kicker + h1 { margin-top: 28px; }
+.fr .facts { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 80px; border-top: 1.5px solid var(--fr-ink); }
+.fr .fact { padding: 22px 24px 4px 0; border-right: 1px solid var(--fr-rule); }
+.fr .fact + .fact { padding-left: 24px; }
+.fr .fact:last-child { border-right: 0; }
+.fr .fact .n { font: 400 clamp(48px, 5.6vw, 84px)/1 var(--fr-serif); letter-spacing: -.02em; }
+.fr .fact .l { font-size: 15px; color: var(--fr-muted); margin-top: 10px; max-width: 16em; }
+@media (max-width: 860px) { .fr .facts { grid-template-columns: repeat(2, 1fr); }
+  .fr .fact:nth-child(2) { border-right: 0; } .fr .fact:nth-child(3) { padding-left: 0; }
+  .fr .fact:nth-child(n+3) { border-top: 1px solid var(--fr-rule); } }
+
+/* --- 8. SECTION HEAD: index rail + headline --------------------------------
+   A 160px left rail holds the mono index under a short accent rule.         */
+.fr .sec { padding-top: var(--fr-section); }
+.fr .head { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: start; margin-bottom: 56px; }
+.fr .idx { font: 500 14px/1 var(--fr-mono); color: var(--fr-accent-ink); letter-spacing: .08em; padding-top: 14px; border-top: 1.5px solid var(--fr-accent); }
+.fr .head p { font-size: 20px; color: var(--fr-ink-2); max-width: 36em; margin: 18px 0 0; }
+@media (max-width: 720px) { .fr .head { grid-template-columns: 1fr; } .fr .idx { width: 80px; } }
+
+/* --- 9. CELLS: columns divided by hairlines, never cards ------------------ */
+.fr .cells { display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); border-top: 1px solid var(--fr-rule); }
+.fr .cell { padding: 36px 32px 8px 0; }
+.fr .cell + .cell { padding-left: 32px; border-left: 1px solid var(--fr-rule); }
+.fr .cell .who { font: 500 12px/1 var(--fr-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fr-muted); }
+.fr .cell .who i { font-style: normal; color: var(--fr-accent-ink); }
+.fr .cell h3 { font-size: 40px; line-height: 1.05; margin: 18px 0 14px; }
+.fr .cell p { margin: 0; color: var(--fr-ink-2); font-size: 17px; }
+@media (max-width: 860px) { .fr .cells { grid-template-columns: 1fr; } .fr .cell + .cell { padding-left: 0; border-left: 0; border-top: 1px solid var(--fr-rule); } }
+
+/* --- 10. STATEMENT: one sentence between a heavy and a hairline rule ------ */
+.fr .statement { margin: 48px 0 0; padding: 26px 0; border-top: 1.5px solid var(--fr-ink); border-bottom: 1px solid var(--fr-rule);
+  font: 400 clamp(26px, 3vw, 40px)/1.2 var(--fr-serif); }
+.fr .statement b { font-weight: 400; color: var(--fr-accent); }
+
+/* --- 11. TILES: a numbered grid sharing 1px gutters ------------------------ */
+.fr .tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr);
+  gap: 1px; background: var(--fr-rule); border: 1px solid var(--fr-rule); counter-reset: t; }
+.fr .tiles li { background: var(--fr-paper); padding: 30px 28px 64px; counter-increment: t; min-height: 230px; position: relative; }
+.fr .tiles li::before { content: counter(t, decimal-leading-zero); font: 500 13px/1 var(--fr-mono); color: var(--fr-accent-ink); letter-spacing: .08em; }
+.fr .tiles h3 { margin: 26px 0 10px; }
+.fr .tiles p { margin: 0; font-size: 16px; color: var(--fr-muted); }
+.fr .tiles .out { position: absolute; left: 28px; right: 28px; bottom: 22px; font: 500 13px/1.3 var(--fr-mono); color: var(--fr-ink); }
+@media (max-width: 860px) { .fr .tiles { grid-template-columns: 1fr; } .fr .tiles li { min-height: 0; } }
+
+/* --- 12. BAND: the one dark section ----------------------------------------
+   Re-points tokens, so every component inside adapts. One per page.         */
+.fr .band { background: var(--fr-night); color: #efe9df; margin-top: var(--fr-section); padding: 112px 0 104px;
+  --fr-rule: var(--fr-night-rule); --fr-muted: var(--fr-night-muted); --fr-ink: var(--fr-night-text);
+  --fr-ink-2: #d9d0c3; --fr-accent-ink: var(--fr-night-accent); --fr-paper: var(--fr-night); }
+.fr .band .sec { padding-top: 0; }
+.fr .band .idx { border-color: var(--fr-night-accent); }
+
+/* --- 13. FIGURES: big numbers in a ruled grid ------------------------------ */
+.fr .figures { display: grid; grid-template-columns: repeat(var(--cols, 4), 1fr); border-top: 1px solid var(--fr-rule); }
+.fr .figures > div { padding: 26px 20px 26px 0; border-bottom: 1px solid var(--fr-rule); }
+.fr .figures > div:not(:nth-child(4n+1)) { padding-left: 20px; border-left: 1px solid var(--fr-rule); }
+.fr .figures .n { font: 400 clamp(44px, 4.6vw, 68px)/1 var(--fr-serif); color: var(--fr-ink); letter-spacing: -.02em; }
+.fr .figures .n small { font: 500 .32em/1 var(--fr-mono); color: var(--fr-muted); letter-spacing: .04em; margin: 0 4px; }
+.fr .figures .l { font-size: 15px; color: var(--fr-muted); margin-top: 8px; }
+@media (max-width: 860px) { .fr .figures { grid-template-columns: repeat(2, 1fr); }
+  .fr .figures > div:not(:nth-child(4n+1)) { padding-left: 0; border-left: 0; }
+  .fr .figures > div:nth-child(2n) { padding-left: 20px; border-left: 1px solid var(--fr-rule); } }
+
+/* --- 14. TRACK: proportional timeline (flex = duration) -------------------- */
+.fr .track { display: flex; height: 64px; border-radius: 3px; overflow: hidden; gap: 3px; }
+.fr .track span { display: flex; align-items: flex-end; padding: 0 10px 10px; font: 500 12px/1.1 var(--fr-mono); color: #16130f;
+  background: #f0e7da; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fr .track span:nth-child(odd) { background: #e7dccb; }
+.fr .track span.gap { background: #2c2620; color: #7d7368; }          /* idle time, shown honestly */
+.fr .track span.hot { background: var(--fr-accent); color: #fff; }     /* the one phase that matters */
+.fr .legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 32px; margin-top: 26px; }
+.fr .legend div { font-size: 15px; color: var(--fr-muted); border-top: 1px solid var(--fr-rule); padding-top: 12px; }
+.fr .legend b { display: block; font: 500 13px/1.3 var(--fr-mono); color: var(--fr-ink); margin-bottom: 4px; }
+@media (max-width: 860px) { .fr .track { height: 44px; } .fr .track span { font-size: 0; padding: 0; } .fr .legend { grid-template-columns: 1fr; } }
+
+/* --- 15. PULL: one giant claim beside its evidence ------------------------- */
+.fr .pull { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; margin-top: 88px; align-items: end; }
+.fr .pull .big { font: 400 clamp(56px, 7vw, 108px)/.95 var(--fr-serif); letter-spacing: -.02em; color: var(--fr-ink); }
+.fr .pull .big em { font-style: italic; color: var(--fr-accent); }
+.fr .band .pull .big em { color: var(--fr-night-accent); }
+.fr .pull p { margin: 0; color: var(--fr-ink-2); font-size: 19px; }
+.fr .pull p + p { margin-top: 14px; color: var(--fr-muted); font-size: 16px; }
+@media (max-width: 860px) { .fr .pull { grid-template-columns: 1fr; gap: 24px; } }
+
+/* --- 16. SEQUENCE: a flow of steps, each carrying its artefact ------------- */
+.fr .sequence { display: grid; grid-template-columns: repeat(var(--cols, 7), 1fr); border-top: 1.5px solid var(--fr-ink); }
+.fr .node { padding: 22px 16px 26px 0; }
+.fr .node + .node { padding-left: 16px; border-left: 1px solid var(--fr-rule); }
+.fr .node .tag { font: 500 11.5px/1 var(--fr-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fr-muted); }
+.fr .node .tag::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; background: var(--c, var(--fr-accent)); vertical-align: 1px; }
+.fr .node h3 { font-size: 28px; line-height: 1.05; margin: 16px 0 12px; }
+.fr .node .ref { font: 500 12.5px/1.35 var(--fr-mono); color: var(--fr-ink); word-break: break-all; }
+.fr .node .st { font: 500 12.5px/1 var(--fr-mono); color: var(--fr-accent-ink); margin-top: 6px; }
+@media (max-width: 980px) { .fr .sequence { grid-template-columns: repeat(2, 1fr); }
+  .fr .node:nth-child(odd) { padding-left: 0; border-left: 0; } .fr .node { border-bottom: 1px solid var(--fr-rule); } }
+
+/* --- 17. MEASURES: meters, split bar, keyed legend ------------------------- */
+.fr .meter { display: grid; grid-template-columns: 96px 1fr 76px; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid var(--fr-rule); }
+.fr .meter:last-child { border-bottom: 1px solid var(--fr-rule); }
+.fr .meter .k { font-weight: 500; }
+.fr .meter .t { height: 10px; background: var(--fr-paper-2); border-radius: 5px; overflow: hidden; }
+.fr .meter .t i { display: block; height: 100%; background: var(--fr-ink); border-radius: 5px; transform-origin: left; }
+.fr .meter .v { font: 500 15px/1 var(--fr-mono); text-align: right; }
+.fr .split { display: flex; height: 64px; border-radius: 4px; overflow: hidden; margin: 6px 0 22px; gap: 2px; }
+.fr .split span { display: flex; align-items: center; padding-left: 14px; font: 500 14px/1 var(--fr-mono); color: #fff; background: var(--fr-ink); }
+.fr .split .a { background: var(--fr-accent); } .fr .split .q { background: #a79f94; }
+.fr .keys { display: grid; gap: 14px; }
+.fr .keys div { display: grid; grid-template-columns: 14px 1fr; gap: 12px; font-size: 16px; color: var(--fr-ink-2); }
+.fr .keys i { width: 14px; height: 14px; border-radius: 3px; margin-top: 5px; background: var(--k, var(--fr-ink)); }
+.fr .keys b { font-weight: 600; color: var(--fr-ink); }
+
+/* --- 18. LEDGER TABLE ------------------------------------------------------ */
+.fr table.ledger { width: 100%; border-collapse: collapse; font-size: 16px; border-top: 1.5px solid var(--fr-ink); }
+.fr .ledger th { font: 500 12px/1 var(--fr-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fr-muted); text-align: left; padding: 16px 12px 14px 0; border-bottom: 1px solid var(--fr-rule); }
+.fr .ledger td { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--fr-rule); vertical-align: top; color: var(--fr-ink-2); }
+.fr .ledger td.num, .fr .ledger th.num { text-align: right; font-family: var(--fr-mono); font-weight: 500; color: var(--fr-ink); }
+.fr .ledger td.lead { font: 400 24px/1.1 var(--fr-serif); color: var(--fr-ink); }
+.fr .ledger td.num { white-space: nowrap; }
+/* narrow screens: the table scrolls inside itself instead of widening the page */
+@media (max-width: 720px) { .fr table.ledger { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .fr .ledger td.lead { font-size: 20px; min-width: 9em; } .fr .ledger th, .fr .ledger td { padding-right: 16px; } }
+
+/* --- 19. PILLS: the only rounded shape besides dots ------------------------ */
+.fr .pills { font: 500 14px/2 var(--fr-mono); color: var(--fr-ink-2); }
+.fr .pills span { display: inline-block; border: 1px solid var(--fr-rule); border-radius: 999px; padding: 0 14px; margin: 0 8px 8px 0; background: var(--fr-card); }
+
+/* --- 20. DIAGRAM (inline SVG) ---------------------------------------------
+   Boxes, lines and labels styled by class so a diagram re-skins with tokens.
+   Fill meaning is fixed: accent-soft = AI/automated, card = own system,
+   paper-2 = external system, ink = shipped/final.                           */
+.fr .diagram { border-top: 1.5px solid var(--fr-ink); padding-top: 28px; overflow-x: auto; }
+.fr .diagram svg { display: block; width: 100%; min-width: 880px; height: auto; }
+.fr .diagram .lane { font: 500 12px var(--fr-mono); letter-spacing: .12em; fill: var(--fr-muted); }
+.fr .diagram .t { font: 400 25px var(--fr-serif); fill: var(--fr-ink); }
+.fr .diagram .s { font: 400 13.5px var(--fr-sans); fill: var(--fr-muted); }
+.fr .diagram .m { font: 500 12px var(--fr-mono); fill: var(--fr-ink-2); }
+.fr .diagram .box { fill: var(--fr-card); stroke: var(--fr-ink); stroke-width: 1.2; }
+.fr .diagram .box.auto { fill: var(--fr-accent-soft); stroke: var(--fr-accent); }
+.fr .diagram .t.auto { fill: var(--fr-accent-ink); }
+.fr .diagram .box.ext { fill: var(--fr-paper-2); stroke: #8c8378; }
+.fr .diagram .box.solid { fill: var(--fr-ink); stroke: var(--fr-ink); }
+.fr .diagram .inv { fill: var(--fr-night-text); } .fr .diagram .s.inv { fill: #cfc6ba; }
+.fr .diagram .ln { stroke: var(--fr-ink-2); stroke-width: 1.4; fill: none; }
+.fr .diagram .ln.soft { stroke: #a79f94; stroke-dasharray: 3 5; }
+.fr .diagram .ln.go { stroke: var(--fr-accent); stroke-width: 2.2; stroke-dasharray: 7 5; }
+.fr .diagram .sep { stroke: var(--fr-rule); stroke-width: 1.2; }
+.fr .diagram .lbl { font: 500 12px var(--fr-mono); fill: var(--fr-muted); }
+.fr .diagram .lbl.go { fill: var(--fr-accent-ink); }
+.fr .swatches { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 22px; font: 500 13px var(--fr-mono); color: var(--fr-muted); }
+.fr .swatches span::before { content: ""; display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 8px; vertical-align: -2px; border: 1.2px solid var(--c); background: var(--f); }
+
+/* --- 21. FOOTER ------------------------------------------------------------ */
+.fr .foot { margin-top: 128px; padding: 32px 0 48px; border-top: 1.5px solid var(--fr-ink); font: 500 13px/1.6 var(--fr-mono); color: var(--fr-muted); }
+.fr .foot .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+
+/* --- 22. MOTION: one staggered load, then reveal on scroll ----------------
+   `.rise` children animate once on load. `.reveal` hides only when <html>
+   has `.js`, so the page is fully readable without JavaScript.            */
+@keyframes fr-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes fr-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.fr .rise > * { animation: fr-rise .9s var(--fr-ease) both; }
+.fr .rise > :nth-child(2) { animation-delay: .08s; } .fr .rise > :nth-child(3) { animation-delay: .18s; }
+.fr .rise > :nth-child(4) { animation-delay: .3s; }  .fr .rise > :nth-child(5) { animation-delay: .4s; }
+.js .fr .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--fr-ease), transform .8s var(--fr-ease); }
+.js .fr .reveal.in { opacity: 1; transform: none; }
+.js .fr .reveal.in .meter .t i { animation: fr-grow 1.1s var(--fr-ease) both .15s; }
+@media (prefers-reduced-motion: reduce) {
+  .fr .rise > *, .js .fr .reveal, .js .fr .reveal.in .meter .t i { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+@media print { .js .fr .reveal { opacity: 1; transform: none; } .fr { background-image: none; } }

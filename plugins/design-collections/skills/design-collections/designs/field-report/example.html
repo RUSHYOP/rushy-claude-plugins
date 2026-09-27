@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>field-report — ledger register example</title>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="field-report.css">
+<style>
+  body { margin: 0; }
+  /* LEDGER REGISTER (see variations.md): cooler paper, lighter grain, oxblood accent, no dark band,
+     tables and meters instead of tiles and timelines, figures in three columns.
+     Composition: H3 ledger opener → B8 measures → B9 table → B2 statement → B4 figures → B9 table. */
+  .fr {
+    --fr-paper: #f1eee6; --fr-accent: #8e2a2a; --fr-accent-ink: #7a2222; --fr-accent-soft: #f3e3e1;
+    --fr-maxw: 1120px; --fr-section: 96px;
+  }
+  .fr .figures { --cols: 3; }
+  .fr .figures > div:not(:nth-child(4n+1)) { padding-left: 0; border-left: 0; }
+  .fr .figures > div:not(:nth-child(3n+1)) { padding-left: 20px; border-left: 1px solid var(--fr-rule); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  @media (max-width: 860px) { .two { grid-template-columns: 1fr; gap: 48px; } }
+  .caption { margin-top: 14px; font: 500 12px/1.5 var(--fr-mono); color: var(--fr-muted); letter-spacing: .04em; }
+</style></head>
+<body><div class="fr">
+
+<div class="wrap">
+  <div class="topbar"><span><b>Harbour Line Energy Co-op</b> · Annual report</span>
+    <nav aria-label="Sections"><a href="#year">The year</a><a href="#sites">Sites</a><a href="#members">Members</a><a href="#accounts">Accounts</a></nav></div>
+
+  <!-- H3 · Ledger opener: headline, then straight into the numbers that matter -->
+  <header class="hero rise" style="padding-bottom: 24px">
+    <div class="kicker">Financial year 2025 · published March 2026</div>
+    <h1 style="max-width: 16ch">A year the sun <em>paid the members</em> back.</h1>
+    <p class="lede">Nine community-owned solar sites, 2,140 members, and the first year every site covered its own
+      maintenance. The figures below are audited; the method is at the end.</p>
+  </header>
+
+  <!-- B8 · Measures -->
+  <section id="year" class="sec reveal" style="padding-top: 56px">
+    <div class="head">
+      <div class="idx">01</div>
+      <div><h2>Targets set a year ago.</h2><p>Each line is the target the members voted for at the last AGM, against the result.</p></div>
+    </div>
+    <div class="two">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 18px">Against target</div>
+        <div class="meter"><span class="k">Output</span><span class="t"><i style="width: 104%"></i></span><span class="v">104%</span></div>
+        <div class="meter"><span class="k">Uptime</span><span class="t"><i style="width: 98.6%"></i></span><span class="v">98.6%</span></div>
+        <div class="meter"><span class="k">Members</span><span class="t"><i style="width: 89%"></i></span><span class="v">89%</span></div>
+        <div class="meter"><span class="k">Repairs</span><span class="t"><i style="width: 100%"></i></span><span class="v">100%</span></div>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom: 18px">Where each £100 of income went</div>
+        <div class="split" role="img" aria-label="£46 to members, £31 maintenance and insurance, £23 reserve">
+          <span style="flex: 46">£46</span><span class="a" style="flex: 31">£31</span><span class="q" style="flex: 23">£23</span>
+        </div>
+        <div class="keys">
+          <div><i></i><span><b>£46 to members</b> · interest on shares, paid in December</span></div>
+          <div><i style="--k: var(--fr-accent)"></i><span><b>£31 running the sites</b> · maintenance, insurance, land rent</span></div>
+          <div><i style="--k: #a79f94"></i><span><b>£23 to the reserve</b> · inverter replacement from 2028</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B9 · Ledger table -->
+  <section id="sites" class="sec reveal">
+    <div class="head">
+      <div class="idx">02</div>
+      <div><h2>Site by site.</h2><p>Output against each site's own forecast, so a small roof and a field compare fairly.</p></div>
+    </div>
+    <table class="ledger">
+      <thead><tr><th>Site</th><th>Type</th><th class="num">Capacity</th><th class="num">Output</th><th class="num">vs forecast</th></tr></thead>
+      <tbody>
+        <tr><td class="lead">Quarry Field</td><td>Ground mount</td><td class="num">1.8 MW</td><td class="num">1,912 MWh</td><td class="num">+7%</td></tr>
+        <tr><td class="lead">St Anne's School</td><td>Rooftop</td><td class="num">120 kW</td><td class="num">118 MWh</td><td class="num">+2%</td></tr>
+        <tr><td class="lead">Harbour Depot</td><td>Rooftop + battery</td><td class="num">340 kW</td><td class="num">329 MWh</td><td class="num">+4%</td></tr>
+        <tr><td class="lead">Mill Lane</td><td>Carport</td><td class="num">210 kW</td><td class="num">191 MWh</td><td class="num">−3%</td></tr>
+        <tr><td class="lead">Five smaller roofs</td><td>Rooftop</td><td class="num">260 kW</td><td class="num">244 MWh</td><td class="num">+1%</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Source: metered export, Jan–Dec 2025 · forecasts from each site's commissioning survey</div>
+  </section>
+
+  <!-- B2 · Statement -->
+  <section class="reveal" style="padding-top: 72px">
+    <div class="statement">Every site now covers its own upkeep. <b>The reserve no longer subsidises the small roofs.</b></div>
+  </section>
+
+  <!-- B4 · Figures, three columns, no band (ledger register) -->
+  <section id="members" class="sec reveal">
+    <div class="head">
+      <div class="idx">03</div>
+      <div><h2>Who owns it.</h2><p>Membership is open to anyone in the district; one member, one vote, whatever the shareholding.</p></div>
+    </div>
+    <div class="figures">
+      <div><div class="n">2,140</div><div class="l">members · 312 joined this year</div></div>
+      <div><div class="n">£250</div><div class="l">median shareholding</div></div>
+      <div><div class="n">61<small>%</small></div><div class="l">live within 5 miles of a site</div></div>
+      <div><div class="n">4.1<small>%</small></div><div class="l">interest paid on shares</div></div>
+      <div><div class="n">38</div><div class="l">volunteers on site rotas</div></div>
+      <div><div class="n">1<small>in</small>4</div><div class="l">members voted at the AGM</div></div>
+    </div>
+  </section>
+
+  <!-- B9 · Ledger table: accounts -->
+  <section id="accounts" class="sec reveal">
+    <div class="head">
+      <div class="idx">04</div>
+      <div><h2>The accounts, briefly.</h2><p>The full audited statements are in the members' area; these are the lines members ask about.</p></div>
+    </div>
+    <table class="ledger">
+      <thead><tr><th>Line</th><th class="num">2024</th><th class="num">2025</th><th class="num">Change</th></tr></thead>
+      <tbody>
+        <tr><td class="lead">Income from generation</td><td class="num">£612k</td><td class="num">£689k</td><td class="num">+13%</td></tr>
+        <tr><td class="lead">Running costs</td><td class="num">£231k</td><td class="num">£214k</td><td class="num">−7%</td></tr>
+        <tr><td class="lead">Interest to members</td><td class="num">£268k</td><td class="num">£317k</td><td class="num">+18%</td></tr>
+        <tr><td class="lead">Reserve at year end</td><td class="num">£402k</td><td class="num">£560k</td><td class="num">+39%</td></tr>
+      </tbody>
+    </table>
+    <div class="caption">Audited by an independent examiner · figures rounded to the nearest £1k</div>
+  </section>
+
+  <section class="sec reveal" style="padding-top: 72px">
+    <div class="eyebrow" style="margin-bottom: 14px">Next year, on the ballot</div>
+    <div class="pills"><span>Two new school roofs</span><span>Battery at Quarry Field</span><span>Interest target 4.0%</span><span>Youth seat on the board</span></div>
+  </section>
+</div>
+
+<div class="foot"><div class="wrap"><span>Harbour Line Energy Co-op · a fictional example for the field-report design language</span><span>Figures: illustrative</span></div></div>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+</div></body></html>
