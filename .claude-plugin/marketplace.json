@@ -1256,6 +1256,36 @@
       }
     },
     {
+      "name": "taste-skill",
+      "description": "Frontend design taste skills (design-taste-frontend, minimalist, soft, brutalist, redesign, stitch, brandkit, image-to-code\u2026)",
+      "version": "latest",
+      "author": {
+        "name": "upstream"
+      },
+      "category": "third-party",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/RUSHYOP/mirror-leonxlnx-taste-skill.git",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/Leonxlnx/taste-skill",
+      "tags": [
+        "upstream",
+        "mirrored",
+        "via-add-plugin",
+        "imported"
+      ],
+      "metadata": {
+        "ownership": "upstream",
+        "upstreamUrl": "https://github.com/Leonxlnx/taste-skill.git",
+        "mirrorUrl": "https://github.com/RUSHYOP/mirror-leonxlnx-taste-skill.git",
+        "mirrorRepo": "RUSHYOP/mirror-leonxlnx-taste-skill",
+        "updatePolicy": "mirror-tracks-upstream-via-sync-mirrors",
+        "importedFrom": "add-plugin",
+        "note": "Catalog only in rushy; install from public mirror. sync-mirrors.sh refreshes from upstreamUrl."
+      }
+    },
+    {
       "name": "testing-handbook-skills",
       "description": "Skills from the Trail of Bits Application Security Testing Handbook (appsec.guide)",
       "version": "1.0.2",

@@ -64,6 +64,7 @@
     "superpowers",
     "supply-chain-risk-auditor",
     "swiftui-skills",
+    "taste-skill",
     "vercel",
     "vizuara",
     "web-quality"
@@ -223,6 +224,11 @@
       "name": "swiftui-skills",
       "source": "/Users/admin/Codes-2/Agentic-setup/plugins/swiftui-skills",
       "kind": "local"
+    },
+    {
+      "name": "taste-skill",
+      "source": "RUSHYOP/mirror-leonxlnx-taste-skill",
+      "kind": "git"
     },
     {
       "name": "vercel",

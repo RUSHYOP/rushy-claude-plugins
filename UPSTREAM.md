@@ -29,6 +29,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 | `static-analysis` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/static-analysis` @main | https://github.com/trailofbits/skills.git |
 | `superpowers` | https://github.com/RUSHYOP/mirror-superpowers.git @main | https://github.com/obra/superpowers.git |
 | `supply-chain-risk-auditor` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/supply-chain-risk-auditor` @main | https://github.com/trailofbits/skills.git |
+| `taste-skill` | https://github.com/RUSHYOP/mirror-leonxlnx-taste-skill.git @main | https://github.com/Leonxlnx/taste-skill.git |
 | `testing-handbook-skills` | https://github.com/RUSHYOP/mirror-trailofbits-skills.git → `plugins/testing-handbook-skills` @main | https://github.com/trailofbits/skills.git |
 | `vercel` | https://github.com/RUSHYOP/mirror-vercel-vercel-plugin.git @main | https://github.com/vercel/vercel-plugin.git |
 | `visual-explainer` | https://github.com/RUSHYOP/mirror-visual-explainer.git → `plugins/visual-explainer` @main | https://github.com/nicobailon/visual-explainer.git |
