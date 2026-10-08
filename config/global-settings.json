@@ -9,6 +9,7 @@
     }
   },
   "enabledPlugins": {
+    "agent-dashboard@rushy": true,
     "agent-tooling@rushy": true,
     "agentic-actions-auditor@rushy": true,
     "android-skills@rushy": true,

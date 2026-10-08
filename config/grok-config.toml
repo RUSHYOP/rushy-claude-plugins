@@ -29,6 +29,7 @@ paths = [
 
 [plugins]
 paths = [
+  "/Users/admin/Codes-2/Agentic-setup/plugins/agent-dashboard",
   "/Users/admin/Codes-2/Agentic-setup/plugins/agent-tooling",
   "/Users/admin/Codes-2/Agentic-setup/plugins/android-skills",
   "/Users/admin/Codes-2/Agentic-setup/plugins/better-ux-quality",
@@ -45,6 +46,7 @@ paths = [
   "/Users/admin/Codes-2/Agentic-setup/plugins/vizuara",
 ]
 enabled = [
+  "agent-dashboard",
   "agent-tooling",
   "agentic-actions-auditor",
   "android-skills",

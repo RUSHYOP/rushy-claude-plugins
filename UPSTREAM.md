@@ -38,6 +38,7 @@ Rebuild first-party list from `plugins/` with `./scripts/rebuild-marketplace.sh`
 
 ## First-party
 
+- `agent-dashboard` → `./plugins/agent-dashboard`
 - `agent-tooling` → `./plugins/agent-tooling`
 - `android-skills` → `./plugins/android-skills`
 - `atlassian-confluence` → `./plugins/atlassian-confluence`
