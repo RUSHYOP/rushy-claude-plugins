@@ -13,6 +13,8 @@ const FILES: Record<string, string> = {
   [`${HOME}/.claude/sessions/200.json`]: reg(200, 's200', `${HOME}/Codes/app`, 'busy', 'app-session'),
   [`${HOME}/.claude/sessions/300.json`]: reg(300, 'dead', `${HOME}/Codes/gone`, 'busy', 'dead-session'),
   [`${HOME}/.claude/sessions/bad.json`]: '{oops',
+  [`${HOME}/.claude/sessions/400.json`]: line({ pid: 400, sessionId: 'spare', cwd: `${HOME}/x`, startedAt: NOW, status: 'idle', spare: true }),
+  [`${HOME}/.claude/sessions/101.json`]: reg(101, 'self', `${HOME}/Codes/self`, 'idle', 'stale-self'),
   [`${HOME}/.claude/projects/-h-Codes-app/s200/subagents/agent-aaa.meta.json`]: line({ agentType: 'general-purpose', description: 'build api', model: 'sonnet' }),
   [`${HOME}/.claude/projects/-h-Codes-app/s200/subagents/agent-bbb.meta.json`]: line({ agentType: 'Explore', description: 'scan docs' }),
 }
@@ -23,7 +25,7 @@ const TAILS: Record<string, string> = {
 const file = (name: string, mtimeMs: number) => ({ name, kind: 'file' as const, size: 10, mtimeMs, isLink: false })
 const LISTS: Record<string, ReturnType<typeof file>[]> = {
   [`${HOME}/.claude/sessions`]: [
-    file('100.json', NOW), file('100.abc.key', NOW), file('200.json', NOW), file('300.json', NOW), file('bad.json', NOW),
+    file('100.json', NOW), file('100.abc.key', NOW), file('200.json', NOW), file('300.json', NOW), file('bad.json', NOW), file('400.json', NOW), file('101.json', NOW),
   ],
   [`${HOME}/.claude/projects/-h-Codes-app/s200/subagents`]: [
     file('agent-aaa.jsonl', NOW - 1000),
@@ -69,7 +71,7 @@ test('lists live sessions by codebase with agents, progress and working buttons'
     const run = (exitCode: number, stdout: string, stderr = '') =>
       ({ value: { exitCode, stdout, stderr, isStdoutTruncated: false, isStderrTruncated: false } })
     const ok = (stdout: string) => run(0, stdout)
-    if (e.argv[0] === 'ps') return ok('  100 claude\n  200 /usr/local/bin/claude\n')
+    if (e.argv[0] === 'ps') return ok('  100 claude\n  200 /Users/h/.local/share/claude/versions/2.1.294\n  300 node\n  400 claude bg-spare\n')
     if (e.argv[0] === 'tail') return ok(TAILS[e.argv[3]!] ?? '')
     return run(1, '', 'unexpected')
   })
@@ -102,6 +104,9 @@ test('lists live sessions by codebase with agents, progress and working buttons'
   expect(await ui.find({ type: 'Text', text: /2 sessions · 1 busy/ })).toBeDefined()
   expect(await ui.find({ text: /~\/Codes\/app/ })).toBeDefined()
   expect(await ui.find({ text: /dead-session/ })).toBeUndefined()
+  // Spare workers and a stale duplicate of this session are not listed.
+  expect(await ui.find({ text: /stale-self/ })).toBeUndefined()
+  expect(await ui.find({ text: /~\/x\b/ })).toBeUndefined()
   // Foreign agents: running one listed, finished one folded, pre-session one excluded.
   expect(await ui.find({ text: /build api/ })).toBeDefined()
   expect(await ui.find({ text: /scan docs/ })).toBeUndefined()
@@ -129,7 +134,7 @@ test('lists live sessions by codebase with agents, progress and working buttons'
   expect(stopped).toEqual(['own1'])
 
   // Actions are logged as JSONL under the plugin's logs folder.
-  expect(writes.some(p => /\/logs\/dashboard-\d{4}-\d{2}-\d{2}\.jsonl$/.test(p))).toBe(true)
+  expect(writes.some(p => /\/logs\/dashboard-\d{4}-\d{2}-\d{2}-self\.jsonl$/.test(p))).toBe(true)
 
   await ui.unmount()
 })
@@ -151,5 +156,45 @@ test('a refresh failure is shown, not thrown', async ($, on) => {
   })
   await clock.advance(1)
   expect(await ui.find({ text: /Refresh failed:.*EACCES sessions/ })).toBeDefined()
+  await ui.unmount()
+})
+
+test('a refused TaskStop falls back to asking the agent, and says so', async ($, on) => {
+  mock.env(on, { HOME })
+  const clock = mock.clock(on, { now: NOW })
+  const sent: string[] = []
+  const toasts: string[] = []
+  on('fs.list', ($, e) =>
+    e.path === `${HOME}/.claude/sessions` ? { value: [file('100.json', NOW)] } : { deny: `ENOENT ${e.path}` },
+  )
+  on('fs.read', ($, e) => (FILES[e.path] === undefined ? { deny: 'ENOENT' } : { value: FILES[e.path]! }))
+  on('fs.exists', () => ({ value: true }))
+  on('fs.write', () => ({ value: undefined }))
+  on('ui.log', () => ({ value: undefined }))
+  on('ui.toast', ($, e) => {
+    toasts.push(e.text)
+    return { value: undefined }
+  })
+  on('process.run', () => ({
+    value: { exitCode: 0, stdout: '  100 claude\n', stderr: '', isStdoutTruncated: false, isStderrTruncated: false },
+  }))
+  on('session.id', () => ({ value: 'self' }))
+  on('agent.list', () => ({ value: [{ id: 'own1', description: 'refactor', type: 'general-purpose', status: 'running' as const }] }))
+  on('tool.call', { tool: 'TaskStop' }, () => ({ deny: 'not allowed' }) as never)
+  on('session.send', ($, e) => {
+    sent.push(e.to)
+    return { isDelivered: true as const }
+  })
+  const ui = await $.ui.mount({
+    plugin: 'agent-dashboard',
+    surface: 'terminal',
+    component: 'Pane',
+    requestId: 'agent-dashboard',
+    props: PANE_PROPS as never,
+  })
+  await clock.advance(1)
+  await ui.press({ key: 't:a:self:own1' })
+  expect(sent).toEqual(['own1'])
+  expect(toasts.some(t => /TaskStop failed \(not allowed\); asked the agent/.test(t))).toBe(true)
   await ui.unmount()
 })

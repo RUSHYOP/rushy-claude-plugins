@@ -6,13 +6,18 @@ import {
   STALE_MS,
   agentStatusFromTail,
   appleScriptFor,
+  dashboardCommand,
   bar,
+  cleanLabel,
+  dedupeSessions,
   fromAgentInfo,
   groupByCodebase,
+  orderTree,
   parseLivePids,
   parseRegistry,
   planAction,
   progressOf,
+  shellQuote,
   shortPath,
   slugOf,
   toggleLabel,
@@ -208,7 +213,6 @@ describe('planAction', () => {
   test('this session: Stop aborts the running turn, Resume submits a prompt', () => {
     const self = session({ isSelf: true, status: 'busy' })
     expect(planAction({ session: self }, 'toggle', 't-1')).toEqual({ kind: 'abort-turn', turnId: 't-1' })
-    expect(planAction({ session: self }, 'toggle', '').kind).toBe('none')
     const idle = session({ isSelf: true, status: 'idle' })
     expect(planAction({ session: idle }, 'toggle', '').kind).toBe('submit')
     expect(planAction({ session: idle }, 'parallelise', '').kind).toBe('submit')
@@ -243,5 +247,73 @@ describe('appleScriptFor', () => {
     expect(it.includes('\\\\c')).toBe(true)
     expect(appleScriptFor('Apple_Terminal', '/x').includes('"Terminal"')).toBe(true)
     expect(appleScriptFor(undefined, '/x').includes('"Terminal"')).toBe(true)
+  })
+  test('iTerm runs the line through the shell with write text', () => {
+    expect(appleScriptFor('iTerm.app', 'x').includes('write text "x"')).toBe(true)
+  })
+})
+
+describe('dashboardCommand', () => {
+  test('cds into a trusted folder first and quotes every path', () => {
+    expect(dashboardCommand('/Users/a/My Code', '/bin/claude')).toBe("cd '/Users/a/My Code' && '/bin/claude' /dashboard")
+    expect(dashboardCommand('/w', '/bin/claude', '/p d')).toBe("cd '/w' && '/bin/claude' --plugin-dir '/p d' /dashboard")
+  })
+  test('shellQuote survives single quotes', () => {
+    expect(shellQuote("it's")).toBe("'it'\\''s'")
+  })
+})
+
+// Review fixes (2026-10-08): real ps formats, spare workers, labels, dedupe, tree order, rounding, self toggle.
+describe('review fixes', () => {
+  test('parseLivePids accepts versioned binaries and renamed claude processes, from ps -axo output', () => {
+    const out = [
+      '39892 /Users/admin/.local/share/claude/versions/2.1.294',
+      '39766 claude bg-spare',
+      '24913 claude',
+      '82473 /Users/admin/.local/bin/claude',
+      '  501 /usr/bin/claudette',
+      '  502 node /x/claude.js',
+      '  503 /Applications/Claude.app/Contents/MacOS/Claude',
+    ].join('\n')
+    expect([...parseLivePids(out)].sort()).toEqual([24913, 39766, 39892, 82473].sort())
+  })
+  test('parseRegistry drops pre-warmed spare workers and absurd pids, and cleans the name', () => {
+    expect(parseRegistry(JSON.stringify({ ...REG, spare: true }))).toBeUndefined()
+    expect(parseRegistry(JSON.stringify({ ...REG, pid: 99_999_999_999 }))).toBeUndefined()
+    expect(parseRegistry(JSON.stringify({ ...REG, name: 'a\nb\u001b[31m' }))?.name).toBe('a b [31m')
+  })
+  test('cleanLabel strips control characters and collapses whitespace', () => {
+    expect(cleanLabel('  fix\t the\r\n bug\u0007 ')).toBe('fix the bug')
+  })
+  test('dedupeSessions keeps one row per session id: live pid first, then newest', () => {
+    const r = (pid: number, sessionId: string, startedAt: number) => ({ pid, sessionId, cwd: '/x', startedAt, name: 'n', status: 'idle' as const })
+    const out = dedupeSessions([r(1, 'a', 10), r(2, 'a', 20), r(3, 'b', 5)], new Set([1, 3]), 'zzz')
+    expect(out.map(x => x.pid).sort()).toEqual([1, 3])
+    const self = dedupeSessions([r(7, 'me', 10), r(8, 'me', 30)], new Set(), 'me')
+    expect(self.map(x => x.pid)).toEqual([8])
+    expect(dedupeSessions([r(9, 'gone', 1)], new Set(), 'me')).toEqual([])
+  })
+  test('orderTree lists children directly under their parent, roots by status', () => {
+    const t = orderTree([
+      agent({ id: 'c', parentId: 'p', status: 'running', depth: 2 }),
+      agent({ id: 'd', status: 'done' }),
+      agent({ id: 'p', status: 'idle' }),
+      agent({ id: 'r', status: 'running' }),
+    ])
+    expect(t.map(a => a.id)).toEqual(['r', 'p', 'c', 'd'])
+  })
+  test('orderTree keeps orphans (parent not listed) and survives cycles', () => {
+    const t = orderTree([agent({ id: 'x', parentId: 'missing' }), agent({ id: 'y', parentId: 'z' }), agent({ id: 'z', parentId: 'y' })])
+    expect(t.map(a => a.id).sort()).toEqual(['x', 'y', 'z'])
+  })
+  test('progress never shows 100% before everything is done', () => {
+    const many = [...Array.from({ length: 199 }, () => agent({ status: 'done' })), agent({ status: 'running' })]
+    expect(progressOf(many).pct).toBe(99)
+  })
+  test('this session: Stop only while a turn really runs, whatever the registry says', () => {
+    const busy = session({ isSelf: true, status: 'busy' })
+    expect(planAction({ session: busy }, 'toggle', '').kind).toBe('submit')
+    const idle = session({ isSelf: true, status: 'idle' })
+    expect(planAction({ session: idle }, 'toggle', 't-9')).toEqual({ kind: 'abort-turn', turnId: 't-9' })
   })
 })

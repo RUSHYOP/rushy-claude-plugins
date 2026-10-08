@@ -36,7 +36,7 @@ claude() {
 ## What it shows
 
 - **Codebase** (session working directory) → **session** → **subagents**, refreshed every 3 s while open.
-- Sessions come from `~/.claude/sessions/<pid>.json`, kept only when the pid is a live `claude` process.
+- Sessions come from `~/.claude/sessions/<pid>.json`, kept only when the pid is a live Claude Code process (`claude`, a retitled `claude bg-…`, or a `…/claude/versions/<v>` binary). Pre-warmed spare workers and stale duplicates are skipped.
 - Subagents of other sessions come from `~/.claude/projects/<slug>/<sessionId>/subagents/` (only those written since the session started); status is read from each transcript's tail: `end_turn` → done, otherwise running, or **stalled** after 10 min without writes.
 - This session's own agents come from the engine (`$.agent.list()`), with exact status and nesting.
 - **Progress bar** = finished subagents ÷ subagents started in that session. This is a stand-in: no session on this machine uses Claude's task tools, so there is no real "tasks left" count.
@@ -45,7 +45,7 @@ claude() {
 
 | Target | Stop / Resume (one toggle) | Parallelise |
 | --- | --- | --- |
-| This session | aborts the running turn / submits "continue" | submits a fan-out request |
+| This session | aborts the running turn / submits "continue" (follows the actual turn, not the registry) | submits a fan-out request |
 | This session's agent | `TaskStop` / message resumes it | message asking it to fan out |
 | Another session | message: "stop after your current step" / "continue" | message asking it to fan out |
 | Another session's subagent | message to its session naming the agent | same |
@@ -54,7 +54,7 @@ Messages to other sessions are requests: the receiving session decides when to a
 
 ## Logs
 
-Structured JSONL in `logs/dashboard-YYYY-MM-DD.jsonl` (pane open/close, first refresh with timing, refresh errors, every button action and its outcome). Bounded at 2 MB per file.
+Structured JSONL in `logs/dashboard-YYYY-MM-DD-<session>.jsonl` (one file per session, so two dashboards never clash) (pane open/close, first refresh with timing, refresh errors, every button action and its outcome). Bounded at 2 MB per file.
 
 ## Develop
 
@@ -65,3 +65,9 @@ tsc -p .            # after the engine has loaded the plugin once
 ```
 
 Pure logic lives in `hooks/model.ts` (unit-tested in `tests/model.test.ts`); `hooks/register.tsx` holds the hooks and drawing (integration-tested in `tests/dashboard.test.tsx` against a fake `~/.claude`).
+
+## Known limits
+
+- A finished agent whose final transcript row exceeds 64 KiB reads as running, then stalled.
+- Project folder names are derived as Claude Code does for ordinary paths; unusually long cwds may show "no transcript yet".
+- Up to 200 subagents per session are scanned (newest first); the row says when more exist.

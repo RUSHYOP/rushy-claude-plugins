@@ -4,11 +4,13 @@ import type { EngineInterface, Register, Timer } from 'claude-code'
 
 import type { AgentView, RowStatus, SessionView, Snapshot } from '../types'
 import {
-  STATUS_RANK,
   appleScriptFor,
+  dashboardCommand,
+  dedupeSessions,
   bar,
   fromAgentInfo,
   groupByCodebase,
+  orderTree,
   parseLivePids,
   parseMeta,
   parseRegistry,
@@ -41,6 +43,8 @@ const turnRef = atom({ plugin: 'agent-dashboard', key: 'turnId' } as const, '')
 let timer: Timer | undefined
 let isRefreshing = false
 let hasRefreshed = false
+// Set by ui.close: a draw or timer tick racing the close must not restart or keep polling.
+let isClosed = false
 let lastError = ''
 let logChain: Promise<void> = Promise.resolve()
 const metaCache = new Map<string, ReturnType<typeof parseMeta>>()
@@ -52,9 +56,10 @@ const errText = (err: unknown) => (err instanceof Error ? err.message : String(e
 function log($: Engine, event: string, fields: Record<string, unknown> = {}) {
   const now = new Date()
   const entry = JSON.stringify({ ts: now.toISOString(), event, ...fields })
-  const path = `${$.plugin.root}/logs/dashboard-${now.toISOString().slice(0, 10)}.jsonl`
+  const day = now.toISOString().slice(0, 10)
   logChain = logChain
-    .then(() => appendLog($, path, entry))
+    // One file per session and day: two dashboards never rewrite each other's file.
+    .then(async () => appendLog($, `${$.plugin.root}/logs/dashboard-${day}-${(await $.session.id()).slice(0, 8)}.jsonl`, entry))
     .catch(err => $.ui.log(`agent-dashboard: log write failed: ${errText(err)}`, { to: 'debug' }))
 }
 
@@ -63,7 +68,10 @@ async function appendLog($: Engine, path: string, entry: string) {
   if (await $.fs.exists(path)) {
     prior = await $.fs.read(path)
     // Bounded file: drop the oldest half once it passes the cap.
-    if (prior.length > LOG_MAX_BYTES) prior = prior.slice(prior.indexOf('\n', prior.length / 2) + 1)
+    if (prior.length > LOG_MAX_BYTES) {
+      const cut = prior.indexOf('\n', Math.floor(prior.length / 2))
+      prior = cut === -1 ? '' : prior.slice(cut + 1)
+    }
   }
   await $.fs.write(path, `${prior}${entry}\n`)
 }
@@ -82,14 +90,12 @@ async function mapLimited<T, R>(items: readonly T[], limit: number, fn: (t: T) =
   return out
 }
 
-const sortAgents = (agents: AgentView[]) => [...agents].sort((a, b) => STATUS_RANK[a.status] - STATUS_RANK[b.status])
-
 // This session: agents straight from the engine, with real statuses and parent links.
 // Falls back to the transcript folder when the engine refuses agent.list (e.g. from a timer, no bound session).
 async function ownView($: Engine, home: string, r: SessionRecord, now: number): Promise<SessionView> {
   try {
     const infos = await $.agent.list()
-    return { ...r, isSelf: true, agents: sortAgents(infos.map(i => fromAgentInfo(i, infos))) }
+    return { ...r, isSelf: true, agents: orderTree(infos.map(i => fromAgentInfo(i, infos))) }
   } catch {
     const view = await foreignView($, home, r, now)
     // Still ours: TaskStop takes these ids, so keep hard controls.
@@ -105,7 +111,8 @@ async function foreignAgent($: Engine, subDir: string, name: string, mtimeMs: nu
   if (meta === undefined) {
     const text = await $.fs.read(`${subDir}/agent-${id}.meta.json`).catch(() => undefined)
     meta = parseMeta(text)
-    metaCache.set(path, meta)
+    // Cache only a real read: the .meta.json can land after the .jsonl.
+    if (text !== undefined) metaCache.set(path, meta)
   }
   let cached = doneCache.get(path)
   if (cached === undefined || cached.mtimeMs !== mtimeMs) {
@@ -136,15 +143,17 @@ async function foreignView($: Engine, home: string, r: SessionRecord, now: numbe
   } catch {
     // No subagents folder is normal; no transcript at all means the cwd moved (/cd) and agents are unknown.
     const hasTranscript = await $.fs.exists(`${projectDir}/${r.sessionId}.jsonl`)
-    return hasTranscript ? base : { ...base, note: 'transcript not found (cwd changed?)' }
+    return hasTranscript ? base : { ...base, note: 'no transcript yet (or cwd changed)' }
   }
   const since = r.startedAt - 60_000
-  const files = entries
+  const all = entries
     .filter(e => e.kind === 'file' && e.name.startsWith('agent-') && e.name.endsWith('.jsonl') && e.mtimeMs >= since)
     .sort((a, b) => b.mtimeMs - a.mtimeMs)
-    .slice(0, MAX_AGENTS_PER_SESSION)
+  const files = all.slice(0, MAX_AGENTS_PER_SESSION)
+  // Say so when the cap hides agents, so the progress total is not silently short.
+  const capped = all.length > files.length ? `newest ${files.length} of ${all.length} agents` : undefined
   const agents = await mapLimited(files, READ_CONCURRENCY, f => foreignAgent($, subDir, f.name, f.mtimeMs, now))
-  return { ...base, agents: sortAgents(agents) }
+  return { ...base, agents: orderTree(agents), note: capped }
 }
 
 async function readRecords($: Engine, regDir: string): Promise<SessionRecord[]> {
@@ -162,13 +171,13 @@ async function refresh($: Engine) {
   try {
     const home = (await $.env.get('HOME')) ?? ''
     const records = await readRecords($, `${home}/.claude/sessions`)
-    const ps = records.length
-      ? await $.process.run(['ps', '-p', records.map(r => r.pid).join(','), '-o', 'pid=,comm='])
-      : { stdout: '' }
+    if (isClosed) return
+    // All processes in one call: `-p` with one bad pid prints an error and no rows at all.
+    const ps = await $.process.run(['ps', '-axo', 'pid=,comm='])
     const live = parseLivePids(ps.stdout)
     const selfId = await $.session.id()
     const now = await $.clock.now()
-    const liveRecords = records.filter(r => live.has(r.pid) || r.sessionId === selfId)
+    const liveRecords = dedupeSessions(records, live, selfId)
     // A session that writes no registry file (headless) still lists itself.
     if (!liveRecords.some(r => r.sessionId === selfId)) {
       const cwd = await $.session.cwd()
@@ -197,7 +206,7 @@ async function refresh($: Engine) {
 
 // Polls only while the pane is open; the first pass runs from a timer so a draw never writes state.
 function startPolling($: Engine) {
-  if (timer !== undefined) return
+  if (timer !== undefined || isClosed) return
   timer = $.clock.every(REFRESH_MS, () => void refresh($))
   $.clock.after(0, () => void refresh($))
 }
@@ -207,19 +216,34 @@ function stopPolling() {
   timer = undefined
 }
 
-async function openPane($: Engine) {
-  await $.ui.open({ id: PANE, title: 'Agent dashboard', focus: true, rows: 200, columns: 400 })
+// Opens the pane; says so only when the surface placed it (a narrow terminal can hold it back).
+async function openPane($: Engine): Promise<string> {
+  isClosed = false
+  hasRefreshed = false
+  const opened = await $.ui.open({ id: PANE, title: 'Agent dashboard', focus: true, rows: 200, columns: 400 })
+  log($, 'pane.open', { isPlaced: opened.isPlaced, reason: opened.isPlaced ? undefined : opened.reason })
+  if (!opened.isPlaced) return `Dashboard not shown yet: ${opened.reason}`
   startPolling($)
-  log($, 'pane.open')
+  return 'Dashboard opened.'
 }
 
 // Opens a new terminal window running the dashboard in its own session.
 async function openWindow($: Engine): Promise<string> {
+  try {
+    return await launchWindow($)
+  } catch (err) {
+    // No osascript (not macOS) or no claude on PATH: report, don't fail the command.
+    log($, 'window.error', { message: errText(err) })
+    return `Could not open a new window: ${errText(err)}`
+  }
+}
+
+async function launchWindow($: Engine): Promise<string> {
   const which = await $.process.run(['/usr/bin/which', 'claude'])
   const bin = which.exitCode === 0 && which.stdout.trim() !== '' ? which.stdout.trim() : 'claude'
   // An installed plugin lives under ~/.claude/plugins; any other root is a dev folder the new session must load.
   const isInstalled = $.plugin.root.includes('/.claude/plugins/')
-  const command = isInstalled ? `${bin} /dashboard` : `${bin} --plugin-dir ${$.plugin.root} /dashboard`
+  const command = dashboardCommand(await $.session.cwd(), bin, isInstalled ? undefined : $.plugin.root)
   const term = await $.env.get('TERM_PROGRAM')
   const run = await $.process.run(['/usr/bin/osascript', '-e', appleScriptFor(term, command)])
   log($, 'window.open', { term, command, exitCode: run.exitCode, stderr: run.stderr.slice(0, 500) })
@@ -230,15 +254,17 @@ async function openWindow($: Engine): Promise<string> {
 
 // TaskStop for one of this session's agents; if the tool is unavailable or refused, ask the agent instead.
 async function stopOwnAgent($: Engine, agentId: string): Promise<string> {
+  let why: string
   try {
-    await $.tool.call({ tool: 'TaskStop', task_id: agentId })
-    return `Stopped agent ${agentId}.`
+    const r = await $.tool.call({ tool: 'TaskStop', task_id: agentId })
+    // A refusal or a tool error resolves (it does not throw): check both.
+    if (r.deny === undefined && !r.isError) return `Stopped agent ${agentId}.`
+    why = r.deny ?? (r.text || 'TaskStop reported an error')
   } catch (err) {
-    const sent = await $.session.send({ to: { agentId }, text: 'Please stop after your current step.' })
-    return sent.isDelivered
-      ? `TaskStop failed (${errText(err)}); asked the agent to stop instead.`
-      : `Could not stop: ${sent.reason}`
+    why = errText(err)
   }
+  const sent = await $.session.send({ to: { agentId }, text: 'Please stop after your current step.' })
+  return sent.isDelivered ? `TaskStop failed (${why}); asked the agent to stop instead.` : `Could not stop: ${sent.reason}`
 }
 
 // Carries out a planned press and says what happened.
@@ -249,9 +275,10 @@ async function execute($: Engine, plan: Plan): Promise<string> {
     case 'abort-turn':
       await $.turn.abort({ turnId: plan.turnId })
       return 'Stopped this session’s running turn.'
-    case 'submit':
-      await $.prompt.submit({ text: plan.text })
-      return 'Queued in this session.'
+    case 'submit': {
+      const r = await $.prompt.submit({ text: plan.text })
+      return r.drop === undefined ? 'Queued in this session.' : `Not queued: ${r.drop}`
+    }
     case 'task-stop':
       return stopOwnAgent($, plan.agentId)
     case 'send': {
@@ -312,9 +339,8 @@ export const register: Register = on => {
     const arg = e.args.trim().toLowerCase()
     if (arg === 'window') return { text: await openWindow($) }
     if (arg !== '') return { text: `Unknown argument "${e.args.trim()}". Use /dashboard or /dashboard window.` }
-    await openPane($)
-    return { text: 'Dashboard opened.' }
-  })
+    return { text: await openPane($) }
+  }).catch(($, e, next) => ({ text: `Dashboard failed: ${errText(next.error)}` }))
 
   // Track the main loop's running turn so Stop on this session can abort it.
   on('turn.start', async ($, e, next) => {
@@ -328,18 +354,22 @@ export const register: Register = on => {
   })
 
   on('ui.close', async ($, e, next) => {
+    const closed = await next(e)
+    // After next: a hook that kept the pane open leaves polling running.
     if (e.id === PANE) {
+      isClosed = true
       stopPolling()
       log($, 'pane.close', { origin: e.origin })
     }
-    return next(e)
-  })
+    return closed
+  }).catch(($, e, next) => next(e))
 
   on('ui.render', { component: 'Pane', requestId: PANE }, async ($, e) => {
     const { Box, Text, Button } = $.ui.resolve(e)
     // After a reload the pane may still be open with no poller: restart it (its writes run from timers).
     if (timer === undefined) startPolling($)
     const snap: Snapshot = await read($, snapshot)
+    const turnId = await read($, turnRef)
     const open = new Set(await read($, expanded))
     const home = await $.env.get('HOME')
     const cols = Math.max(40, e.props.bodyColumns)
@@ -405,7 +435,8 @@ export const register: Register = on => {
       const head = row({
         key: `s:${s.sessionId}`,
         indent: 2,
-        status: s.status,
+        // This session's toggle follows its running turn (the registry can lag), matching planAction.
+        status: s.isSelf ? (turnId !== '' ? 'busy' : 'idle') : s.status,
         label: `${s.name}${s.isSelf ? ' (this session)' : ''}`,
         detail: [s.status, s.pid ? `pid ${s.pid}` : '', s.note ?? ''].filter(Boolean).join(' · '),
         pct: p.pct,
