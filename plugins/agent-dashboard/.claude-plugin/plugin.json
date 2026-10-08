@@ -1,0 +1,9 @@
+{
+  "name": "agent-dashboard",
+  "version": "0.1.0",
+  "description": "Full-terminal dashboard of every Claude session, agent and subagent on this machine, with stop/resume and parallelise controls",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "RUSHYOP"
+  }
+}

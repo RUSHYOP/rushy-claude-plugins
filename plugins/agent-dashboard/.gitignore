@@ -1,0 +1,3 @@
+# Runtime logs and engine-generated type copies
+logs/
+.claude-plugin/types/

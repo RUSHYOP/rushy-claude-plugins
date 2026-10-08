@@ -208,3 +208,14 @@ Flagged for the user: `claude plugin disable <name>@rushy` to reach zero MCPs.
   fonts load, no page-level horizontal overflow (ledger tables scroll inside themselves on mobile).
 - SKILL.md table row + note on original designs; version 1.2.0 in all three manifests and marketplace.json.
 
+
+## 2026-10-08 — agent-dashboard (first-party)
+
+- New hooks-module plugin `plugins/agent-dashboard`: `/dashboard` pane over every live Claude session, agent and
+  subagent on the machine (codebase → session → subagents), progress = finished ÷ started subagents, Stop/Resume
+  toggle and Parallelise per row; `/dashboard window` opens it in a new iTerm/Terminal window.
+- `claude --dashboard` is a shell function (plugins cannot add CLI flags) that runs `claude /dashboard`.
+- 28 tests (26 unit, 2 integration) pass; verified live: 10 sessions / 297 agents, first refresh 243 ms.
+- Catalog entries were auto-committed by the reconcile hook (9dd7615); plugin code committed separately.
+- Note: `claude plugin validate .` already fails on main for reserved names (claude-md-management, claude-mem) and
+  http:// MCP urls — pre-existing, untouched here.
